@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2016 1:44:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="HibFiles.Recipe" table="recipe" catalog="kitchenhunttest2" optimistic-lock="version">
+        <id name="idrecipe" type="java.lang.Integer">
+            <column name="idrecipe" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cuisineCategory" class="HibFiles.CuisineCategory" fetch="select">
+            <column name="cuisine_category_idcuisine_category" not-null="true" />
+        </many-to-one>
+        <many-to-one name="foodCategory" class="HibFiles.FoodCategory" fetch="select">
+            <column name="food_category_idfood_category" not-null="true" />
+        </many-to-one>
+        <many-to-one name="healthCategory" class="HibFiles.HealthCategory" fetch="select">
+            <column name="health_category_idhealth_category" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="HibFiles.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="directions" type="string">
+            <column name="directions" />
+        </property>
+        <property name="servingQuantity" type="java.lang.Integer">
+            <column name="serving_quantity" />
+        </property>
+        <property name="notes" type="string">
+            <column name="notes" />
+        </property>
+        <property name="skillLevel" type="string">
+            <column name="skill_level" />
+        </property>
+        <property name="preparingTime" type="string">
+            <column name="preparing_time" />
+        </property>
+        <property name="overallRating" type="java.lang.Integer">
+            <column name="overall_rating" />
+        </property>
+        <set name="recipeHasIngredients" table="recipe_has_ingredient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="recipe_idrecipe" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.RecipeHasIngredient" />
+        </set>
+        <set name="images" table="image" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="recipe_idrecipe" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.Image" />
+        </set>
+        <set name="ratings" table="rating" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="recipe_idrecipe" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.Rating" />
+        </set>
+        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="recipe_idrecipe" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.Comment" />
+        </set>
+    </class>
+</hibernate-mapping>

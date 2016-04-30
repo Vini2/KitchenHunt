@@ -6,5 +6,23 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kitchenhunttest2?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">12345</property>
+    <mapping resource="HibFiles/SupermarketHasIngredient.hbm.xml"/>
+    <mapping resource="HibFiles/SystemStatus.hbm.xml"/>
+    <mapping resource="HibFiles/Recipe.hbm.xml"/>
+    <mapping resource="HibFiles/Comment.hbm.xml"/>
+    <mapping resource="HibFiles/Notification.hbm.xml"/>
+    <mapping resource="HibFiles/UserType.hbm.xml"/>
+    <mapping resource="HibFiles/User.hbm.xml"/>
+    <mapping resource="HibFiles/Supermarket.hbm.xml"/>
+    <mapping resource="HibFiles/HealthCategory.hbm.xml"/>
+    <mapping resource="HibFiles/RecipeHasIngredient.hbm.xml"/>
+    <mapping resource="HibFiles/FoodCategory.hbm.xml"/>
+    <mapping resource="HibFiles/UserLogin.hbm.xml"/>
+    <mapping resource="HibFiles/Rating.hbm.xml"/>
+    <mapping resource="HibFiles/Image.hbm.xml"/>
+    <mapping resource="HibFiles/LoginSession.hbm.xml"/>
+    <mapping resource="HibFiles/CuisineCategory.hbm.xml"/>
+    <mapping resource="HibFiles/Ingredient.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

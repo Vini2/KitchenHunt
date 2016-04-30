@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2016 1:44:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="HibFiles.Comment" table="comment" catalog="kitchenhunttest2" optimistic-lock="version">
+        <id name="idcomment" type="java.lang.Integer">
+            <column name="idcomment" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="recipe" class="HibFiles.Recipe" fetch="select">
+            <column name="recipe_idrecipe" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="HibFiles.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="commentDesc" type="string">
+            <column name="comment_desc" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="time" type="time">
+            <column name="time" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>

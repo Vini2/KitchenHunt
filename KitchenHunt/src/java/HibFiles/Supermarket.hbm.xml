@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2016 1:44:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="HibFiles.Supermarket" table="supermarket" catalog="kitchenhunttest2" optimistic-lock="version">
+        <id name="idsupermarket" type="java.lang.Integer">
+            <column name="idsupermarket" />
+            <generator class="identity" />
+        </id>
+        <property name="supermarketName" type="string">
+            <column name="supermarket_name" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="telephone" length="13" />
+        </property>
+        <set name="supermarketHasIngredients" table="supermarket_has_ingredient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="supermarket_idsupermarket" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.SupermarketHasIngredient" />
+        </set>
+    </class>
+</hibernate-mapping>

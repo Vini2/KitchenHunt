@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 1, 2016 1:44:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="HibFiles.UserType" table="user_type" catalog="kitchenhunttest2" optimistic-lock="version">
+        <id name="iduserType" type="java.lang.Integer">
+            <column name="iduser_type" />
+            <generator class="identity" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="type_name" />
+        </property>
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_type_iduser_type" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.User" />
+        </set>
+    </class>
+</hibernate-mapping>
