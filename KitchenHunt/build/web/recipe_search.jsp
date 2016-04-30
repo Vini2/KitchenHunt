@@ -16,14 +16,14 @@ and open the template in the editor.
 <html>
     <head>
         <title>Kitchen Hunt - Search</title>
-        
+
         <%
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
         %>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -41,10 +41,10 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/footer-distributed.css">
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        
+
         <script type="text/javascript" src="js/myjavascript.js"></script>
 
-        
+
 
     </head>
     <body>
@@ -185,15 +185,49 @@ and open the template in the editor.
                             </button>
                         </span>
                     </div>
+                    <br>
+                    <br>
+                    
+                    
+                    
+                    <div class="form-group">
+                        <label class="control-label" for="email">Meal Type</label>
+                        <select name="meal_type" id="meal_type" class="form-control" >
+                            <option value="">---Select Meal Type---</option>
+                            <option value="Beginner">Breakfast</option>
+                            <option value="Moderate">Lunch</option>
+                            <option value="Expert">Dinner</option>
+                        </select>
+                    </div>
 
-                    <br><br>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Cuisine Style</label>
+                        <select name="meal_type" id="meal_type" class="form-control" >
+                            <option value="">---Select Cuisine Style---</option>
+                            <option value="Beginner">French</option>
+                            <option value="Moderate">Italian</option>
+                            <option value="Expert">American</option>
+                        </select>
+                    </div>
 
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#section1">Meal Type</a></li>
-                        <li><a href="#section2">Cuisine Type</a></li>
-                        <li><a href="#section3">Health</a></li>
-                        <li><a href="#section3">Exclude</a></li>
-                    </ul><br>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Health Category</label>
+                        <select name="meal_type" id="meal_type" class="form-control" >
+                            <option value="">---Select Health Category---</option>
+                            <option value="Beginner">Healthy</option>
+                            <option value="Moderate">Diabetic</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="email">Exclude</label>
+                        <select name="meal_type" id="meal_type" class="form-control" >
+                            <option value="">---Select Ingredient to Exclude---</option>
+                            <option value="Beginner">Healthy</option>
+                            <option value="Moderate">Diabetic</option>
+                        </select>
+                    </div>
+
 
                 </div>
 
