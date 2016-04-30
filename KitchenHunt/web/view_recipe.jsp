@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.UserLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -69,7 +70,7 @@ and open the template in the editor.
                             if (request.getSession().getAttribute("user") != null) {
                                 UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
                         %>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getName()%></a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getName()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="profile.jsp">Profile</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
@@ -78,7 +79,7 @@ and open the template in the editor.
 
                         <%} else {%>
 
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Kitchen</a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Kitchen<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a></li>
                                 <li><a href="#" data-toggle="modal" data-target="#signInModal">Sign In</a></li>
