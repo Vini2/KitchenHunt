@@ -79,6 +79,7 @@
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getName()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="profile.jsp">Profile</a></li>
+                                <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>
