@@ -57,7 +57,7 @@
     </head>
     <body>
     <center>
-        <h1>Send Email using JSP</h1>
+        <h1>Send Email using JSP - :)</h1>
     </center>
     <p align="center">
         <%
