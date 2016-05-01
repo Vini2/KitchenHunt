@@ -3,6 +3,13 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import HibFiles.Image;
+import HibFiles.RecipeHasIngredient;
+import java.util.Set;
+import HibFiles.Recipe;
+import org.hibernate.Session;
+import HibFiles.PoolManager;
+import HibFiles.UserLogin;
 
 public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -45,6 +52,13 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<!--\n");
       out.write("To change this license header, choose License Headers in Project Properties.\n");
@@ -54,6 +68,20 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <title>Kitchen Hunt - View Recipe</title>\n");
+      out.write("        \n");
+      out.write("        ");
+
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+            
+            Session s = PoolManager.getSessionFactory().openSession();
+            Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(request.getParameter("rid")));
+
+        
+      out.write("\n");
+      out.write("        \n");
       out.write("        <meta charset=\"UTF-8\">\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
       out.write("\n");
@@ -71,7 +99,10 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("        <link rel=\"stylesheet\" href=\"css/footer-distributed.css\">\n");
       out.write("\n");
       out.write("        <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css\">\n");
+      out.write("        \n");
+      out.write("        <script type=\"text/javascript\" src=\"js/myjavascript.js\"></script>\n");
       out.write("\n");
+      out.write("        \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("\n");
@@ -96,13 +127,15 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                        ");
 
                             if (request.getSession().getAttribute("user") != null) {
+                                UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
                         
       out.write("\n");
       out.write("                        <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></span> ");
-      out.print(request.getSession().getAttribute("user"));
-      out.write("</a>\n");
+      out.print(ul.getUser().getFname());
+      out.write("<span class=\"caret\"></span></a>\n");
       out.write("                            <ul class=\"dropdown-menu\">\n");
       out.write("                                <li><a href=\"profile.jsp\">Profile</a></li>\n");
+      out.write("                                <li><a href=\"add_new_recipe.jsp\">Post Recipe</a></li>\n");
       out.write("                                <li><a href=\"SignOut\">Sign Out</a></li>\n");
       out.write("                            </ul>\n");
       out.write("                        </li>\n");
@@ -111,7 +144,7 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
 } else {
       out.write("\n");
       out.write("\n");
-      out.write("                        <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></span> My Kitchen</a>\n");
+      out.write("                        <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></span> My Kitchen<span class=\"caret\"></span></a>\n");
       out.write("                            <ul class=\"dropdown-menu\">\n");
       out.write("                                <li><a href=\"#\" data-toggle=\"modal\" data-target=\"#signUpModal\">Sign Up</a></li>\n");
       out.write("                                <li><a href=\"#\" data-toggle=\"modal\" data-target=\"#signInModal\">Sign In</a></li>\n");
@@ -138,25 +171,29 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                        <h3 class=\"modal-title\">Sign Up</h3>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"modal-body\" align=\"left\">\n");
-      out.write("                        <form role=\"form\">\n");
+      out.write("                        <form role=\"form\" action=\"\" onsubmit=\"signUp(this); return false;\" method=\"POST\" id=\"testform\">\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"name\">Name:</label>\n");
-      out.write("                                <input type=\"name\" class=\"form-control\" id=\"name\" required>\n");
+      out.write("                                <input type=\"name\" class=\"form-control\" name=\"signup_name\" id=\"idname\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"name\">Mobile:</label>\n");
-      out.write("                                <input type=\"number\" class=\"form-control\" id=\"mobile\" required>\n");
+      out.write("                                <input type=\"number\" class=\"form-control\" name=\"signup_mobile\" id=\"idmobile\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"email\">Email address:</label>\n");
-      out.write("                                <input type=\"email\" class=\"form-control\" id=\"email\" required>\n");
+      out.write("                                <input type=\"email\" class=\"form-control\" name=\"signup_email\" id=\"idemail\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"pwd\">Password:</label>\n");
-      out.write("                                <input type=\"password\" class=\"form-control\" id=\"pwd\" required>\n");
+      out.write("                                <input type=\"password\" class=\"form-control\" name=\"signup_password\" id=\"idpassword\" required>\n");
+      out.write("                            </div>\n");
+      out.write("                            <div class=\"form-group\">\n");
+      out.write("                                <label for=\"pwd\">Confirm password:</label>\n");
+      out.write("                                <input type=\"password\" class=\"form-control\" name=\"signup_confirmpassword\" id=\"idconfirmpassword\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div align=\"right\">\n");
-      out.write("                                <button type=\"submit\" class=\"btn btn-success btn-block\" >Sign In</button>\n");
+      out.write("                                <input type=\"submit\" value=\"Sign Up\" class=\"btn btn-success btn-block\"/>\n");
       out.write("                            </div>\n");
       out.write("                        </form>\n");
       out.write("\n");
@@ -178,20 +215,20 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                        <h3 class=\"modal-title\">Sign In</h3>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"modal-body\" align=\"left\">\n");
-      out.write("                        <form role=\"form\">\n");
+      out.write("                        <form role=\"form\" action=\"\" onsubmit=\"signIn(this); return false;\" method=\"POST\" id=\"testform\">\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"email\">Email address:</label>\n");
-      out.write("                                <input type=\"email\" class=\"form-control\" id=\"email\" required>\n");
+      out.write("                                <input type=\"email\" class=\"form-control\" name=\"signin_email\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"pwd\">Password:</label>\n");
-      out.write("                                <input type=\"password\" class=\"form-control\" id=\"pwd\" required>\n");
+      out.write("                                <input type=\"password\" class=\"form-control\" name=\"signin_password\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"checkbox\">\n");
       out.write("                                <label><input type=\"checkbox\"> Remember me</label>\n");
       out.write("                            </div>\n");
       out.write("                            <div align=\"right\">\n");
-      out.write("                                <button type=\"submit\" class=\"btn btn-success btn-block\" >Submit</button>\n");
+      out.write("                                <input type=\"submit\" value=\"Sign In\" class=\"btn btn-success btn-block\"/>\n");
       out.write("                            </div>\n");
       out.write("                        </form>\n");
       out.write("\n");
@@ -208,7 +245,9 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\n");
       out.write("                <div class=\"col-xs-6 col-md-4\">\n");
       out.write("                    <div class=\"row\">\n");
-      out.write("                        <div class=\"col-xs-12 col-md-12\"><h2>Butter Curls</h2></div>\n");
+      out.write("                        <div class=\"col-xs-12 col-md-12\"><h2>");
+      out.print(r.getName());
+      out.write("</h2></div>\n");
       out.write("                    </div>\n");
       out.write("                    <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\" style=\"font-size: 35px;\"></span>\n");
       out.write("                    <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\" style=\"font-size: 35px;\"></span>\n");
@@ -218,29 +257,62 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                    <br>\n");
       out.write("                    <h3>186 reviewed</h3>\n");
       out.write("                    <br>\n");
-      out.write("                    <h4>Recipe by: Vijini Mallawaarachchi</h4>\n");
+      out.write("                    <h4>Recipe by: ");
+      out.print(r.getUser().getFname());
+      out.write("</h4>\n");
       out.write("                    <br>\n");
+      out.write("                    \n");
+      out.write("                    <h4>Skill Level: ");
+      out.print(r.getSkillLevel());
+      out.write("</h4>\n");
+      out.write("                    \n");
+      out.write("                    <h4>Preparation Time: ");
+      out.print(r.getPreparingTime());
+      out.write("</h4>\n");
       out.write("\n");
-      out.write("                    <h4>Preparation Time: 15 minutes</h4>\n");
-      out.write("\n");
-      out.write("                    <h4>Serves: 4-6</h4>\n");
+      out.write("                    <h4>Serves: ");
+      out.print(r.getServingQuantity());
+      out.write("</h4>\n");
       out.write("\n");
       out.write("                    <br>\n");
       out.write("                    <h4><a href=\"#\" class=\"btn btn-success\" role=\"button\">Add to My Kitchen</a></h4>\n");
       out.write("\n");
       out.write("                </div>\n");
       out.write("                <div class=\"col-xs-12 col-md-8\" align=\"right\">\n");
-      out.write("                    <img src=\"images/Butter_Curls.jpg\" alt=\"Butter Curls\" width=\"600px\" height=\"auto\">\n");
+      out.write("                    \n");
+      out.write("                    ");
+
+                        
+                    
+      out.write("\n");
+      out.write("                    \n");
+      out.write("                    <img src=\"images/recipe/Perfect Summer Fruit Salad.jpg\" alt=\"Butter Curls\" width=\"600px\" height=\"auto\">\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("            <div class=\"row\">\n");
       out.write("                <div class=\"col-xs-12\"><h3>Ingredients</h3></div>\n");
       out.write("            </div>\n");
+      out.write("                    \n");
+      out.write("            ");
+
+                 Set ss = r.getRecipeHasIngredients();
+                 for (Object arg : ss) {
+                     RecipeHasIngredient i = (RecipeHasIngredient) arg;
+                 
+            
+      out.write("\n");
+      out.write("            \n");
       out.write("            <div class=\"row\">\n");
-      out.write("                <div class=\"col-xs-6 col-md-4\">4 Jacob’s ladder beef ribs</div>\n");
-      out.write("                <div class=\"col-xs-6 col-md-4\">1 onion, chopped</div>\n");
-      out.write("                <div class=\"col-xs-6 col-md-4\">1 tsp fennel seeds</div>\n");
+      out.write("                <div class=\"col-xs-3 col-md-3\">");
+      out.print(i.getIngredient().getName());
+      out.write("</div>\n");
+      out.write("                <div class=\"col-xs-2 col-md-2\">");
+      out.print(i.getQuantity());
+      out.write("g</div>\n");
       out.write("            </div>\n");
+      out.write("            ");
+}
+      out.write("\n");
       out.write("            <div class=\"row\">\n");
       out.write("                <div class=\"col-xs-6 col-md-4\">2 star anise</div>\n");
       out.write("                <div class=\"col-xs-6 col-md-4\">4 baking potatoes</div>\n");
@@ -256,14 +328,9 @@ public final class view_005frecipe_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("            </div>\n");
       out.write("            <div class=\"row\">\n");
       out.write("                <div class=\"col-xs-12\">\n");
-      out.write("                    <ol>\n");
-      out.write("                        <li>Place the ribs in a large, wide saucepan. Cover with water and add the onion, garlic, fennel seeds and star anise.</li>\n");
-      out.write("                        <li>Bring to a boil, then reduce the heat and simmer very gently for three hours, or until the meat is tender, skimming any scum off occasionally.</li>\n");
-      out.write("                        <li>Preheat the oven to 200C/400F/Gas 6</li>\n");
-      out.write("                        <li>Rub the baking potatoes with a little oil. Create four small piles of sea salt in a baking tray then place the potatoes on top. Bake for 1-1½ hours, or until tender.</li>\n");
-      out.write("                        <li>Meanwhile, make the bbq sauce. Heat a sauté pan until hot and add the butter, onions and garlic and fry for 4-5 minutes, or until softened.</li>\n");
+      out.write("                    ");
+      out.print(r.getDirections());
       out.write("\n");
-      out.write("                    </ol>\n");
       out.write("                    <br>\n");
       out.write("                </div>\n");
       out.write("\n");

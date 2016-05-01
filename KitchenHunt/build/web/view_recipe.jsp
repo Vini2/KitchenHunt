@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="java.util.Iterator"%>
 <%@page import="HibFiles.Image"%>
 <%@page import="HibFiles.RecipeHasIngredient"%>
 <%@page import="java.util.Set"%>
@@ -22,18 +23,18 @@ and open the template in the editor.
 <html>
     <head>
         <title>Kitchen Hunt - View Recipe</title>
-        
+
         <%
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
-            
+
             Session s = PoolManager.getSessionFactory().openSession();
             Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(request.getParameter("rid")));
 
         %>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -51,10 +52,10 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/footer-distributed.css">
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        
+
         <script type="text/javascript" src="js/myjavascript.js"></script>
 
-        
+
     </head>
     <body>
 
@@ -76,11 +77,10 @@ and open the template in the editor.
                         <li><a href="#">Help</a></li>
                         <li><a href="#">About</a></li>
 
-                        <%
-                            if (request.getSession().getAttribute("user") != null) {
+                        <%                            if (request.getSession().getAttribute("user") != null) {
                                 UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
                         %>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getName()%><span class="caret"></span></a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="profile.jsp">Profile</a></li>
                                 <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
@@ -199,11 +199,11 @@ and open the template in the editor.
                     <br>
                     <h3>186 reviewed</h3>
                     <br>
-                    <h4>Recipe by: <%=r.getUser().getName()%></h4>
+                    <h4>Recipe by: <%=r.getUser().getFname()%></h4>
                     <br>
-                    
+
                     <h4>Skill Level: <%=r.getSkillLevel()%></h4>
-                    
+
                     <h4>Preparation Time: <%=r.getPreparingTime()%></h4>
 
                     <h4>Serves: <%=r.getServingQuantity()%></h4>
@@ -213,25 +213,26 @@ and open the template in the editor.
 
                 </div>
                 <div class="col-xs-12 col-md-8" align="right">
-                    
+
                     <%
-                        
+                        Set image_set = r.getImages();
+                        Iterator iter = image_set.iterator();
+                        Image im = (Image) iter.next();
                     %>
-                    
-                    <img src="images/recipe/Perfect Summer Fruit Salad.jpg" alt="Butter Curls" width="600px" height="auto">
+
+                    <img src="<%=im.getPath()%>" alt="Butter Curls" width="600px" height="auto">
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12"><h3>Ingredients</h3></div>
             </div>
-                    
-            <%
-                 Set ss = r.getRecipeHasIngredients();
-                 for (Object arg : ss) {
-                     RecipeHasIngredient i = (RecipeHasIngredient) arg;
-                 
+
+            <%                Set ss = r.getRecipeHasIngredients();
+                for (Object arg : ss) {
+                    RecipeHasIngredient i = (RecipeHasIngredient) arg;
+
             %>
-            
+
             <div class="row">
                 <div class="col-xs-3 col-md-3"><%=i.getIngredient().getName()%></div>
                 <div class="col-xs-2 col-md-2"><%=i.getQuantity()%>g</div>

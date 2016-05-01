@@ -27,10 +27,6 @@ public class test {
         Session s = PoolManager.getSessionFactory().openSession();
         Recipe r = (Recipe) s.load(Recipe.class, 6);
 
-        Set image_set = r.getImages();
-        Iterator iter = image_set.iterator();
-        Image im = (Image) iter.next();
-        
         
 
         Set ss = r.getRecipeHasIngredients();

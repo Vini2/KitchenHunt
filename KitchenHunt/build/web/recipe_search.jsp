@@ -4,6 +4,16 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.Image"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.criterion.Order"%>
+<%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="HibFiles.Recipe"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="HibFiles.PoolManager"%>
+<%@page import="org.hibernate.Criteria"%>
 <%@page import="HibFiles.UserLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -71,7 +81,7 @@ and open the template in the editor.
                             if (request.getSession().getAttribute("user") != null) {
                                 UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
                         %>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getName()%><span class="caret"></span></a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="profile.jsp">Profile</a></li>
                                 <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
@@ -234,18 +244,46 @@ and open the template in the editor.
 
                 <div class="col-sm-9">
 
+                    <%
+                        Session s = PoolManager.getSessionFactory().openSession();
+                        Criteria c = s.createCriteria(Recipe.class);
+                        c.addOrder(Order.desc("idrecipe"));
+                        c.setMaxResults(6);
+
+                        List<Recipe> lr = c.list();
+                    %>
+
                     <div class="row">
+
+                        <%
+                            for (Recipe r : lr) {
+                        %>
+
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="images/Perfect Summer Fruit Salad.jpg" alt="Butter Curls">
+
+                                <%
+                                    Set image_set = r.getImages();
+                                    Iterator iter = image_set.iterator();
+                                    Image im = (Image) iter.next();
+                                %>
+
+                                <img src="<%=im.getPath()%>" alt="Butter Curls">
                                 <div class="caption">
-                                    <h3>Summer Fruit Salad</h3>
-                                    <p>By: Vijini Mallawaarachchi</p>
-                                    <p><a href="view_recipe.jsp?rid=6" class="btn btn-default" role="button">View Recipe</a> 
+                                    <h3><%=r.getName()%></h3>
+                                    <p>By: <%=r.getUser().getFname()%></p>
+                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
+
+                                        <%
+                                            if (request.getSession().getAttribute("user") != null) {
+                                        %>
+
                                         <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
+                                        <%}%>
                                 </div>
                             </div>
                         </div>
+                        <%}%>
                     </div>
 
 

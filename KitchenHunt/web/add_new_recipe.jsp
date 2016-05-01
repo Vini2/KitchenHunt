@@ -80,7 +80,7 @@
                             if (request.getSession().getAttribute("user") != null) {
 
                         %>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getName()%><span class="caret"></span></a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="profile.jsp">Profile</a></li>
                                 <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
@@ -290,7 +290,7 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing1_unit" id="recipe_ing1_unit" class="form-control" >
-                            <option value="mg">mg</option>
+                            <option value="g">g</option>
                             <option value="tbs">tbs</option>
                         </select>
                     </div>
@@ -307,7 +307,7 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing2_unit" id="recipe_ing2_unit" class="form-control" >
-                            <option value="mg">mg</option>
+                            <option value="g">g</option>
                             <option value="tbs">tbs</option>
                         </select>
                     </div>
@@ -324,7 +324,7 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing3_unit" id="recipe_ing3_unit" class="form-control" >
-                            <option value="mg">mg</option>
+                            <option value="g">g</option>
                             <option value="tbs">tbs</option>
                         </select>
                     </div>
@@ -341,7 +341,7 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing4_unit" id="recipe_ing4_unit" class="form-control" >
-                            <option value="mg">mg</option>
+                            <option value="g">g</option>
                             <option value="tbs">tbs</option>
                         </select>
                     </div>
