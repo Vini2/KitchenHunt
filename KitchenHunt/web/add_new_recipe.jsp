@@ -202,7 +202,7 @@
                     <div class="col-sm-9">
 
                         <select name="recipe_skill" id="recipe_skill" class="form-control" >
-                            <option value="">---Select Category---</option>
+                            <option value="">---Select Skill Level---</option>
                             <option value="Beginner">Beginner</option>
                             <option value="Moderate">Moderate</option>
                             <option value="Expert">Expert</option>
