@@ -237,106 +237,62 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="images/Butter_Curls.jpg" alt="Butter Curls">
+                                <img src="images/Perfect Summer Fruit Salad.jpg" alt="Butter Curls">
                                 <div class="caption">
-                                    <h3>Butter Curls</h3>
-                                    <p>Make pretty curls of butter to top whatever and get your OHHH's and AHHH's!</p>
-                                    <p><a href="view_recipe.jsp" class="btn btn-default" role="button">View Recipe</a> 
-                                        <%if (request.getSession().getAttribute("user") != null) {%>
-                                        <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
-                                        <%}%>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="images/ChickenSupreme.jpg" alt="Chicken Submarine">
-                                <div class="caption">
-                                    <h3>Chicken Submarine</h3>
-                                    <p>Mouth watering chicken flakes with mayonnaise, that you will not resist!</p>
-                                    <p><a href="view_recipe.jsp" class="btn btn-default" role="button">View Recipe</a> 
+                                    <h3>Summer Fruit Salad</h3>
+                                    <p>By: Vijini Mallawaarachchi</p>
+                                    <p><a href="view_recipe.jsp?rid=6" class="btn btn-default" role="button">View Recipe</a> 
                                         <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="images/Chocolate_Glaze.jpg" alt="Chocolate Glaze">
-                                <div class="caption">
-                                    <h3>Chocolate Glaze</h3>
-                                    <p>Delicious chocolate cake covered with shiny hot chocolate glaze...</p>
-                                    <p><a href="#" class="btn btn-default" role="button">View Recipe</a> 
-                                        <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="images/Baked_Rice.jpg" alt="Baked Rice">
-                                <div class="caption">
-                                    <h3>Baked Rice</h3>
-                                    <p>It's not just boiled rice! Baked with creamy cheese and vegetables...</p>
-                                    <p><a href="#" class="btn btn-default" role="button">View Recipe</a> 
-                                        <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="images/Mango_Pie.jpeg" alt="Mango Pie">
-                                <div class="caption">
-                                    <h3>Mango Pie</h3>
-                                    <p>A pie made using sweet juicy mangos with golden syrup and whip cream...</p>
-                                    <p><a href="#" class="btn btn-default" role="button">View Recipe</a> 
-                                        <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
+
                 </div>
+
             </div>
         </div>
+    </div>
 
-        <footer class="footer-distributed">
+    <footer class="footer-distributed">
 
-            <div class="footer-right">
+        <div class="footer-right">
 
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
 
-            </div>
+        </div>
 
-            <div class="footer-left">
+        <div class="footer-left">
 
-                <p class="footer-links">
-                    <a href="#">Home</a>
-                    ·
-                    <a href="#">Recipe Search</a>
-                    ·
-                    <a href="#">Help</a>
-                    ·
-                    <a href="#">About</a>
-                    ·
-                    <a href="#">My Kitchen</a>
-                    ·
-                    <a href="#">Contact</a>
-                </p>
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Recipe Search</a>
+                ·
+                <a href="#">Help</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">My Kitchen</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
 
-                <p>Kitchen Hunt &copy; 2016</p>
-            </div>
+            <p>Kitchen Hunt &copy; 2016</p>
+        </div>
 
-        </footer>
+    </footer>
 
 
 
-    </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="js/sidebar.js"></script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="js/sidebar.js"></script>
 
 
 

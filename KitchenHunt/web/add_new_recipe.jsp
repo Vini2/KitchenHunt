@@ -213,20 +213,20 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" disabled>Serving Quantity:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="recipe_qty" name="recipe_qty" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="recipe_qty" name="recipe_qty" placeholder="" value="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3" disabled>Preparation Time:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="recipe_preptime" name="recipe_preptime" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="recipe_preptime" name="recipe_preptime" placeholder="" value="">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-3" disabled>Meal Type:</label>
                     <div class="col-sm-9">
-                        <select name="recipe_skill" id="recipe_mealtype" class="form-control" >
+                        <select name="recipe_mealtype" id="recipe_mealtype" class="form-control" >
                             <option value="">---Select Meal Type---</option>
                             <%
                                 Criteria c1 = s.createCriteria(FoodCategory.class);
@@ -290,8 +290,8 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing1_unit" id="recipe_ing1_unit" class="form-control" >
-                            <option value="Beginner">mg</option>
-                            <option value="Moderate">tbs</option>
+                            <option value="mg">mg</option>
+                            <option value="tbs">tbs</option>
                         </select>
                     </div>
                 </div>
@@ -307,8 +307,8 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing2_unit" id="recipe_ing2_unit" class="form-control" >
-                            <option value="Beginner">mg</option>
-                            <option value="Moderate">tbs</option>
+                            <option value="mg">mg</option>
+                            <option value="tbs">tbs</option>
                         </select>
                     </div>
                 </div>
@@ -324,12 +324,29 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing3_unit" id="recipe_ing3_unit" class="form-control" >
-                            <option value="Beginner">mg</option>
-                            <option value="Moderate">tbs</option>
+                            <option value="mg">mg</option>
+                            <option value="tbs">tbs</option>
                         </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3" disabled>Ingredient 4:</label>
 
+                    <div class="col-xs-4 col-md-4">
+                        <input type="text" class="form-control" id="recipe_ing4" name="recipe_ing4" placeholder="Ingredient Name" value="">
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                        <input type="text" class="form-control" id="recipe_ing4_qty" name="recipe_ing4_qty" placeholder="Quantity" value="">
+
+                    </div>
+                    <div class="col-xs-2 col-md-2">
+                        <select name="recipe_ing4_unit" id="recipe_ing4_unit" class="form-control" >
+                            <option value="mg">mg</option>
+                            <option value="tbs">tbs</option>
+                        </select>
+                    </div>
+                </div>
+                   
                 <div class="form-group row">
                     <div class="col-sm-3">
                         <h2><small>Directions</small></h2>
@@ -341,14 +358,15 @@
                     <div class="col-sm-3">
                     </div>
                     <div class="col-sm-9">
-                        <textarea class="form-control" rows="10" id="recipe_directions"></textarea>
+                        <textarea class="form-control" rows="10" name="recipe_directions" id="recipe_directions"></textarea>
                     </div>
                 </div>
 
 
                 <div class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-10" align="right" id="action_button">
-                        <h1><button type="submit" class="btn btn-success" id="btn_update">Save Recipe</button></h1>
+                        <h1><input type="submit" value="Save Recipe" class="btn btn-success"/></h1>
+                        
                     </div>
                 </div>
 

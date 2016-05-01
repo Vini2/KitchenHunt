@@ -152,3 +152,86 @@ function update(frm1) {
 
     }
 }
+
+function postRecipe(frm1) {
+
+    var a;
+    
+    var recipe_name = frm1["recipe_name"].value;
+    var recipe_skill = frm1["recipe_skill"].value;
+    var recipe_qty = frm1["recipe_qty"].value;
+    var recipe_preptime = frm1["recipe_preptime"].value;
+    var recipe_mealtype = frm1["recipe_mealtype"].value;
+    var recipe_cuisine = frm1["recipe_cuisine"].value;
+    var recipe_healthcat = frm1["recipe_healthcat"].value;
+
+    var recipe_ing1 = frm1["recipe_ing1"].value;
+    var recipe_ing1_qty = frm1["recipe_ing1_qty"].value;
+    var recipe_ing1_unit = frm1["recipe_ing1_unit"].value;
+    
+    var recipe_ing2 = frm1["recipe_ing2"].value;
+    var recipe_ing2_qty = frm1["recipe_ing2_qty"].value;
+    var recipe_ing2_unit = frm1["recipe_ing2_unit"].value;
+
+    var recipe_ing3 = frm1["recipe_ing3"].value;
+    var recipe_ing3_qty = frm1["recipe_ing3_qty"].value;
+    var recipe_ing3_unit = frm1["recipe_ing3_unit"].value;
+
+    var recipe_ing4 = frm1["recipe_ing4"].value;
+    var recipe_ing4_qty = frm1["recipe_ing4_qty"].value;
+    var recipe_ing4_unit = frm1["recipe_ing4_unit"].value;
+
+    var recipe_directions = frm1["recipe_directions"].value;
+
+    //var recipe_qty = frm1["recipe_qtye"].value;
+
+    if (window.XMLHttpRequest) {
+        a = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        a = new ActiveXObject("Microsoft.XMLHTTP");
+    } else {
+        alert("Browser does not support AJAX");
+    }
+
+    if (a != null) {
+        a.onreadystatechange = function () {
+            if (a.readyState === 4) {
+                var res = a.responseText;
+
+                if (res == 'Error') {
+                    alert("Please make sure you have filled all the fields.");
+                } else if (res == 'success') {
+                    alert("Recipe posted successfully...");
+                    reloadPage();
+                } else {
+                    alert(res);
+                }
+            }
+        }
+
+        a.open("POST", "PostRecipe", true);
+        a.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        a.send("recipe_name=" + recipe_name +
+                "&recipe_skill=" + recipe_skill +
+                "&recipe_qty=" + recipe_qty +
+                "&recipe_preptime=" + recipe_preptime +
+                "&recipe_mealtype=" + recipe_mealtype +
+                "&recipe_cuisine=" + recipe_cuisine +
+                "&recipe_healthcat=" + recipe_healthcat +
+                "&recipe_ing1=" + recipe_ing1 +
+                "&recipe_ing1_qty=" + recipe_ing1_qty +
+                "&recipe_ing1_unit=" + recipe_ing1_unit +
+                "&recipe_ing2=" + recipe_ing2 +
+                "&recipe_ing2_qty=" + recipe_ing2_qty +
+                "&recipe_ing2_unit=" + recipe_ing2_unit +
+                "&recipe_ing3=" + recipe_ing3 +
+                "&recipe_ing3_qty=" + recipe_ing3_qty +
+                "&recipe_ing3_unit=" + recipe_ing3_unit +
+                "&recipe_ing4=" + recipe_ing4 +
+                "&recipe_ing4_qty=" + recipe_ing4_qty +
+                "&recipe_ing4_unit=" + recipe_ing4_unit +
+                "&recipe_directions=" + recipe_directions);
+
+    }
+
+}

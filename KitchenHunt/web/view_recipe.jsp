@@ -4,6 +4,9 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.Recipe"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="HibFiles.PoolManager"%>
 <%@page import="HibFiles.UserLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -22,6 +25,10 @@ and open the template in the editor.
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
+            
+            Session s = PoolManager.getSessionFactory().openSession();
+            Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(request.getParameter("rid")));
+
         %>
         
         <meta charset="UTF-8">
@@ -179,7 +186,7 @@ and open the template in the editor.
 
                 <div class="col-xs-6 col-md-4">
                     <div class="row">
-                        <div class="col-xs-12 col-md-12"><h2>Butter Curls</h2></div>
+                        <div class="col-xs-12 col-md-12"><h2><%=r.getName()%></h2></div>
                     </div>
                     <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 35px;"></span>
                     <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 35px;"></span>
@@ -189,19 +196,21 @@ and open the template in the editor.
                     <br>
                     <h3>186 reviewed</h3>
                     <br>
-                    <h4>Recipe by: Vijini Mallawaarachchi</h4>
+                    <h4>Recipe by: <%=r.getUser().getName()%></h4>
                     <br>
+                    
+                    <h4>Skill Level: <%=r.getSkillLevel()%></h4>
+                    
+                    <h4>Preparation Time: <%=r.getPreparingTime()%></h4>
 
-                    <h4>Preparation Time: 15 minutes</h4>
-
-                    <h4>Serves: 4-6</h4>
+                    <h4>Serves: <%=r.getServingQuantity()%></h4>
 
                     <br>
                     <h4><a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></h4>
 
                 </div>
                 <div class="col-xs-12 col-md-8" align="right">
-                    <img src="images/Butter_Curls.jpg" alt="Butter Curls" width="600px" height="auto">
+                    <img src="images/Perfect Summer Fruit Salad.jpg" alt="Butter Curls" width="600px" height="auto">
                 </div>
             </div>
             <div class="row">
@@ -227,14 +236,7 @@ and open the template in the editor.
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <ol>
-                        <li>Place the ribs in a large, wide saucepan. Cover with water and add the onion, garlic, fennel seeds and star anise.</li>
-                        <li>Bring to a boil, then reduce the heat and simmer very gently for three hours, or until the meat is tender, skimming any scum off occasionally.</li>
-                        <li>Preheat the oven to 200C/400F/Gas 6</li>
-                        <li>Rub the baking potatoes with a little oil. Create four small piles of sea salt in a baking tray then place the potatoes on top. Bake for 1-1½ hours, or until tender.</li>
-                        <li>Meanwhile, make the bbq sauce. Heat a sauté pan until hot and add the butter, onions and garlic and fry for 4-5 minutes, or until softened.</li>
-
-                    </ol>
+                    <%=r.getDirections()%>
                     <br>
                 </div>
 
