@@ -85,7 +85,7 @@ public class SignUp extends HttpServlet {
                 if (ul==null) {
 
                     User u = new User();
-                    u.setName(name);
+                    u.setFname(name);
                     u.setMobile(mobile);
                     u.setRegisterDate(new Date());
                     u.setUserType(ut);

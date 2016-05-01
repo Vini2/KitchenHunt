@@ -159,30 +159,34 @@ public class PostRecipe extends HttpServlet {
                 
                 RecipeHasIngredient rhi1 = new RecipeHasIngredient();
                 rhi1.setIngredient(i1);
-                rhi1.setManiIngredient(Boolean.TRUE);
+                rhi1.setMainIngredient(Boolean.TRUE);
                 rhi1.setRecipe(r);
                 rhi1.setQuantity(Double.parseDouble(recipe_ing1_qty));
+                rhi1.setUnit(recipe_ing1_unit);
                 s.save(rhi1);
                 
                 RecipeHasIngredient rhi2 = new RecipeHasIngredient();
                 rhi2.setIngredient(i2);
-                rhi2.setManiIngredient(Boolean.TRUE);
+                rhi2.setMainIngredient(Boolean.TRUE);
                 rhi2.setRecipe(r);
                 rhi2.setQuantity(Double.parseDouble(recipe_ing2_qty));
+                rhi2.setUnit(recipe_ing2_unit);
                 s.save(rhi2);
                 
                 RecipeHasIngredient rhi3 = new RecipeHasIngredient();
                 rhi3.setIngredient(i3);
-                rhi3.setManiIngredient(Boolean.TRUE);
+                rhi3.setMainIngredient(Boolean.TRUE);
                 rhi3.setRecipe(r);
                 rhi3.setQuantity(Double.parseDouble(recipe_ing3_qty));
+                rhi3.setUnit(recipe_ing3_unit);
                 s.save(rhi3);
                 
                 RecipeHasIngredient rhi4 = new RecipeHasIngredient();
                 rhi4.setIngredient(i4);
-                rhi4.setManiIngredient(Boolean.TRUE);
+                rhi4.setMainIngredient(Boolean.TRUE);
                 rhi4.setRecipe(r);
                 rhi4.setQuantity(Double.parseDouble(recipe_ing4_qty));
+                rhi4.setUnit(recipe_ing4_unit);
                 s.save(rhi4);
                 
                 t.commit();

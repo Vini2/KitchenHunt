@@ -190,7 +190,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email" disabled>Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="profile_name" name="profile_name" placeholder="" value="<%=u.getName()%>" disabled required>
+                        <input type="text" class="form-control" id="profile_name" name="profile_name" placeholder="" value="<%=u.getFname()%>" disabled required>
                     </div>
                 </div>
                 <div class="form-group">

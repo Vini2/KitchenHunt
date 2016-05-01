@@ -59,9 +59,9 @@ public class UpdateProfile extends HttpServlet {
             
             User u = (User) s.load(User.class, ul.getUser().getIduser());
             
-            System.out.println(u.getName());
+            System.out.println(u.getFname());
             
-            u.setName(name);
+            u.setFname(name);
             u.setMobile(mobile);
             u.setAddress(address);
             

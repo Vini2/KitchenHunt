@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 1, 2016 12:33:46 AM by Hibernate Tools 4.3.1
+// Generated May 1, 2016 11:31:45 PM by Hibernate Tools 4.3.1
 
 
 
@@ -12,6 +12,7 @@ public class Image  implements java.io.Serializable {
      private Integer idimage;
      private Recipe recipe;
      private byte[] imageData;
+     private String path;
 
     public Image() {
     }
@@ -20,9 +21,10 @@ public class Image  implements java.io.Serializable {
     public Image(Recipe recipe) {
         this.recipe = recipe;
     }
-    public Image(Recipe recipe, byte[] imageData) {
+    public Image(Recipe recipe, byte[] imageData, String path) {
        this.recipe = recipe;
        this.imageData = imageData;
+       this.path = path;
     }
    
     public Integer getIdimage() {
@@ -45,6 +47,13 @@ public class Image  implements java.io.Serializable {
     
     public void setImageData(byte[] imageData) {
         this.imageData = imageData;
+    }
+    public String getPath() {
+        return this.path;
+    }
+    
+    public void setPath(String path) {
+        this.path = path;
     }
 
 

@@ -4,6 +4,9 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.Image"%>
+<%@page import="HibFiles.RecipeHasIngredient"%>
+<%@page import="java.util.Set"%>
 <%@page import="HibFiles.Recipe"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="HibFiles.PoolManager"%>
@@ -210,17 +213,30 @@ and open the template in the editor.
 
                 </div>
                 <div class="col-xs-12 col-md-8" align="right">
-                    <img src="images/Perfect Summer Fruit Salad.jpg" alt="Butter Curls" width="600px" height="auto">
+                    
+                    <%
+                        
+                    %>
+                    
+                    <img src="images/recipe/Perfect Summer Fruit Salad.jpg" alt="Butter Curls" width="600px" height="auto">
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12"><h3>Ingredients</h3></div>
             </div>
+                    
+            <%
+                 Set ss = r.getRecipeHasIngredients();
+                 for (Object arg : ss) {
+                     RecipeHasIngredient i = (RecipeHasIngredient) arg;
+                 
+            %>
+            
             <div class="row">
-                <div class="col-xs-6 col-md-4">4 Jacob’s ladder beef ribs</div>
-                <div class="col-xs-6 col-md-4">1 onion, chopped</div>
-                <div class="col-xs-6 col-md-4">1 tsp fennel seeds</div>
+                <div class="col-xs-3 col-md-3"><%=i.getIngredient().getName()%></div>
+                <div class="col-xs-2 col-md-2"><%=i.getQuantity()%>g</div>
             </div>
+            <%}%>
             <div class="row">
                 <div class="col-xs-6 col-md-4">2 star anise</div>
                 <div class="col-xs-6 col-md-4">4 baking potatoes</div>

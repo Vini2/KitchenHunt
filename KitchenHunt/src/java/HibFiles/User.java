@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 1, 2016 12:33:46 AM by Hibernate Tools 4.3.1
+// Generated May 1, 2016 11:31:45 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,7 +14,8 @@ public class User  implements java.io.Serializable {
 
      private Integer iduser;
      private UserType userType;
-     private String name;
+     private String fname;
+     private String lname;
      private String mobile;
      private String address;
      private Date registerDate;
@@ -31,9 +32,10 @@ public class User  implements java.io.Serializable {
     public User(UserType userType) {
         this.userType = userType;
     }
-    public User(UserType userType, String name, String mobile, String address, Date registerDate, Set<Comment> comments, Set<Recipe> recipes, Set<UserLogin> userLogins, Set<Notification> notifications, Set<Rating> ratings) {
+    public User(UserType userType, String fname, String lname, String mobile, String address, Date registerDate, Set<Comment> comments, Set<Recipe> recipes, Set<UserLogin> userLogins, Set<Notification> notifications, Set<Rating> ratings) {
        this.userType = userType;
-       this.name = name;
+       this.fname = fname;
+       this.lname = lname;
        this.mobile = mobile;
        this.address = address;
        this.registerDate = registerDate;
@@ -58,12 +60,19 @@ public class User  implements java.io.Serializable {
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
-    public String getName() {
-        return this.name;
+    public String getFname() {
+        return this.fname;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+    public String getLname() {
+        return this.lname;
+    }
+    
+    public void setLname(String lname) {
+        this.lname = lname;
     }
     public String getMobile() {
         return this.mobile;

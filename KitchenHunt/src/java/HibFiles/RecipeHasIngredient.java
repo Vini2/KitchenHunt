@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 1, 2016 12:33:46 AM by Hibernate Tools 4.3.1
+// Generated May 1, 2016 11:31:45 PM by Hibernate Tools 4.3.1
 
 
 
@@ -13,7 +13,8 @@ public class RecipeHasIngredient  implements java.io.Serializable {
      private Ingredient ingredient;
      private Recipe recipe;
      private Double quantity;
-     private Boolean maniIngredient;
+     private String unit;
+     private Boolean mainIngredient;
 
     public RecipeHasIngredient() {
     }
@@ -23,11 +24,12 @@ public class RecipeHasIngredient  implements java.io.Serializable {
         this.ingredient = ingredient;
         this.recipe = recipe;
     }
-    public RecipeHasIngredient(Ingredient ingredient, Recipe recipe, Double quantity, Boolean maniIngredient) {
+    public RecipeHasIngredient(Ingredient ingredient, Recipe recipe, Double quantity, String unit, Boolean mainIngredient) {
        this.ingredient = ingredient;
        this.recipe = recipe;
        this.quantity = quantity;
-       this.maniIngredient = maniIngredient;
+       this.unit = unit;
+       this.mainIngredient = mainIngredient;
     }
    
     public Integer getIdrecipeHasIngredient() {
@@ -58,12 +60,19 @@ public class RecipeHasIngredient  implements java.io.Serializable {
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
-    public Boolean getManiIngredient() {
-        return this.maniIngredient;
+    public String getUnit() {
+        return this.unit;
     }
     
-    public void setManiIngredient(Boolean maniIngredient) {
-        this.maniIngredient = maniIngredient;
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+    public Boolean getMainIngredient() {
+        return this.mainIngredient;
+    }
+    
+    public void setMainIngredient(Boolean mainIngredient) {
+        this.mainIngredient = mainIngredient;
     }
 
 
