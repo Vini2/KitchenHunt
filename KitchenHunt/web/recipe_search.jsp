@@ -188,9 +188,9 @@ and open the template in the editor.
                     </div>
                     <br>
                     <br>
-                    
-                    
-                    
+
+
+
                     <div class="form-group">
                         <label class="control-label" for="email">Meal Type</label>
                         <select name="meal_type" id="meal_type" class="form-control" >
@@ -242,7 +242,9 @@ and open the template in the editor.
                                     <h3>Butter Curls</h3>
                                     <p>Make pretty curls of butter to top whatever and get your OHHH's and AHHH's!</p>
                                     <p><a href="view_recipe.jsp" class="btn btn-default" role="button">View Recipe</a> 
+                                        <%if (request.getSession().getAttribute("user") != null) {%>
                                         <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
+                                        <%}%>
                                 </div>
                             </div>
                         </div>

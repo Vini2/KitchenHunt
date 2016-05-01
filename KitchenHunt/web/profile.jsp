@@ -14,7 +14,7 @@
 <html>
     <head>
         <title>Kitchen Hunt</title>
-        
+
         <%
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
@@ -26,10 +26,10 @@
             } else {
                 UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
                 Session s1 = PoolManager.getSessionFactory().openSession();
-                
+
                 User u = (User) s1.load(User.class, ul.getUser().getIduser());
         %>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -49,7 +49,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
         <script type="text/javascript" src="js/myjavascript.js"></script>
-        
+
 
     </head>
     <body>
@@ -74,7 +74,7 @@
 
                         <%
                             if (request.getSession().getAttribute("user") != null) {
-                                
+
                         %>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getName()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -179,9 +179,10 @@
             </div>
         </div>
 
-
-        <div class="page-header" align="center">
-            <h1><small>Profile</small></h1>
+        <div class="container">
+            <div class="page-header" align="center">
+                <h1><small>Profile</small></h1>
+            </div>
         </div>
 
         <div style="width:50%; margin:0 auto;">

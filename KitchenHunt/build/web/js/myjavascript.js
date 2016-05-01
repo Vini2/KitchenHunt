@@ -38,13 +38,6 @@ function signUp(frm1) {
                 } else if (res == 'Error1') {
                     alert("The email address entered already exists.");
                 } else if (res == 'success') {
-
-                    frm1["signup_name"].value = "";
-                    frm1["signup_email"].value = "";
-                    frm1["signup_mobile"].value = "";
-                    frm1["signup_password"].value = "";
-                    frm1["signup_confirmpassword"].value = "";
-                    //frm1["captcha"].value = "";
                     alert("Registration Successful...!");
                     reloadPage();
                 } else {
@@ -92,9 +85,6 @@ function signIn(frm1) {
                 } else if (res == 'Error3') {
                     alert("Your account is inactive. Please contact the administrator");
                 } else if (res == 'success') {
-
-                    frm1["signin_email"].value = "";
-                    frm1["signin_password"].value = "";
                     //alert("Registration Successful...! Please check your email.");
                     reloadPage();
                 } else {
