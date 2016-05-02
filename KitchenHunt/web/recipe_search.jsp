@@ -60,6 +60,7 @@ and open the template in the editor.
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/jquery-ui.js"></script>
 
+        <!--Script for auto-complete search-->
         <script type="text/javascript">
             $(function () {
 
@@ -227,6 +228,7 @@ and open the template in the editor.
                         </span>
                     </div>-->
 
+                    <!--Auto-complete search input-->
                     <div class="form-group">
                         <form action="GeneralSearch" method="POST">
                             <div class="col-sm-10">
@@ -243,7 +245,7 @@ and open the template in the editor.
                     <br>
 
 
-
+                    <!--Select meal type-->
                     <div class="form-group">
                         <label class="control-label" for="email">Meal Type</label>
                         <select name="recipe_mealtype" id="recipe_mealtype" class="form-control" >
@@ -258,6 +260,7 @@ and open the template in the editor.
                         </select>
                     </div>
 
+                        <!--Select cuisine style-->
                     <div class="form-group">
                         <label class="control-label" for="email">Cuisine Style</label>
                         <select name="recipe_cusine" id="recipe_cuisine" class="form-control" >
@@ -272,6 +275,7 @@ and open the template in the editor.
                         </select>
                     </div>
 
+                    <!--Select health category-->
                     <div class="form-group">
                         <label class="control-label" for="email">Health Category</label>
                         <select name="recipe_healthcat" id="recipe_healthcat" class="form-control" >
@@ -286,6 +290,7 @@ and open the template in the editor.
                         </select>
                     </div>
 
+                    <!--Select ingredients to exclude-->
                     <div class="form-group">
                         <label class="control-label" for="email">Exclude</label>
                         <select name="recipe_exclude" id="recipe_exclude" class="form-control" >
@@ -330,17 +335,28 @@ and open the template in the editor.
                                     Image im = (Image) iter.next();
                                 %>
 
+                                <!--Image-->
                                 <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
+                                
                                 <div class="caption">
+                                    
+                                    <!--Recipe name-->
                                     <h3><%=r.getName()%></h3>
+                                    
+                                    <!--Posted by-->
                                     <p>By: <%=r.getUser().getFname()%></p>
+                                    
+                                    <!--Meal type-->
                                     <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
+                                    
+                                    <!--View Recipe button-->
                                     <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
 
                                         <%
                                             if (request.getSession().getAttribute("user") != null) {
                                         %>
 
+                                        <!--Add to My Kitchen button-->
                                         <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
                                         <%}%>
                                 </div>
