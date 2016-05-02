@@ -43,21 +43,18 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-        <!-- Latest compiled and minified JavaScript -->
-
+        <!-- Other scripts -->
         <link href="css/sidebar.css" rel="stylesheet">
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
         <link rel="stylesheet" href="css/footer-distributed.css">
-
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-
         <script type="text/javascript" src="js/myjavascript.js"></script>
 
 
     </head>
     <body>
 
+        <!--Beginning of navigation bar-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -103,6 +100,7 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+        <!--End of navigation bar-->
 
         <!-- Sign Up Modal -->
         <div id="signUpModal" class="modal fade" role="dialog" align="center">
@@ -183,6 +181,7 @@
             </div>
         </div>
 
+        <!--Post a new recipe form-->
         <div class="container">
             <div class="page-header" align="center">
                 <h1><small>Post a New Recipe</small></h1>
@@ -375,6 +374,7 @@
 
         <br><br><br><br><br><br>
 
+        <!--Beginning of footer-->
         <footer class="footer-distributed">
 
             <div class="footer-right">
@@ -406,7 +406,8 @@
             </div>
 
         </footer>
-
+        <!--End of footer-->
+        
         <%}%>
 
     </body>

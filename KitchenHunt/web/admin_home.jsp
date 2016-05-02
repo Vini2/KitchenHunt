@@ -23,17 +23,16 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-        <!-- Latest compiled and minified JavaScript -->
+        <!-- Other scripts -->
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
         <link rel="stylesheet" href="css/footer-distributed.css">
-
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-
         <script type="text/javascript" src="js/myjavascript.js"></script>
 
     </head>
     <body>
+        
+        <!--Beginning of navigation bar-->
         <!-- header -->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -59,6 +58,7 @@
             <!-- /container -->
         </nav>
         <!-- /Header -->
+        <!--End of navigation bar-->
 
         <!-- Main -->
         <div class="container-fluid">
@@ -452,6 +452,8 @@
             <!-- /.modal-dalog -->
         </div>
 
+        
+        <!--Beginning of footer-->
         <footer class="footer-distributed">
 
             <div class="footer-right">
@@ -484,6 +486,7 @@
 
         </footer>
 
+        <!--End of footer-->
         <!-- /.modal -->
         <!-- script references -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
