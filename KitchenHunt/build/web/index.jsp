@@ -11,14 +11,14 @@
 <html>
     <head>
         <title>Kitchen Hunt</title>
-        
+
         <%
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
         %>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -29,12 +29,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
         <!-- Other scripts -->
+        <link href="css/sidebar.css" rel="stylesheet">
+        <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/footer-distributed.css">
-        <link rel="stylesheet" href="css/mycss.css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <script src="js/myjavascript.js"></script>
-        
-        
+        <script type="text/javascript" src="js/myjavascript.js"></script>
+
+
 
     </head>
     <body>
@@ -174,7 +175,7 @@
             </div>
         </div>
 
-        
+
         <!--Beginning of image slider-->
         <div class="container">
             <br>
@@ -285,6 +286,7 @@
 
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/sidebar.js"></script>
 </html>
 

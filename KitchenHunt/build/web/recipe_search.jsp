@@ -297,6 +297,7 @@ and open the template in the editor.
                                 <div class="caption">
                                     <h3><%=r.getName()%></h3>
                                     <p>By: <%=r.getUser().getFname()%></p>
+                                    <p>Category: <%=r.getFoodCategory().getCategoryName()%></p>
                                     <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
 
                                         <%

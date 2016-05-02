@@ -69,7 +69,7 @@ public class SignIn extends HttpServlet {
             } else if (!Security.decrypt(ul.getPassword()).equals(request.getParameter("password"))) {
                 msg = "Error2";
             
-            } else if (ul.getSystemStatus().getStatusName().equals("Active")) {
+            } else if (ul.getUser().getUserType().getTypeName().equals("User") && ul.getSystemStatus().getStatusName().equals("Active")) {
 
                 request.getSession().invalidate();
 

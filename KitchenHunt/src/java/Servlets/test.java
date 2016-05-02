@@ -28,6 +28,8 @@ public class test {
 
         Session s = PoolManager.getSessionFactory().openSession();
         Recipe r = (Recipe) s.load(Recipe.class, 6);
+        
+        
 
         Criteria c3 = s.createCriteria(Ingredient.class);
         List<Ingredient> li = c3.list();
