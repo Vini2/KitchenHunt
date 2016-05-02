@@ -11,8 +11,7 @@
 package JWebUnitTesting;
 
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class IndexTest {
 	
@@ -27,7 +26,7 @@ public class IndexTest {
         assertTitleEquals("Kitchen Hunt");          // the home page should be titled "Home"
         assertLinkPresent("getStarted");           // there should be a "Get Started" link
         clickLink("getStarted");                   // click the link
-        assertTitleEquals("Kitchen Hunt - Search"); // we should now be on the login page
+        assertTitleEquals("Kitchen Hunt - Search"); // we should now be on the search page
     }
     
     

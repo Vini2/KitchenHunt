@@ -30,7 +30,7 @@
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
-        <script type="text/javascript" src="js/adminjavascript.js"></script>
+        <script src="js/adminjavascript.js"></script>
 
     </head>
     <body>
@@ -69,7 +69,7 @@
     </div>
 
     <div style="width:25%; margin:0 auto;">
-        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="testform">
+        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="login_form">
             <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="email" class="form-control" name="signin_email" required>
@@ -80,7 +80,7 @@
             </div>
             <div><br></div>
             <div align="right">
-                <input type="submit" value="Sign In" class="btn btn-success btn-block"/>
+                <input type="submit" id="signin" name="signin" value="Sign In" class="btn btn-success btn-block"/>
             </div>
         </form>
     </div>
