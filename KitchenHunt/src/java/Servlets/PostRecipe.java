@@ -49,6 +49,7 @@ public class PostRecipe extends HttpServlet {
 
         try {
 
+            //Get attributes from http request
             String recipe_name = request.getParameter("recipe_name");
             String recipe_skill = request.getParameter("recipe_skill");
             String recipe_qty = request.getParameter("recipe_qty");
@@ -92,13 +93,20 @@ public class PostRecipe extends HttpServlet {
                 msg = "Error";
             } else {
 
+                //Create hibernate session
                 Session s = PoolManager.getSessionFactory().openSession();
+                
+                //Initiate transaction
                 Transaction t = s.beginTransaction();
 
+                //Get cuisine category
                 CuisineCategory cc = (CuisineCategory) s.load(CuisineCategory.class, Integer.parseInt(recipe_cuisine));
+                //Get food category
                 FoodCategory fc = (FoodCategory) s.load(FoodCategory.class, Integer.parseInt(recipe_mealtype));
+                //Get health category
                 HealthCategory hc = (HealthCategory) s.load(HealthCategory.class, Integer.parseInt(recipe_healthcat));
 
+                //Create recipe object and save it
                 Recipe r = new Recipe();
                 r.setName(recipe_name);
                 r.setPreparingTime(recipe_preptime);
@@ -119,10 +127,10 @@ public class PostRecipe extends HttpServlet {
 
                 request.getSession().setAttribute("recipe", r);
 
-                Criteria c = s.createCriteria(Ingredient.class);
-                
-                c.add(Restrictions.eq("name", recipe_ing1));
-                Ingredient i1 = (Ingredient) c.uniqueResult();
+                //Save ingredients 
+                Criteria c1 = s.createCriteria(Ingredient.class);
+                c1.add(Restrictions.eq("name", recipe_ing1));
+                Ingredient i1 = (Ingredient) c1.uniqueResult();
 
                 if (i1 == null) {
                     i1 = new Ingredient();
@@ -130,8 +138,9 @@ public class PostRecipe extends HttpServlet {
                     s.save(i1);
                 }
                 
-                c.add(Restrictions.eq("name", recipe_ing2));
-                Ingredient i2 = (Ingredient) c.uniqueResult();
+                Criteria c2 = s.createCriteria(Ingredient.class);
+                c2.add(Restrictions.eq("name", recipe_ing2));
+                Ingredient i2 = (Ingredient) c2.uniqueResult();
 
                 if (i2 == null) {
                     i2 = new Ingredient();
@@ -139,8 +148,9 @@ public class PostRecipe extends HttpServlet {
                     s.save(i2);
                 }
                 
-                c.add(Restrictions.eq("name", recipe_ing3));
-                Ingredient i3 = (Ingredient) c.uniqueResult();
+                Criteria c3 = s.createCriteria(Ingredient.class);
+                c3.add(Restrictions.eq("name", recipe_ing3));
+                Ingredient i3 = (Ingredient) c3.uniqueResult();
 
                 if (i3 == null) {
                     i3 = new Ingredient();
@@ -148,8 +158,9 @@ public class PostRecipe extends HttpServlet {
                     s.save(i3);
                 }
                 
-                c.add(Restrictions.eq("name", recipe_ing4));
-                Ingredient i4 = (Ingredient) c.uniqueResult();
+                Criteria c4 = s.createCriteria(Ingredient.class);
+                c4.add(Restrictions.eq("name", recipe_ing4));
+                Ingredient i4 = (Ingredient) c4.uniqueResult();
 
                 if (i4 == null) {
                     i4 = new Ingredient();

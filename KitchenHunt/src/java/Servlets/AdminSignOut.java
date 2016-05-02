@@ -38,21 +38,24 @@ public class AdminSignOut extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
+            //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
+            
+            //Initiate transaction
             Transaction t = s.beginTransaction();
 
+            //Get session attribute
             LoginSession ls = (LoginSession) request.getSession().getAttribute("ses");
-
             LoginSession ls1 = (LoginSession) s.load(LoginSession.class, ls.getIdloginSession());
             ls1.setOutTime(new Date());
 
             s.update(ls1);
             t.commit();
 
-            System.out.println(new Date());
-
+            //Invalidate session
             request.getSession().invalidate();
 
+            //Send redirect to index.jsp
             response.sendRedirect("admin_signin.jsp");
 
         } catch (Exception e) {

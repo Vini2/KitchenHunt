@@ -54,6 +54,7 @@ public class SignUp extends HttpServlet {
 
         try {
 
+            //Get attributes from http request
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String mobile = request.getParameter("mobile");
@@ -66,24 +67,31 @@ public class SignUp extends HttpServlet {
 
             if (upassword.equals(confirmpassword)) {
 
+                //Create hibernate session
                 Session s = PoolManager.getSessionFactory().openSession();
 
+                //Initiate transaction
                 Transaction t = s.beginTransaction();
 
+                //Get system status
                 Criteria c = s.createCriteria(SystemStatus.class);
                 c.add(Restrictions.eq("statusName", "Active"));
                 SystemStatus ss = (SystemStatus) c.uniqueResult();
 
+                //Get user type
                 Criteria c1 = s.createCriteria(UserType.class);
                 c1.add(Restrictions.eq("typeName", "User"));
                 UserType ut = (UserType) c1.uniqueResult();
 
+                //Get user login
                 Criteria c2 = s.createCriteria(UserLogin.class);
                 c2.add(Restrictions.eq("email", email));
                 UserLogin ul = (UserLogin) c2.uniqueResult();
 
                 if (ul==null) {
 
+                    //If user does not exist, create new user and save
+                    
                     User u = new User();
                     u.setFname(name);
                     u.setMobile(mobile);
@@ -92,6 +100,7 @@ public class SignUp extends HttpServlet {
 
                     s.save(u);
 
+                    //Create new user login and save
                     UserLogin ul1 = new UserLogin();
                     ul1.setEmail(email);
                     ul1.setPassword(Security.encrypt(upassword));
@@ -100,15 +109,16 @@ public class SignUp extends HttpServlet {
 
                     s.save(ul1);
 
+                    //Commit changes
                     t.commit();
 
                     //Send Verification Email
-                    String email_replaced = "";
-                    to = email;
-                    text = "Hi " + name + " " + "\n\nThanks for creating your new Kitchen Hunt account. To finalize the registration process, please visit the following link " + "\nhttp://localhost:8080/KitchenHunt/AccountVerification?ea=" + URLEncoder.encode(new SecurityEncDec().encrypt(email), "UTF-8") + "&t=" + System.currentTimeMillis() + "\n\nThis link will expire within an hour after sending this email.\n\nThis email was sent to " + email + "\nIf you did not create a Kitchen Hunt account, just ignore this message.";
-
-                    //sendTextMail();
-                    System.out.println("verification email sent");
+//                    String email_replaced = "";
+//                    to = email;
+//                    text = "Hi " + name + " " + "\n\nThanks for creating your new Kitchen Hunt account. To finalize the registration process, please visit the following link " + "\nhttp://localhost:8080/KitchenHunt/AccountVerification?ea=" + URLEncoder.encode(new SecurityEncDec().encrypt(email), "UTF-8") + "&t=" + System.currentTimeMillis() + "\n\nThis link will expire within an hour after sending this email.\n\nThis email was sent to " + email + "\nIf you did not create a Kitchen Hunt account, just ignore this message.";
+//
+//                    sendTextMail();
+//                    System.out.println("verification email sent");
 
                     msg = "success";
 

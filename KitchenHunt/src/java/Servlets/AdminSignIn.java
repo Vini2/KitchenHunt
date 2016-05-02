@@ -42,6 +42,7 @@ public class AdminSignIn extends HttpServlet {
 
         try {
 
+            //Get attributes from http request
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
@@ -49,28 +50,32 @@ public class AdminSignIn extends HttpServlet {
 
             System.out.println(email + " " + password);
 
+            //Invalidate any existing http sessions
             request.getSession().invalidate();
 
+            //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
 
+            //Initiate transaction
             Transaction t = s.beginTransaction();
 
+            //Get user login object
             Criteria c = s.createCriteria(UserLogin.class);
             c.add(Restrictions.eq("email", request.getParameter("email")));
             UserLogin ul = (UserLogin) c.uniqueResult();
 
             if (ul == null) {
-                msg = "Error1";
+                msg = "Error1";     //Return error if user does not exist
 
             } else if (!Security.decrypt(ul.getPassword()).equals(request.getParameter("password"))) {
-                msg = "Error2";
+                msg = "Error2";     //Return error if password is incorrect
 
             } else if (ul.getUser().getUserType().getTypeName().equals("Admin") && ul.getSystemStatus().getStatusName().equals("Active")) {
 
-                request.getSession().invalidate();
-
+                //If user is active and an admin, set user login object to http session
                 request.getSession().setAttribute("user", ul);
 
+                //Create and save login session
                 LoginSession ls = new LoginSession();
                 ls.setInTime(new Date());
                 ls.setOutTime(new Date());
@@ -79,8 +84,10 @@ public class AdminSignIn extends HttpServlet {
 
                 s.save(ls);
 
+                //Set login session object to http session
                 request.getSession().setAttribute("ses", ls);
 
+                //Commit changes
                 t.commit();
 
                 msg = "success";

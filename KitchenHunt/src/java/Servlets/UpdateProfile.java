@@ -39,46 +39,63 @@ public class UpdateProfile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
-        
+
         System.out.println("inside servlet");
-        
+
         try {
-            
+
+            //Get attributes from http request
             String name = request.getParameter("name");
             String address = request.getParameter("address");
             String mobile = request.getParameter("mobile");
-            
-            System.out.println(name+" "+mobile+" "+address);
-            
+
+            System.out.println(name + " " + mobile + " " + address);
+
+            String msg = null;
+
+            //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
+
+            //Initiate transaction
             Transaction t = s.beginTransaction();
-            
+
+            //Get user login object
             UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
-            
+
+            //Get user object
             User u = (User) s.load(User.class, ul.getUser().getIduser());
-            
+
             System.out.println(u.getFname());
-            
-            u.setFname(name);
-            u.setMobile(mobile);
-            u.setAddress(address);
-            
-            s.update(u);
-            
-            Criteria c = s.createCriteria(UserLogin.class);
-            c.add(Restrictions.eq("email", ul.getEmail()));
-            UserLogin ul1 = (UserLogin) c.uniqueResult();
-            
-            request.getSession().setAttribute("user", ul1);
-            
-            t.commit();
-            
-            String msg = "success";
+
+            //Check if user exists
+            if (u == null){
+                msg="Error";
+                
+            }else {
+
+                //Update user
+                u.setFname(name);
+                u.setMobile(mobile);
+                u.setAddress(address);
+
+                s.update(u);
+
+                Criteria c = s.createCriteria(UserLogin.class);
+                c.add(Restrictions.eq("email", ul.getEmail()));
+                UserLogin ul1 = (UserLogin) c.uniqueResult();
+
+                request.getSession().setAttribute("user", ul1);
+
+                //Commit changes
+                t.commit();
+
+                msg = "success";
+
+            }
             out.write(msg);
-            
-        
+
         } catch (Exception e) {
             throw new ServletException(e);
         }
