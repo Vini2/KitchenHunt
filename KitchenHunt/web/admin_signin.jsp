@@ -35,15 +35,14 @@
     </head>
     <body>
         <!-- header -->
-        <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+        <nav class="navbar navbar-inverse">
             <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Kitchen Hunt</a>
+                    <a class="navbar-brand" href="#">
+                        <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
+                        <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
+                    </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">

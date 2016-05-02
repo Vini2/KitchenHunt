@@ -1,6 +1,6 @@
 <%-- 
-    Document   : add_new_recipe
-    Created on : May 1, 2016, 2:36:54 AM
+    Document   : post_request
+    Created on : May 2, 2016, 2:29:05 PM
     Author     : User
 --%>
 
@@ -185,12 +185,12 @@
 
         <div class="container">
             <div class="page-header" align="center">
-                <h1><small>Post a New Recipe</small></h1>
+                <h1><small>Request a Recipe</small></h1>
             </div>
         </div>
 
         <div style="width:50%; margin:0 auto;">
-            <form class="form-horizontal" role="form" onsubmit="postRecipe(this); return false;" method="POST" id="testform">
+            <form class="form-horizontal" role="form" onsubmit="postRequest(this); return false;" method="POST" id="testform">
                 <div class="form-group">
                     <label class="control-label col-sm-3" disabled>Recipe Name:</label>
                     <div class="col-sm-9">
