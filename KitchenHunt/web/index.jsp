@@ -30,9 +30,6 @@
 
         <!-- Latest compiled and minified JavaScript -->
 
-        <link href="css/sidebar.css" rel="stylesheet">
-        <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
         <link rel="stylesheet" href="css/footer-distributed.css">
         <link rel="stylesheet" href="css/mycss.css" />
 
@@ -174,7 +171,7 @@
             <div class="page-header" align="center">
                 <h1>Welcome to Kitchen Hunt!</h1>      
                 <h2><small>Search Recipes with the Ingredients You have in Your Kitchen</small></h2>
-                <h2><a href="recipe_search.jsp"><button type="submit" value="" class="btn btn-default"/>Get Started</button></a></h2>
+                <h2><a id="getStarted" href="recipe_search.jsp"><button type="submit" value="" class="btn btn-default"/>Get Started</button></a></h2>
             </div>
         </div>
 

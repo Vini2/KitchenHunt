@@ -88,7 +88,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\n");
       out.write("\n");
       out.write("        <nav class=\"navbar navbar-inverse\">\n");
-      out.write("            <div class=\"container\">\n");
+      out.write("            <div class=\"container-fluid\">\n");
       out.write("                <!-- Brand and toggle get grouped for better mobile display -->\n");
       out.write("                <div class=\"navbar-header\">\n");
       out.write("                    <a class=\"navbar-brand\" href=\"#\">\n");
@@ -112,10 +112,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                         
       out.write("\n");
       out.write("                        <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></span> ");
-      out.print(ul.getUser().getName());
-      out.write("</a>\n");
+      out.print(ul.getUser().getFname());
+      out.write("<span class=\"caret\"></span></a>\n");
       out.write("                            <ul class=\"dropdown-menu\">\n");
       out.write("                                <li><a href=\"profile.jsp\">Profile</a></li>\n");
+      out.write("                                <li><a href=\"add_new_recipe.jsp\">Post Recipe</a></li>\n");
       out.write("                                <li><a href=\"SignOut\">Sign Out</a></li>\n");
       out.write("                            </ul>\n");
       out.write("                        </li>\n");
@@ -124,7 +125,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 } else {
       out.write("\n");
       out.write("\n");
-      out.write("                        <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></span> My Kitchen</a>\n");
+      out.write("                        <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></span> My Kitchen<span class=\"caret\"></span></a>\n");
       out.write("                            <ul class=\"dropdown-menu\">\n");
       out.write("                                <li><a href=\"#\" data-toggle=\"modal\" data-target=\"#signUpModal\">Sign Up</a></li>\n");
       out.write("                                <li><a href=\"#\" data-toggle=\"modal\" data-target=\"#signInModal\">Sign In</a></li>\n");
