@@ -162,6 +162,34 @@
                     </ul>
                     <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
                     <hr>
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            
+                            <div class="panel panel-default">
+                                <div class="well">
+                                    <h4>New Users <span class="badge pull-right">3</span></h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p>This is a dashboard-style layout that uses Bootstrap 3. You can use this template as a starting point to create something more unique.</p>
+                                    <p>Visit the Bootstrap Playground at <a href="http://bootply.com">Bootply</a> to tweak this layout or discover more useful code snippets.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default">
+                                <div class="well">
+                                    <h4>New Recipes Posted <span class="badge pull-right">5</span></h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p>This is a dashboard-style layout that uses Bootstrap 3. You can use this template as a starting point to create something more unique.</p>
+                                    <p>Visit the Bootstrap Playground at <a href="http://bootply.com">Bootply</a> to tweak this layout or discover more useful code snippets.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
 
                     <div class="row">
                         <!-- center left-->
