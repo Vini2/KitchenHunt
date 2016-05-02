@@ -201,7 +201,7 @@
                     <div class="col-sm-9">
 
                         <select name="recipe_skill" id="recipe_skill" class="form-control" >
-                            <option value="">---Select Skill Level---</option>
+                            <option value="">Select Skill Level</option>
                             <option value="Beginner">Beginner</option>
                             <option value="Moderate">Moderate</option>
                             <option value="Expert">Expert</option>
@@ -226,7 +226,7 @@
                     <label class="control-label col-sm-3" disabled>Meal Type:</label>
                     <div class="col-sm-9">
                         <select name="recipe_mealtype" id="recipe_mealtype" class="form-control" >
-                            <option value="">---Select Meal Type---</option>
+                            <option value="">Select Meal Type</option>
                             <%
                                 Criteria c1 = s.createCriteria(FoodCategory.class);
                                 List<FoodCategory> lfc = c1.list();
@@ -243,7 +243,7 @@
                     <label class="control-label col-sm-3" disabled>Cuisine Style:</label>
                     <div class="col-sm-9">
                         <select name="recipe_cusine" id="recipe_cuisine" class="form-control" >
-                            <option value="">---Select Cuisine Style---</option>
+                            <option value="">Select Cuisine Style</option>
                             <%
                                 Criteria c2 = s.createCriteria(CuisineCategory.class);
                                 List<CuisineCategory> lcs = c2.list();
@@ -259,7 +259,7 @@
                     <label class="control-label col-sm-3" disabled>Health Category:</label>
                     <div class="col-sm-9">
                         <select name="recipe_healthcat" id="recipe_healthcat" class="form-control" >
-                            <option value="">---Select Health Category---</option>
+                            <option value="">Select Health Category</option>
                             <%
                                 Criteria c3 = s.createCriteria(HealthCategory.class);
                                 List<HealthCategory> lhc = c3.list();

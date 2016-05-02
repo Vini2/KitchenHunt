@@ -69,6 +69,7 @@
         </div>
     </div>
 
+        <!--Admin sign in form-->
     <div style="width:25%; margin:0 auto;">
         <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="login_form">
             <div class="form-group">

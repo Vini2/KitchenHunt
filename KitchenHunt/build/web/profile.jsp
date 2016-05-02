@@ -177,6 +177,8 @@
             </div>
         </div>
 
+        
+        <!--User profile details-->
         <div class="container">
             <div class="page-header" align="center">
                 <h1><small id="profile_title">Profile</small></h1>

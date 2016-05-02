@@ -168,6 +168,7 @@
             </div>
         </div>
 
+        <!--404 error message-->
         <div class="container" align="center">
             <div class="jumbotron">
                 <h1>Page Not Found!</h1> 

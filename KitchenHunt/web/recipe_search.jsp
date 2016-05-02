@@ -4,6 +4,10 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.Ingredient"%>
+<%@page import="HibFiles.HealthCategory"%>
+<%@page import="HibFiles.CuisineCategory"%>
+<%@page import="HibFiles.FoodCategory"%>
 <%@page import="HibFiles.Image"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
@@ -32,6 +36,8 @@ and open the template in the editor.
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
+
+            Session s = PoolManager.getSessionFactory().openSession();
         %>
 
         <meta charset="UTF-8">
@@ -182,6 +188,8 @@ and open the template in the editor.
             </div>
         </div>
 
+
+        <!--Beginning of recipe search sidebar-->
         <div class="container-fluid" style="width:98%; margin:0 auto;">
             <div class="row content">
                 <div class="col-sm-3 sidenav">
@@ -201,49 +209,68 @@ and open the template in the editor.
 
                     <div class="form-group">
                         <label class="control-label" for="email">Meal Type</label>
-                        <select name="meal_type" id="meal_type" class="form-control" >
-                            <option value="">---Select Meal Type---</option>
-                            <option value="Beginner">Breakfast</option>
-                            <option value="Moderate">Lunch</option>
-                            <option value="Expert">Dinner</option>
+                        <select name="recipe_mealtype" id="recipe_mealtype" class="form-control" >
+                            <option value="">Select Meal Type</option>
+                            <%
+                                Criteria c1 = s.createCriteria(FoodCategory.class);
+                                List<FoodCategory> lfc = c1.list();
+                                for (FoodCategory fc : lfc) {
+                            %>
+                            <option value="<%=fc.getIdfoodCategory()%>"><%=fc.getCategoryName()%></option>
+                            <%}%>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="email">Cuisine Style</label>
-                        <select name="meal_type" id="meal_type" class="form-control" >
-                            <option value="">---Select Cuisine Style---</option>
-                            <option value="Beginner">French</option>
-                            <option value="Moderate">Italian</option>
-                            <option value="Expert">American</option>
+                        <select name="recipe_cusine" id="recipe_cuisine" class="form-control" >
+                            <option value="">Select Cuisine Style</option>
+                            <%
+                                Criteria c2 = s.createCriteria(CuisineCategory.class);
+                                List<CuisineCategory> lcs = c2.list();
+                                for (CuisineCategory cc : lcs) {
+                            %>
+                            <option value="<%=cc.getIdcuisineCategory()%>"><%=cc.getCuisineName()%></option>
+                            <%}%>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="email">Health Category</label>
-                        <select name="meal_type" id="meal_type" class="form-control" >
-                            <option value="">---Select Health Category---</option>
-                            <option value="Beginner">Healthy</option>
-                            <option value="Moderate">Diabetic</option>
+                        <select name="recipe_healthcat" id="recipe_healthcat" class="form-control" >
+                            <option value="">Select Health Category</option>
+                            <%
+                                Criteria c3 = s.createCriteria(HealthCategory.class);
+                                List<HealthCategory> lhc = c3.list();
+                                for (HealthCategory hc : lhc) {
+                            %>
+                            <option value="<%=hc.getIdhealthCategory()%>"><%=hc.getCategoryName()%></option>
+                            <%}%>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label" for="email">Exclude</label>
-                        <select name="meal_type" id="meal_type" class="form-control" >
-                            <option value="">---Select Ingredient to Exclude---</option>
-                            <option value="Beginner">Healthy</option>
-                            <option value="Moderate">Diabetic</option>
+                        <select name="recipe_exclude" id="recipe_exclude" class="form-control" >
+                            <option value="">Select Ingredient to Exclude</option>
+                            <%
+                                Criteria c4 = s.createCriteria(Ingredient.class);
+                                List<Ingredient> li = c4.list();
+                                for (Ingredient ing : li) {
+                            %>
+                            <option value="<%=ing.getIdingredient()%>"><%=ing.getName()%></option>
+                            <%}%>
                         </select>
                     </div>
 
-
                 </div>
+                <!--End of recipe search sidebar-->
 
+
+                <!--Beginning of search results display-->
                 <div class="col-sm-9">
 
                     <%
-                        Session s = PoolManager.getSessionFactory().openSession();
                         Criteria c = s.createCriteria(Recipe.class);
                         c.addOrder(Order.desc("idrecipe"));
                         c.setMaxResults(6);
@@ -283,9 +310,9 @@ and open the template in the editor.
                         </div>
                         <%}%>
                     </div>
-
-
                 </div>
+                <!--End of search results display-->
+
 
                 <br>
                 <br>

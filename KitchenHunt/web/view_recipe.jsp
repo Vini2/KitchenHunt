@@ -55,7 +55,7 @@ and open the template in the editor.
     </head>
     <body>
 
-        <!-->Beginning of navigation bar<-->
+        <!--Beginning of navigation bar-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -181,6 +181,8 @@ and open the template in the editor.
             </div>
         </div>
 
+
+        <!--Beginning of recipe details-->
         <div style="width:82%; margin:0 auto;" class="well">
 
             <div class="row">
@@ -269,8 +271,9 @@ and open the template in the editor.
         </div>
 
     </div>
+    <!-- of recipe details-->
 
-    
+
     <!--Beginning of footer-->
     <footer class="footer-distributed">
 
