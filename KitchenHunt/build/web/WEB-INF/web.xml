@@ -20,6 +20,10 @@
         <servlet-name>AdminSignOut</servlet-name>
         <servlet-class>Servlets.AdminSignOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GeneralSearch</servlet-name>
+        <servlet-class>Servlets.GeneralSearch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AdminSignOut</servlet-name>
         <url-pattern>/AdminSignOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneralSearch</servlet-name>
+        <url-pattern>/GeneralSearch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

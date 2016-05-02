@@ -54,8 +54,32 @@ and open the template in the editor.
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/footer-distributed.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="js/myjavascript.js"></script>
+        <link rel="stylesheet" href="css/jquery-ui.css" />
 
+        <script type="text/javascript" src="js/myjavascript.js"></script>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+
+            <%
+                Criteria c11 = s.createCriteria(Recipe.class);
+                c11.addOrder(Order.asc("idrecipe"));
+                List<Recipe> lr1 = c11.list();
+            %>
+                var availableTags = [
+            <%
+                for (Recipe r : lr1) {
+            %>
+                    "<%=r.getName()%>",
+            <%}%>
+                ];
+                $("#tags").autocomplete({
+                    source: availableTags
+                });
+            });
+        </script>
 
 
     </head>
@@ -194,13 +218,26 @@ and open the template in the editor.
             <div class="row content">
                 <div class="col-sm-3 sidenav">
 
-                    <div class="input-group">
+                    <!--<div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Kitchen Hunt...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
+                    </div>-->
+
+                    <div class="form-group">
+                        <form action="GeneralSearch" method="POST">
+                            <div class="col-sm-10">
+                                <input type="text" name="search" id="tags" class="form-control" placeholder="Search Kitchen Hunt..."/>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <br>
                     <br>
@@ -297,7 +334,7 @@ and open the template in the editor.
                                 <div class="caption">
                                     <h3><%=r.getName()%></h3>
                                     <p>By: <%=r.getUser().getFname()%></p>
-                                    <p>Category: <%=r.getFoodCategory().getCategoryName()%></p>
+                                    <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
                                     <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
 
                                         <%
@@ -360,7 +397,7 @@ and open the template in the editor.
 
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="js/sidebar.js"></script>
 
