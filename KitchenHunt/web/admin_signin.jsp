@@ -55,35 +55,67 @@
                         <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
                     </ul>
                 </div>
-            </nav>
-            <!-- /container -->
-        </div>
+        </nav>
+        <!-- /container -->
+    </div>
 
-        <div class="container">
-            <div class="page-header" align="center">
-                <h1><small>Administrator Sign In</small></h1>
+    <div class="container">
+        <div class="page-header" align="center">
+            <h1><small>Administrator Sign In</small></h1>
+        </div>
+        <div align="center">
+            <img src="images/admin/signin.png" height="200px" width="auto">
+        </div>
+    </div>
+
+    <div style="width:25%; margin:0 auto;">
+        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="testform">
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" name="signin_email" required>
             </div>
-            <div align="center">
-                <img src="images/admin/signin.png" height="200px" width="auto">
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" name="signin_password" required>
             </div>
+            <div><br></div>
+            <div align="right">
+                <input type="submit" value="Sign In" class="btn btn-success btn-block"/>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer-distributed">
+
+        <div class="footer-right">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+
         </div>
 
-        <div style="width:25%; margin:0 auto;">
-            <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="testform">
-                <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" class="form-control" name="signin_email" required>
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" name="signin_password" required>
-                </div>
-                <div><br></div>
-                <div align="right">
-                    <input type="submit" value="Sign In" class="btn btn-success btn-block"/>
-                </div>
-            </form>
+        <div class="footer-left">
+
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Recipe Search</a>
+                ·
+                <a href="#">Help</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">My Kitchen</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
+
+            <p>Kitchen Hunt &copy; 2016</p>
         </div>
 
-    </body>
+    </footer>
+
+</body>
 </html>

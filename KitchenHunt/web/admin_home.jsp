@@ -16,7 +16,7 @@
         <!--[if lt IE 9]>
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
         <script type="text/javascript" src="js/myjavascript.js"></script>
-        
+
     </head>
     <body>
         <!-- header -->
@@ -161,11 +161,11 @@
                     </ul>
                     <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
                     <hr>
-                    
+
                     <div class="row">
-                        
+
                         <div class="col-md-12">
-                            
+
                             <div class="panel panel-default">
                                 <div class="well">
                                     <h4>New Users <span class="badge pull-right">3</span></h4>
@@ -175,7 +175,7 @@
                                     <p>Visit the Bootstrap Playground at <a href="http://bootply.com">Bootply</a> to tweak this layout or discover more useful code snippets.</p>
                                 </div>
                             </div>
-                            
+
                             <div class="panel panel-default">
                                 <div class="well">
                                     <h4>New Recipes Posted <span class="badge pull-right">5</span></h4>
@@ -185,9 +185,9 @@
                                     <p>Visit the Bootstrap Playground at <a href="http://bootply.com">Bootply</a> to tweak this layout or discover more useful code snippets.</p>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                     </div>
 
                     <div class="row">
@@ -451,6 +451,39 @@
             </div>
             <!-- /.modal-dalog -->
         </div>
+
+        <footer class="footer-distributed">
+
+            <div class="footer-right">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+            <div class="footer-left">
+
+                <p class="footer-links">
+                    <a href="#">Home</a>
+                    ·
+                    <a href="#">Recipe Search</a>
+                    ·
+                    <a href="#">Help</a>
+                    ·
+                    <a href="#">About</a>
+                    ·
+                    <a href="#">My Kitchen</a>
+                    ·
+                    <a href="#">Contact</a>
+                </p>
+
+                <p>Kitchen Hunt &copy; 2016</p>
+            </div>
+
+        </footer>
+
         <!-- /.modal -->
         <!-- script references -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
