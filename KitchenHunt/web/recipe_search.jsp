@@ -268,7 +268,7 @@ and open the template in the editor.
                                     Image im = (Image) iter.next();
                                 %>
 
-                                <img src="<%=im.getPath()%>" alt="Butter Curls">
+                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
                                 <div class="caption">
                                     <h3><%=r.getName()%></h3>
                                     <p>By: <%=r.getUser().getFname()%></p>
