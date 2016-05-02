@@ -6,6 +6,7 @@
 package JWebUnitTesting;
 
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
+import net.sourceforge.jwebunit.util.TestingEngineRegistry;
 import org.junit.*;
 
 /**
@@ -16,6 +17,7 @@ public class AdminSignInTest {
 
     @Before
     public void prepare() {
+        setTestingEngineKey(TestingEngineRegistry.TESTING_ENGINE_HTMLUNIT);    // use HtmlUnit
         setBaseUrl("http://localhost:8080/KitchenHunt");
     }
 

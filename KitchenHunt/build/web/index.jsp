@@ -99,7 +99,7 @@
                         <h3 class="modal-title">Sign Up</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="signup_form">
                             <div class="form-group">
                                 <label for="name">Name:</label>
                                 <input type="name" class="form-control" name="signup_name" id="idname" required>
@@ -143,7 +143,7 @@
                         <h3 class="modal-title">Sign In</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="signin_form">
                             <div class="form-group">
                                 <label for="email">Email address:</label>
                                 <input type="email" class="form-control" name="signin_email" required>
@@ -169,7 +169,7 @@
 
         <div class="container">
             <div class="page-header" align="center">
-                <h1>Welcome to Kitchen Hunt!</h1>      
+                <h1 id="welcomeMsg">Welcome to Kitchen Hunt!</h1>      
                 <h2><small>Search Recipes with the Ingredients You have in Your Kitchen</small></h2>
                 <h2><a id="getStarted" href="recipe_search.jsp"><button type="submit" value="" class="btn btn-default"/>Get Started</button></a></h2>
             </div>

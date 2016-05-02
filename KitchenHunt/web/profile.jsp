@@ -13,7 +13,7 @@
 
 <html>
     <head>
-        <title>Kitchen Hunt</title>
+        <title>Kitchen Hunt - Profile</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -48,7 +48,7 @@
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
-        <script type="text/javascript" src="js/myjavascript.js"></script>
+        <script src="js/myjavascript.js"></script>
 
 
     </head>
@@ -111,7 +111,7 @@
                         <h3 class="modal-title">Sign Up</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="signup_form">
                             <div class="form-group">
                                 <label for="name">Name:</label>
                                 <input type="name" class="form-control" name="signup_name" id="idname" required>
@@ -155,7 +155,7 @@
                         <h3 class="modal-title">Sign In</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="signin_form">
                             <div class="form-group">
                                 <label for="email">Email address:</label>
                                 <input type="email" class="form-control" name="signin_email" required>
@@ -181,12 +181,12 @@
 
         <div class="container">
             <div class="page-header" align="center">
-                <h1><small>Profile</small></h1>
+                <h1><small id="profile_title">Profile</small></h1>
             </div>
         </div>
 
         <div style="width:50%; margin:0 auto;">
-            <form class="form-horizontal" role="form" onsubmit="update(this); return false;" method="POST" id="testform">
+            <form class="form-horizontal" role="form" onsubmit="update(this); return false;" method="POST" id="profile_form">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email" disabled>Name:</label>
                     <div class="col-sm-10">
