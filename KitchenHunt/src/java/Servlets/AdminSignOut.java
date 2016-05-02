@@ -7,8 +7,6 @@ package Servlets;
 
 import HibFiles.LoginSession;
 import HibFiles.PoolManager;
-import HibFiles.UserLogin;
-import HibFiles.UserType;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -16,16 +14,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author User
  */
-public class SignIn extends HttpServlet {
+public class AdminSignOut extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,61 +35,25 @@ public class SignIn extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         PrintWriter out = response.getWriter();
 
-        System.out.println("inside servlet");
-
-        String msg = null;
-
         try {
+            Session s = PoolManager.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
 
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            LoginSession ls = (LoginSession) request.getSession().getAttribute("ses");
 
-            System.out.println(email + " " + password);
+            LoginSession ls1 = (LoginSession) s.load(LoginSession.class, ls.getIdloginSession());
+            ls1.setOutTime(new Date());
+
+            s.update(ls1);
+            t.commit();
+
+            System.out.println(new Date());
 
             request.getSession().invalidate();
 
-            Session s = PoolManager.getSessionFactory().openSession();
-
-            Transaction t = s.beginTransaction();
-
-            Criteria c = s.createCriteria(UserLogin.class);
-            c.add(Restrictions.eq("email", request.getParameter("email")));
-            UserLogin ul = (UserLogin) c.uniqueResult();
-
-            if (ul == null) {
-                msg = "Error1";
-
-            } else if (!Security.decrypt(ul.getPassword()).equals(request.getParameter("password"))) {
-                msg = "Error2";
-            
-            } else if (ul.getSystemStatus().getStatusName().equals("Active")) {
-
-                request.getSession().invalidate();
-
-                request.getSession().setAttribute("user", ul);
-
-                LoginSession ls = new LoginSession();
-                ls.setInTime(new Date());
-                ls.setOutTime(new Date());
-                ls.setIpAddress(request.getRemoteHost());
-                ls.setUserLogin(ul);
-
-                s.save(ls);
-
-                request.getSession().setAttribute("ses", ls);
-
-                t.commit();
-                
-                msg = "success";
-                
-            } else {
-                msg="Error3";
-            }
-
-            out.write(msg);
+            response.sendRedirect("admin_signin.jsp");
 
         } catch (Exception e) {
             throw new ServletException(e);

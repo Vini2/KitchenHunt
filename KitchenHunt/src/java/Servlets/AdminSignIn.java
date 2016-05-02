@@ -5,12 +5,20 @@
  */
 package Servlets;
 
+import HibFiles.LoginSession;
+import HibFiles.PoolManager;
+import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -31,16 +39,58 @@ public class AdminSignIn extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         try {
-            
+
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            
+
+            String msg = null;
+
             System.out.println(email + " " + password);
-            
-            out.write("success");
-            
+
+            request.getSession().invalidate();
+
+            Session s = PoolManager.getSessionFactory().openSession();
+
+            Transaction t = s.beginTransaction();
+
+            Criteria c = s.createCriteria(UserLogin.class);
+            c.add(Restrictions.eq("email", request.getParameter("email")));
+            UserLogin ul = (UserLogin) c.uniqueResult();
+
+            if (ul == null) {
+                msg = "Error1";
+
+            } else if (!Security.decrypt(ul.getPassword()).equals(request.getParameter("password"))) {
+                msg = "Error2";
+
+            } else if (ul.getUser().getUserType().getTypeName().equals("Admin") && ul.getSystemStatus().getStatusName().equals("Active")) {
+
+                request.getSession().invalidate();
+
+                request.getSession().setAttribute("user", ul);
+
+                LoginSession ls = new LoginSession();
+                ls.setInTime(new Date());
+                ls.setOutTime(new Date());
+                ls.setIpAddress(request.getRemoteHost());
+                ls.setUserLogin(ul);
+
+                s.save(ls);
+
+                request.getSession().setAttribute("ses", ls);
+
+                t.commit();
+
+                msg = "success";
+
+            } else {
+                msg = "Error3";
+            }
+
+            out.write(msg);
+
         } catch (Exception e) {
             throw new ServletException();
         }

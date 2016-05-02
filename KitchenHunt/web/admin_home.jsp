@@ -4,6 +4,10 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.User"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="HibFiles.PoolManager"%>
+<%@page import="HibFiles.UserLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +15,26 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <title>Kitchen Hunt - Admin Home</title>
+
+        <%
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+
+            UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
+            Session s = PoolManager.getSessionFactory().openSession();
+
+            User u = (User) s.load(User.class, ul.getUser().getIduser());
+
+            if (request.getSession().getAttribute("user") == null) {
+                response.sendRedirect("index.jsp");
+            } else if (!u.getUserType().getTypeName().equals("Admin")) {
+                response.sendRedirect("index.jsp");
+            } else {
+
+        %>
+
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <!--[if lt IE 9]>
@@ -31,7 +55,7 @@
 
     </head>
     <body>
-        
+
         <!--Beginning of navigation bar-->
         <!-- header -->
         <nav class="navbar navbar-inverse">
@@ -44,6 +68,7 @@
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
@@ -51,7 +76,7 @@
                                 <li><a href="#">My Profile</a></li>
                             </ul>
                         </li>
-                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+                        <li><a href="AdminSignOut"><i class="glyphicon glyphicon-lock"></i> Sign Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -452,7 +477,7 @@
             <!-- /.modal-dalog -->
         </div>
 
-        
+
         <!--Beginning of footer-->
         <footer class="footer-distributed">
 
@@ -485,6 +510,8 @@
             </div>
 
         </footer>
+
+        <%}%>
 
         <!--End of footer-->
         <!-- /.modal -->

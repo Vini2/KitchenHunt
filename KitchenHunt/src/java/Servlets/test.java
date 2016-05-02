@@ -29,6 +29,8 @@ public class test {
         Session s = PoolManager.getSessionFactory().openSession();
         Recipe r = (Recipe) s.load(Recipe.class, 6);
         
+        UserLogin ul = new UserLogin();
+        
         
 
         Criteria c3 = s.createCriteria(Ingredient.class);

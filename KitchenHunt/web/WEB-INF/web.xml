@@ -16,6 +16,10 @@
         <servlet-name>AdminSignIn</servlet-name>
         <servlet-class>Servlets.AdminSignIn</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminSignOut</servlet-name>
+        <servlet-class>Servlets.AdminSignOut</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>AdminSignIn</servlet-name>
         <url-pattern>/AdminSignIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminSignOut</servlet-name>
+        <url-pattern>/AdminSignOut</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
