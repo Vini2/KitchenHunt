@@ -184,7 +184,7 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid" style="width:98%; margin:0 auto;">
             <div class="row content">
                 <div class="col-sm-3 sidenav">
 

@@ -228,77 +228,88 @@ and open the template in the editor.
             </div>
 
             <%                Set ss = r.getRecipeHasIngredients();
+                int count = 0;
                 for (Object arg : ss) {
                     RecipeHasIngredient i = (RecipeHasIngredient) arg;
+                    ++count;
 
+                    Double d = i.getQuantity();
+                    int q = d.intValue();
+
+                    if (count % 3 == 1) {
             %>
+            <div class="row">
+                <div class="col-xs-6 col-md-4"><%=q%><%=i.getUnit()%> <%=i.getIngredient().getName()%></div>
+                <%} else if (count % 3 == 2) {%>
+                <div class="col-xs-6 col-md-4"><%=q%><%=i.getUnit()%> <%=i.getIngredient().getName()%></div>
+                <%} else if (count % 3 == 0) {%>
+                <div class="col-xs-6 col-md-4"><%=q%><%=i.getUnit()%> <%=i.getIngredient().getName()%></div>
+            </div> 
 
-            <div class="row">
-                <div class="col-xs-3 col-md-3"><%=i.getIngredient().getName()%></div>
-                <div class="col-xs-2 col-md-2"><%=i.getQuantity()%>g</div>
-            </div>
-            <%}%>
-            <div class="row">
-                <div class="col-xs-6 col-md-4">2 star anise</div>
-                <div class="col-xs-6 col-md-4">4 baking potatoes</div>
-                <div class="col-xs-6 col-md-4">200ml/7fl oz double cream</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-md-4">1 lemon, juice only</div>
-                <div class="col-xs-6 col-md-4">3 tbsp chives, finely sliced</div>
-                <div class="col-xs-6 col-md-4">sea salt and freshly ground black pepper</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12"><h3>Directions</h3></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <%=r.getDirections()%>
-                    <br>
-                </div>
-
+            <%}
+                }%>
+        </div>
+        <!--<div class="row">
+        <div class="col-xs-6 col-md-4">2 star anise</div>
+        <div class="col-xs-6 col-md-4">4 baking potatoes</div>
+        <div class="col-xs-6 col-md-4">200ml/7fl oz double cream</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-4">1 lemon, juice only</div>
+        <div class="col-xs-6 col-md-4">3 tbsp chives, finely sliced</div>
+        <div class="col-xs-6 col-md-4">sea salt and freshly ground black pepper</div>
+    </div>-->
+        <div class="row">
+            <div class="col-xs-12"><h3>Directions</h3></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <%=r.getDirections()%>
+                <br>
             </div>
 
         </div>
 
-        <footer class="footer-distributed">
+    </div>
 
-            <div class="footer-right">
+    <footer class="footer-distributed">
 
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+        <div class="footer-right">
 
-            </div>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
 
-            <div class="footer-left">
+        </div>
 
-                <p class="footer-links">
-                    <a href="#">Home</a>
-                    ·
-                    <a href="#">Recipe Search</a>
-                    ·
-                    <a href="#">Help</a>
-                    ·
-                    <a href="#">About</a>
-                    ·
-                    <a href="#">My Kitchen</a>
-                    ·
-                    <a href="#">Contact</a>
-                </p>
+        <div class="footer-left">
 
-                <p>Kitchen Hunt &copy; 2016</p>
-            </div>
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Recipe Search</a>
+                ·
+                <a href="#">Help</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">My Kitchen</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
 
-        </footer>
+            <p>Kitchen Hunt &copy; 2016</p>
+        </div>
+
+    </footer>
 
 
 
-    </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="js/sidebar.js"></script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="js/sidebar.js"></script>
 </html>
 
 

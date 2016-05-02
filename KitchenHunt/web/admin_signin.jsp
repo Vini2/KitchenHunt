@@ -55,7 +55,7 @@
                         <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
                     </ul>
                 </div>
-            </div>
+            </nav>
             <!-- /container -->
         </div>
 
@@ -78,9 +78,7 @@
                     <label for="pwd">Password:</label>
                     <input type="password" class="form-control" name="signin_password" required>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
-                </div>
+                <div><br></div>
                 <div align="right">
                     <input type="submit" value="Sign In" class="btn btn-success btn-block"/>
                 </div>

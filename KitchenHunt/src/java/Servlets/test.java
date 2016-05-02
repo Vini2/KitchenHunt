@@ -34,7 +34,7 @@ public class test {
         for (Object arg : ss) {
 
             RecipeHasIngredient i = (RecipeHasIngredient) arg;
-
+            
             System.out.println(i.getIngredient().getName() + i.getQuantity());
 
         }
