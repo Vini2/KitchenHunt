@@ -57,7 +57,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="recipe_search.jsp">Recipe Search</a></li>
                         <li><a href="#">Help</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a id="idabout" href="about.jsp">About</a></li>
 
                         <%
                             if (request.getSession().getAttribute("user") != null) {
@@ -167,6 +167,7 @@
             </div>
         </div>
 
+        <!--Welcome message-->
         <div class="container">
             <div class="page-header" align="center">
                 <h1 id="welcomeMsg">Welcome to Kitchen Hunt!</h1>      

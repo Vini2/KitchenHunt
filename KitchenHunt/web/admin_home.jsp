@@ -64,7 +64,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                        <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
+                        <a class="navbar-brand" href="admin_home.jsp">Kitchen Hunt</a>
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">

@@ -1,33 +1,22 @@
 <%-- 
-    Document   : profile
-    Created on : Apr 26, 2016, 3:20:59 PM
+    Document   : about
+    Created on : April 30, 2016, 10:27:15 AM
     Author     : User
 --%>
 
-<%@page import="HibFiles.User"%>
-<%@page import="org.hibernate.Session"%>
-<%@page import="HibFiles.PoolManager"%>
 <%@page import="HibFiles.UserLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
     <head>
-        <title>Kitchen Hunt - Profile</title>
+        <title>Kitchen Hunt - About</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
-
-            if (request.getSession().getAttribute("user") == null) {
-                response.sendRedirect("index.jsp");
-            } else {
-                UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
-                Session s1 = PoolManager.getSessionFactory().openSession();
-
-                User u = (User) s1.load(User.class, ul.getUser().getIduser());
         %>
 
         <meta charset="UTF-8">
@@ -44,7 +33,8 @@
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/footer-distributed.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <script src="js/myjavascript.js"></script>
+        <script type="text/javascript" src="js/myjavascript.js"></script>
+
 
 
     </head>
@@ -57,7 +47,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                        <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
+                        <a id="idindex" class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
                     </a>
                 </div>
 
@@ -71,7 +61,7 @@
 
                         <%
                             if (request.getSession().getAttribute("user") != null) {
-
+                                UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
                         %>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -177,46 +167,22 @@
             </div>
         </div>
 
-        
-        <!--User profile details-->
+        <!--About details-->
         <div class="container">
             <div class="page-header" align="center">
-                <h1><small id="profile_title">Profile</small></h1>
+                <h1><small id="profile_title">About</small></h1>
             </div>
         </div>
-
-        <div style="width:50%; margin:0 auto;">
-            <form class="form-horizontal" role="form" onsubmit="update(this); return false;" method="POST" id="profile_form">
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="email" disabled>Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="profile_name" name="profile_name" placeholder="" value="<%=u.getFname()%>" disabled required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="email" disabled>Address:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="profile_address" name="profile_address" placeholder="" value="<%=u.getAddress()%>" disabled required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="email" disabled>Telephone:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="profile_telephone" name="profile_telephone" placeholder="" value="<%=u.getMobile()%>" disabled required>
-                    </div>
-                </div>
-                <div class="form-group"> 
-                    <div class="col-sm-offset-2 col-sm-10" align="right" id="action_button">
-                        <button type="button" class="btn btn-success" onclick="enable()" id='btn_edit'>Edit</button>
-                        <button type="submit" class="btn btn-success" id="btn_update" style="display: none">Update</button>
-                    </div>
-                </div>
-            </form>
+        
+        <div class="container" align="center">
+            <img src="images/Slider2.jpg" alt="" width="1000px" height="auto">
+        </div>
+        
+        <div class="container" align="center">
+            <img src="images/Slider5.jpg" alt="" width="1000px" height="auto">
         </div>
 
-        <br><br><br><br><br><br>
 
-        
         <!--Beginning of footer-->
         <footer class="footer-distributed">
 
@@ -250,8 +216,7 @@
 
         </footer>
         <!--End of footer-->
-        
-        <%}%>
+
 
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>

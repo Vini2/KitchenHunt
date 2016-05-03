@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/js/myjavascript.js</file>
             <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/recipe_search.jsp</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/src/java/Servlets/test.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/admin_home.jsp</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/post_request.jsp</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/admin_signin.jsp</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/view_recipe.jsp</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/add_new_recipe.jsp</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/src/java/Servlets/AdminSignIn.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/src/java/Servlets/GeneralSearch.java</file>
         </group>
     </open-files>
 </project-private>
