@@ -183,6 +183,21 @@ and open the template in the editor.
         <div id="signInModal" class="modal fade" role="dialog" align="center">
             <div class="modal-dialog" >
 
+                <%
+                    Cookie[] cookies = request.getCookies();
+                    String email = "", pass = "";
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("cookieLoginUser")) {
+                                email = cookie.getValue();
+                            }
+                            if (cookie.getName().equals("cookieLoginPassword")) {
+                                pass = cookie.getValue();
+                            }
+                        }
+                    }
+                %>
+
                 <!-- Modal content-->
                 <div class="modal-content modal-sm"  >
                     <div class="modal-header" style="text-align: center">
@@ -190,17 +205,17 @@ and open the template in the editor.
                         <h3 class="modal-title">Sign In</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="signin_form">
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" name="signin_email" required>
+                                <input type="email" class="form-control" name="signin_email" value="<%=email%>" required>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" name="signin_password" required>
+                                <input type="password" class="form-control" name="signin_password" value="<%=pass%>" required>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox"> Remember me</label>
+                                <label><input type="checkbox" id="rememberMe"> Remember me</label>
                             </div>
                             <div align="right">
                                 <input type="submit" value="Sign In" class="btn btn-success btn-block"/>
@@ -261,7 +276,7 @@ and open the template in the editor.
                         </select>
                     </div>
 
-                        <!--Select cuisine style-->
+                    <!--Select cuisine style-->
                     <div class="form-group">
                         <label class="control-label" for="email">Cuisine Style</label>
                         <select name="recipe_cusine" id="recipe_cuisine" class="form-control" >
@@ -337,19 +352,20 @@ and open the template in the editor.
                                 %>
 
                                 <!--Image-->
+                                <%if (im != null) {%>
                                 <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
-                                
+                                <%}%>
                                 <div class="caption">
-                                    
+
                                     <!--Recipe name-->
                                     <h3><%=r.getName()%></h3>
-                                    
+
                                     <!--Posted by-->
                                     <p>By: <%=r.getUser().getFname()%></p>
-                                    
+
                                     <!--Meal type-->
                                     <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-                                    
+
                                     <!--View Recipe button-->
                                     <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
 

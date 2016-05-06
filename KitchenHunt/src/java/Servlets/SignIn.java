@@ -8,11 +8,11 @@ package Servlets;
 import HibFiles.LoginSession;
 import HibFiles.PoolManager;
 import HibFiles.UserLogin;
-import HibFiles.UserType;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,10 +53,30 @@ public class SignIn extends HttpServlet {
             String password = request.getParameter("password");
 
             System.out.println(email + " " + password);
+            
+            String value = request.getParameter("rememberMe");
+            boolean rememberMe = false;
+            System.out.println("Checked = " + value);    
+            
+            if (value != null && value.equalsIgnoreCase("checked")) {
+                rememberMe = true;
+            }
+            if (rememberMe) {           //If your checkbox value is true
+                
+                //Create cokies for email and password
+                Cookie cookieUsername = new Cookie("cookieLoginUser", email);
+                Cookie cookiePassword = new Cookie("cookieLoginPassword", password);
+                
+                // Make the cookie one year last
+                cookieUsername.setMaxAge(60 * 60 * 24 * 365);
+                cookiePassword.setMaxAge(60 * 60 * 24 * 365);
+                response.addCookie(cookieUsername);
+                response.addCookie(cookiePassword);
+            }
 
             //Invalidate any existing http sessions
             request.getSession().invalidate();
-
+            
             //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
 
@@ -73,7 +93,7 @@ public class SignIn extends HttpServlet {
 
             } else if (!Security.decrypt(ul.getPassword()).equals(request.getParameter("password"))) {
                 msg = "Error2";     //Return error if password is incorrect
-            
+
             } else if (ul.getSystemStatus().getStatusName().equals("Active")) {
 
                 //If user is active set user login object to http session
@@ -93,11 +113,11 @@ public class SignIn extends HttpServlet {
 
                 //Commit changes
                 t.commit();
-                
+
                 msg = "success";
-                
+
             } else {
-                msg="Error3";
+                msg = "Error3";
             }
 
             out.write(msg);

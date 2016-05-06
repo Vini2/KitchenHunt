@@ -61,6 +61,11 @@ function signIn(frm1) {
     var email = frm1["signin_email"].value;
     var password = frm1["signin_password"].value;
 
+    var rememberMe = null;
+    if (document.getElementById('rememberMe').checked) {
+        rememberMe = "checked";
+    }
+
 
     if (window.XMLHttpRequest) {
         a = new XMLHttpRequest();
@@ -95,7 +100,8 @@ function signIn(frm1) {
 
         a.open("POST", "SignIn", true);
         a.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        a.send("email=" + email + "&password=" + password);
+        //a.send("email=" + email + "&password=" + password);
+        a.send("email=" + email + "&password=" + password + "&rememberMe=" + rememberMe);
 
     }
 }
@@ -156,7 +162,7 @@ function update(frm1) {
 function postRecipe(frm1) {
 
     var a;
-    
+
     var recipe_name = frm1["recipe_name"].value;
     var recipe_skill = frm1["recipe_skill"].value;
     var recipe_qty = frm1["recipe_qty"].value;
@@ -168,7 +174,7 @@ function postRecipe(frm1) {
     var recipe_ing1 = frm1["recipe_ing1"].value;
     var recipe_ing1_qty = frm1["recipe_ing1_qty"].value;
     var recipe_ing1_unit = frm1["recipe_ing1_unit"].value;
-    
+
     var recipe_ing2 = frm1["recipe_ing2"].value;
     var recipe_ing2_qty = frm1["recipe_ing2_qty"].value;
     var recipe_ing2_unit = frm1["recipe_ing2_unit"].value;

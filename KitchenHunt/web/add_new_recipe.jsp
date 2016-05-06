@@ -151,6 +151,21 @@
         <div id="signInModal" class="modal fade" role="dialog" align="center">
             <div class="modal-dialog" >
 
+                <%
+                    Cookie[] cookies = request.getCookies();
+                    String email = "", pass = "";
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("cookieLoginUser")) {
+                                email = cookie.getValue();
+                            }
+                            if (cookie.getName().equals("cookieLoginPassword")) {
+                                pass = cookie.getValue();
+                            }
+                        }
+                    }
+                %>
+
                 <!-- Modal content-->
                 <div class="modal-content modal-sm"  >
                     <div class="modal-header" style="text-align: center">
@@ -158,17 +173,17 @@
                         <h3 class="modal-title">Sign In</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="signin_form">
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" name="signin_email" required>
+                                <input type="email" class="form-control" name="signin_email" value="<%=email%>" required>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" name="signin_password" required>
+                                <input type="password" class="form-control" name="signin_password" value="<%=pass%>" required>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox"> Remember me</label>
+                                <label><input type="checkbox" id="rememberMe"> Remember me</label>
                             </div>
                             <div align="right">
                                 <input type="submit" value="Sign In" class="btn btn-success btn-block"/>

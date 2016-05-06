@@ -35,7 +35,7 @@ public class AdminSignInTest {
         setTextField("signin_email", "viji.mallawaarachchi@gmail.com");
         setTextField("signin_password", "123");
         
-        assertFormElementEquals("signin_email", "viji.mallawaarachchi@gmail.com");
+        assertFormElementEquals("signin_email", "viji.mallawaarachchi@gmail.co");
         assertFormElementEquals("signin_password", "123");
         
         submit();
