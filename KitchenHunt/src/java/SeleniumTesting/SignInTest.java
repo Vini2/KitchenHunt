@@ -21,7 +21,7 @@ public class SignInTest {
 	public void successfulLoginTest(){
 		
 		//Open firefox
-		      WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new FirefoxDriver();
 		
 		//Go to the page specified
 		driver.get("http://localhost:8080/KitchenHunt/index.jsp");
@@ -32,6 +32,9 @@ public class SignInTest {
 		driver.findElement(By.xpath("//*[@id='signin_form']/div[1]/input")).sendKeys("viji.mallawaarachchi@gmail.com");
 		driver.findElement(By.xpath("//*[@id='signin_form']/div[2]/input")).sendKeys("123");
 		driver.findElement(By.xpath("//*[@id='signin_form']/div[4]/input")).click();
+                
+//                driver.findElement(By.)
+                
 //		String s = driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/ul/li[4]/a/div")).getText();
 //		
 //		System.out.println(s + " ==== ");

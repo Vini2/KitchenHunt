@@ -63,7 +63,7 @@
                             if (request.getSession().getAttribute("user") != null) {
                                 UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
                         %>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <div><%=ul.getUser().getFname()%></div><span class="caret"></span></a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
                                 <li><a href="profile.jsp">Profile</a></li>
