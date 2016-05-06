@@ -33,13 +33,11 @@ public class SignInTest {
 		driver.findElement(By.xpath("//*[@id='signin_form']/div[2]/input")).sendKeys("123");
 		driver.findElement(By.xpath("//*[@id='signin_form']/div[4]/input")).click();
                 
-//                driver.findElement(By.)
-                
-//		String s = driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/ul/li[4]/a/div")).getText();
-//		
-//		System.out.println(s + " ==== ");
-//		
-//                Assert.assertTrue(s.equals("Vijini Mallawaarachchi"));
+		String name = driver.findElement(By.xpath("//*[@id=\"bs-example-navbar-collapse-1\"]/ul/li[4]/a")).getText();
+		
+		System.out.println("name = "+name);
+		
+                Assert.assertTrue(name.equals("Vijini Mallawaarachchi"));
 		
 //		try {
 //			Thread.sleep(10000);
