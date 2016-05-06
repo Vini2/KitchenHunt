@@ -176,11 +176,11 @@ and open the template in the editor.
                         <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="signin_form">
                             <div class="form-group">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" name="signin_email" value="<%=email%>" required>
+                                <input type="email" class="form-control" id="signin_email" name="signin_email" value="<%=email%>" required>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" name="signin_password" value="<%=pass%>" required>
+                                <input type="password" class="form-control" id="signin_password" name="signin_password" value="<%=pass%>" required>
                             </div>
                             <div class="checkbox">
                                 <label><input type="checkbox" id="rememberMe"> Remember me</label>
@@ -225,7 +225,12 @@ and open the template in the editor.
                     <h4>Serves: <%=r.getServingQuantity()%></h4>
 
                     <br>
+
+                    <%
+                        if (request.getSession().getAttribute("user") != null) {
+                    %>
                     <h4><a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></h4>
+                    <%}%>
 
                 </div>
                 <div class="col-xs-12 col-md-8" align="right">
