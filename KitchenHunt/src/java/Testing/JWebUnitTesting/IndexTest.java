@@ -10,7 +10,6 @@
  */
 package Testing.JWebUnitTesting;
 
-import JWebUnitTesting.*;
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 import net.sourceforge.jwebunit.util.TestingEngineRegistry;
 import org.junit.*;

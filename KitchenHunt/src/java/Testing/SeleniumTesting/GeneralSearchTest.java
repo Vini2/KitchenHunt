@@ -5,7 +5,6 @@
  */
 package Testing.SeleniumTesting;
 
-import SeleniumTesting.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -31,7 +30,7 @@ public class GeneralSearchTest {
         driver.findElement(By.xpath("//*[@id=\"getStarted\"]/button")).click();
         
         //Enter recipe name
-        driver.findElement(By.xpath("//*[@id=\"tags\"]")).sendKeys("Summer Fruit Salad");
+        driver.findElement(By.xpath("//*[@id=\"tags\"]")).sendKeys("Strawberry Milkshake");
         
         //Click on search button
         driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div[1]/form/div[2]/button")).click();
@@ -42,7 +41,7 @@ public class GeneralSearchTest {
         System.out.println("recipe name = " + name);
         
         //Check
-        Assert.assertTrue(name.equals("Summer Fruit Salad"));
+        Assert.assertTrue(name.equals("Strawberry Milkshake"));
         
     }
 

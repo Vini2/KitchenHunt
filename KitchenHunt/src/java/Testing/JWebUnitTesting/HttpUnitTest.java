@@ -5,9 +5,6 @@
  */
 package Testing.JWebUnitTesting;
 
-import JWebUnitTesting.*;
-import com.gargoylesoftware.htmlunit.WebRequest;
-import com.gargoylesoftware.htmlunit.WebResponse;
 import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.WebConversation;
 import com.meterware.httpunit.WebLink;
