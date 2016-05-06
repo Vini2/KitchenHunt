@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SeleniumTesting;
+package Testing.SeleniumTesting;
 
+import SeleniumTesting.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;

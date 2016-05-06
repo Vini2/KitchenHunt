@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JWebUnitTesting;
+package Testing.JWebUnitTesting;
 
+import JWebUnitTesting.*;
 import com.gargoylesoftware.htmlunit.WebRequest;
 import com.gargoylesoftware.htmlunit.WebResponse;
 import com.meterware.httpunit.GetMethodWebRequest;

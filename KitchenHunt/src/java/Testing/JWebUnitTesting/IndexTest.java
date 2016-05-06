@@ -8,8 +8,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package JWebUnitTesting;
+package Testing.JWebUnitTesting;
 
+import JWebUnitTesting.*;
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 import net.sourceforge.jwebunit.util.TestingEngineRegistry;
 import org.junit.*;
