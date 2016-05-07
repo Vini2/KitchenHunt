@@ -384,7 +384,24 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
-                        <%}}%>
+                        <%}
+                        } else {%>
+
+                        <div class="container-fluid" align="center">
+                            <img src="images/Ingredients.png" height="150px" width="=auto">
+                            <h1><small>Just add your ingredients and select your preferences.</small></h1>
+                            <hr>
+                            <br>
+                            <img src="images/Recipe.png" height="150px" width="=auto">
+                            <h1><small>Kitchen Hunt instantly finds matching recipes from our recipe database.</small></h1>
+                            <hr>
+                            <br>
+                            <img src="images/MyKitchen.png" height="150px" width="=auto">
+                            <h1><small>Create a My Kitchen account to save your favourite recipes.</small></h1>
+
+                        </div>
+
+                        <%}%>
                     </div>
                 </div>
                 <!--End of search results display-->
