@@ -29,26 +29,8 @@ public class test {
         Session s = PoolManager.getSessionFactory().openSession();
         Recipe r = (Recipe) s.load(Recipe.class, 6);
         
-        UserLogin ul = new UserLogin();
+  
         
-        
-
-        Criteria c3 = s.createCriteria(Ingredient.class);
-        List<Ingredient> li = c3.list();
-        for (Ingredient ing : li) {
-            ing.getName();
-            ing.getIdingredient();
-        }
-
-        Set ss = r.getRecipeHasIngredients();
-
-        for (Object arg : ss) {
-
-            RecipeHasIngredient i = (RecipeHasIngredient) arg;
-
-            System.out.println(i.getIngredient().getName() + i.getQuantity());
-
-        }
 
     }
 

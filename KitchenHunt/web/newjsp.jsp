@@ -1,22 +1,45 @@
 <%-- 
-    Document   : index
-    Created on : Apr 17, 2016, 12:10:56 AM
+    Document   : recipe_search
+    Created on : Apr 6, 2016, 8:34:05 PM
     Author     : User
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="HibFiles.Ingredient"%>
+<%@page import="HibFiles.HealthCategory"%>
+<%@page import="HibFiles.CuisineCategory"%>
+<%@page import="HibFiles.FoodCategory"%>
+<%@page import="HibFiles.Image"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.criterion.Order"%>
+<%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="HibFiles.Recipe"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="HibFiles.PoolManager"%>
+<%@page import="org.hibernate.Criteria"%>
 <%@page import="HibFiles.UserLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
-        <title>Kitchen Hunt</title>
+        <title>Kitchen Hunt - Search</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
+            request.getSession().removeAttribute("recipeList");
+
+            Session s = PoolManager.getSessionFactory().openSession();
         %>
 
         <meta charset="UTF-8">
@@ -33,8 +56,33 @@
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/footer-distributed.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="js/myjavascript.js"></script>
+        <link rel="stylesheet" href="css/jquery-ui.css" />
 
+        <script type="text/javascript" src="js/myjavascript.js"></script>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+
+        <!--Script for auto-complete search-->
+        <script type="text/javascript">
+            $(function () {
+
+            <%
+                Criteria c11 = s.createCriteria(Recipe.class);
+                c11.addOrder(Order.asc("idrecipe"));
+                List<Recipe> lr1 = c11.list();
+            %>
+                var availableTags = [
+            <%
+                for (Recipe r : lr1) {
+            %>
+                    "<%=r.getName()%>",
+            <%}%>
+                ];
+                $("#tags").autocomplete({
+                    source: availableTags
+                });
+            });
+        </script>
 
 
     </head>
@@ -100,7 +148,7 @@
                         <h3 class="modal-title">Sign Up</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="signup_form">
+                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="testform">
                             <div class="form-group">
                                 <label for="name">Name:</label>
                                 <input type="name" class="form-control" name="signup_name" id="idname" required>
@@ -183,127 +231,216 @@
             </div>
         </div>
 
-        <!--Welcome message-->
-        <div class="container">
-            <div class="page-header" align="center">
-                <h1 id="welcomeMsg">Welcome to Kitchen Hunt!</h1>      
-                <h2><small>Search Recipes with the Ingredients You have in Your Kitchen</small></h2>
-                <h2><a id="getStarted" href="recipe_search.jsp"><button type="submit" value="" class="btn btn-default"/>Get Started</button></a></h2>
-            </div>
-        </div>
 
+        <!--Beginning of recipe search sidebar-->
+        <div class="container-fluid" style="width:98%; margin:0 auto;">
+            <div class="row content">
+                <div class="col-sm-3 sidenav">
 
-        <!--Beginning of image slider-->
-        <div class="container">
-            <br>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
+                    <!--<div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Kitchen Hunt...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>-->
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active" >
-                        <img src="images/Slider1.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h3>Thinking about what to make for dinner?</h3>
-                        </div>
+                    <!--Auto-complete search input-->
+                    <div class="form-group">
+                        <form action="GeneralSearch" method="POST">
+                            <div class="col-sm-10">
+                                <input type="text" name="search" id="tags" class="form-control" placeholder="Search Kitchen Hunt..."/>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
+                    <br>
+                    <hr>
 
-                    <div class="item">
-                        <img src="images/Slider2.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h3>Decide what to make with the stuff you have in your kitchen</h3>
-                        </div>
-                    </div>
+                    <form role="form" action="RecipeSearch" method="POST" id="testform">
 
-                    <div class="item">
-                        <img src="images/Slider3.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h3>Ranging from vegetables, fruits, beverages, sweets to desserts</h3>
-                        </div>
-                    </div>
 
-                    <div class="item">
-                        <img src="images/Slider4.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h3>Recipes you can make in just few minutes</h3>
+                        <!--Select meal type-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">Meal Type</label>
+                            <select name="recipe_mealtype" id="recipe_mealtype" class="form-control" >
+                                <option value="">Select Meal Type</option>
+                                <%
+                                    Criteria c1 = s.createCriteria(FoodCategory.class);
+                                    List<FoodCategory> lfc = c1.list();
+                                    for (FoodCategory fc : lfc) {
+                                %>
+                                <option value="<%=fc.getIdfoodCategory()%>"><%=fc.getCategoryName()%></option>
+                                <%}%>
+                            </select>
                         </div>
-                    </div>
 
-                    <div class="item">
-                        <img src="images/Slider5.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h3>The world of cuisine open for anyone</h3>
+                        <!--Select cuisine style-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">Cuisine Style</label>
+                            <select name="recipe_cusine" id="recipe_cuisine" class="form-control" >
+                                <option value="">Select Cuisine Style</option>
+                                <%
+                                    Criteria c2 = s.createCriteria(CuisineCategory.class);
+                                    List<CuisineCategory> lcs = c2.list();
+                                    for (CuisineCategory cc : lcs) {
+                                %>
+                                <option value="<%=cc.getIdcuisineCategory()%>"><%=cc.getCuisineName()%></option>
+                                <%}%>
+                            </select>
                         </div>
-                    </div>
 
-                    <div class="item">
-                        <img src="images/Slider6.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h3>Healthy eating made easy</h3>
+                        <!--Select health category-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">Health Category</label>
+                            <select name="recipe_healthcat" id="recipe_healthcat" class="form-control" >
+                                <option value="">Select Health Category</option>
+                                <%
+                                    Criteria c3 = s.createCriteria(HealthCategory.class);
+                                    List<HealthCategory> lhc = c3.list();
+                                    for (HealthCategory hc : lhc) {
+                                %>
+                                <option value="<%=hc.getIdhealthCategory()%>"><%=hc.getCategoryName()%></option>
+                                <%}%>
+                            </select>
                         </div>
+
+                        <!--Select ingredients to exclude-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">Exclude</label>
+                            <select name="recipe_exclude" id="recipe_exclude" class="form-control" >
+                                <option value="">Select Ingredient to Exclude</option>
+                                <%
+                                    Criteria c4 = s.createCriteria(Ingredient.class);
+                                    List<Ingredient> li = c4.list();
+                                    for (Ingredient ing : li) {
+                                %>
+                                <option value="<%=ing.getIdingredient()%>"><%=ing.getName()%></option>
+                                <%}%>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+
+                    </form>
+
+                </div>
+                <!--End of recipe search sidebar-->
+
+                <!--Beginning of search results display-->
+                <div class="col-sm-9">
+
+                    <div class="row">
+
+
+                        <%
+                            if (request.getSession().getAttribute("recipeList") != null) {
+                                ArrayList recipeList = (ArrayList) request.getSession().getAttribute("recipeList");
+
+                                for (Object object : recipeList) {
+                                    Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(object.toString()));
+                        %>
+
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+
+                                <%
+                                    Set image_set = r.getImages();
+                                    Iterator iter = image_set.iterator();
+                                    Image im = (Image) iter.next();
+                                %>
+
+                                <!--Image-->
+                                <%if (im != null) {%>
+                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
+                                <%}%>
+                                <div class="caption">
+
+                                    <!--Recipe name-->
+                                    <h3><%=r.getName()%></h3>
+
+                                    <!--Posted by-->
+                                    <p>By: <%=r.getUser().getFname()%></p>
+
+                                    <!--Meal type-->
+                                    <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
+
+                                    <!--View Recipe button-->
+                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
+
+                                        <%
+                                            if (request.getSession().getAttribute("user") != null) {
+                                        %>
+
+                                        <!--Add to My Kitchen button-->
+                                        <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
+                                        <%}%>
+                                </div>
+                            </div>
+                        </div>
+                        <%}}%>
                     </div>
                 </div>
+                <!--End of search results display-->
 
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
         </div>
-        <!--End of image slider-->
+    </div>
+
+    <!--Beginning of footer-->
+    <footer class="footer-distributed">
+
+        <div class="footer-right">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+
+        <div class="footer-left">
+
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Recipe Search</a>
+                ·
+                <a href="#">Help</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">My Kitchen</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
+
+            <p>Kitchen Hunt &copy; 2016</p>
+        </div>
+
+    </footer>
+    <!--End of footer-->
 
 
-        <!--Beginning of footer-->
-        <footer class="footer-distributed">
 
-            <div class="footer-right">
+</body>
 
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
-
-            </div>
-
-            <div class="footer-left">
-
-                <p class="footer-links">
-                    <a href="#">Home</a>
-                    ·
-                    <a href="#">Recipe Search</a>
-                    ·
-                    <a href="#">Help</a>
-                    ·
-                    <a href="#">About</a>
-                    ·
-                    <a href="#">My Kitchen</a>
-                    ·
-                    <a href="#">Contact</a>
-                </p>
-
-                <p>Kitchen Hunt &copy; 2016</p>
-            </div>
-
-        </footer>
-        <!--End of footer-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="js/sidebar.js"></script>
 
 
-    </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="js/sidebar.js"></script>
+
 </html>
 

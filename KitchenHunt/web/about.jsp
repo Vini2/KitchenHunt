@@ -17,6 +17,7 @@
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
+            request.getSession().removeAttribute("recipeList");
         %>
 
         <meta charset="UTF-8">

@@ -24,6 +24,10 @@
         <servlet-name>GeneralSearch</servlet-name>
         <servlet-class>Servlets.GeneralSearch</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecipeSearch</servlet-name>
+        <servlet-class>Servlets.RecipeSearch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>GeneralSearch</servlet-name>
         <url-pattern>/GeneralSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecipeSearch</servlet-name>
+        <url-pattern>/RecipeSearch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

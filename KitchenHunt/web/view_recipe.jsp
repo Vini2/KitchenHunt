@@ -29,6 +29,7 @@ and open the template in the editor.
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
+            request.getSession().removeAttribute("recipeList");
 
             Session s = PoolManager.getSessionFactory().openSession();
             Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(request.getParameter("rid")));
@@ -233,6 +234,7 @@ and open the template in the editor.
                     <%}%>
 
                 </div>
+                    
                 <div class="col-xs-12 col-md-8" align="right">
 
                     <%
@@ -244,8 +246,9 @@ and open the template in the editor.
                     <img src="<%=im.getPath()%>" alt="Butter Curls" width="600px" height="auto">
                 </div>
             </div>
+                <hr>
             <div class="row">
-                <div class="col-xs-12"><h3>Ingredients</h3></div>
+                <div class="col-xs-12"><h3>Ingredients for <%=r.getName()%></h3></div>
             </div>
 
             <%                Set ss = r.getRecipeHasIngredients();
@@ -281,7 +284,7 @@ and open the template in the editor.
         <div class="col-xs-6 col-md-4">sea salt and freshly ground black pepper</div>
     </div>-->
         <div class="row">
-            <div class="col-xs-12"><h3>Directions</h3></div>
+            <div class="col-xs-12"><h3>Directions to prepare <%=r.getName()%></h3></div>
         </div>
         <div class="row">
             <div class="col-xs-12">
