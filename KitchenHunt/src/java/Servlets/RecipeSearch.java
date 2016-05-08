@@ -58,14 +58,23 @@ public class RecipeSearch extends HttpServlet {
             //Initiate transaction
             Transaction t = s.beginTransaction();
 
-            FoodCategory fc = (FoodCategory) s.load(FoodCategory.class, Integer.parseInt(recipe_mealtype));
-            CuisineCategory cc = (CuisineCategory) s.load(CuisineCategory.class, Integer.parseInt(recipe_cusine));
-            HealthCategory hc = (HealthCategory) s.load(HealthCategory.class, Integer.parseInt(recipe_healthcat));
-
             Criteria c = s.createCriteria(Recipe.class);
-            c.add(Restrictions.eq("foodCategory", fc));
-            c.add(Restrictions.eq("cuisineCategory", cc));
-            c.add(Restrictions.eq("healthCategory", hc));
+            
+            if (!recipe_mealtype.equals("0")) {
+                FoodCategory fc = (FoodCategory) s.load(FoodCategory.class, Integer.parseInt(recipe_mealtype));
+                c.add(Restrictions.eq("foodCategory", fc));
+            }
+            
+            if (!recipe_cusine.equals("0")) {
+                CuisineCategory cc = (CuisineCategory) s.load(CuisineCategory.class, Integer.parseInt(recipe_cusine));
+                c.add(Restrictions.eq("cuisineCategory", cc));
+            }
+            
+            if (!recipe_healthcat.equals("0")) {
+                HealthCategory hc = (HealthCategory) s.load(HealthCategory.class, Integer.parseInt(recipe_healthcat));
+                c.add(Restrictions.eq("healthCategory", hc));
+            }
+            
             c.addOrder(Order.desc("idrecipe"));
 
             List<Recipe> lr = c.list();
@@ -75,6 +84,7 @@ public class RecipeSearch extends HttpServlet {
             for (Recipe r : lr) {
                 System.out.println(r.getName() + " - " + r.getFoodCategory().getCategoryName() + " " + r.getCuisineCategory().getCuisineName() + " " + r.getHealthCategory().getCategoryName());
                 recipe_list.add(r.getIdrecipe());
+                
             }
             
             request.getSession().removeAttribute("recipeList");

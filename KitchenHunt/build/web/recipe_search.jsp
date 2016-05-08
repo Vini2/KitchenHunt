@@ -267,8 +267,8 @@ and open the template in the editor.
                         <!--Select meal type-->
                         <div class="form-group">
                             <label class="control-label" for="email">Meal Type</label>
-                            <select name="recipe_mealtype" id="recipe_mealtype" class="form-control" required>
-                                <option value="">Select Meal Type</option>
+                            <select name="recipe_mealtype" id="recipe_mealtype" class="form-control">
+                                <option value="0">Select Meal Type</option>
                                 <%
                                     Criteria c1 = s.createCriteria(FoodCategory.class);
                                     List<FoodCategory> lfc = c1.list();
@@ -282,8 +282,8 @@ and open the template in the editor.
                         <!--Select cuisine style-->
                         <div class="form-group">
                             <label class="control-label" for="email">Cuisine Style</label>
-                            <select name="recipe_cusine" id="recipe_cuisine" class="form-control"  required>
-                                <option value="">Select Cuisine Style</option>
+                            <select name="recipe_cusine" id="recipe_cuisine" class="form-control">
+                                <option value="0">Select Cuisine Style</option>
                                 <%
                                     Criteria c2 = s.createCriteria(CuisineCategory.class);
                                     List<CuisineCategory> lcs = c2.list();
@@ -297,8 +297,8 @@ and open the template in the editor.
                         <!--Select health category-->
                         <div class="form-group">
                             <label class="control-label" for="email">Health Category</label>
-                            <select name="recipe_healthcat" id="recipe_healthcat" class="form-control" required>
-                                <option value="">Select Health Category</option>
+                            <select name="recipe_healthcat" id="recipe_healthcat" class="form-control">
+                                <option value="0">Select Health Category</option>
                                 <%
                                     Criteria c3 = s.createCriteria(HealthCategory.class);
                                     List<HealthCategory> lhc = c3.list();
@@ -312,8 +312,8 @@ and open the template in the editor.
                         <!--Select ingredients to exclude-->
                         <div class="form-group">
                             <label class="control-label" for="email">Exclude</label>
-                            <select name="recipe_exclude" id="recipe_exclude" class="form-control" required>
-                                <option value="">Select Ingredient to Exclude</option>
+                            <select name="recipe_exclude" id="recipe_exclude" class="form-control">
+                                <option value="0">Select Ingredient to Exclude</option>
                                 <%
                                     Criteria c4 = s.createCriteria(Ingredient.class);
                                     List<Ingredient> li = c4.list();
@@ -367,9 +367,12 @@ and open the template in the editor.
 
                                     <!--Posted by-->
                                     <p>By: <%=r.getUser().getFname()%></p>
-
+                                    
                                     <!--Meal type-->
                                     <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
+                                    
+                                    <!--Cuisine Style-->
+                                    <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
 
                                     <!--View Recipe button-->
                                     <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
