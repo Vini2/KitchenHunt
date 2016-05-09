@@ -5,12 +5,21 @@
  */
 package Servlets;
 
+import HibFiles.PoolManager;
+import HibFiles.Rating;
+import HibFiles.Recipe;
+import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -30,18 +39,62 @@ public class PostRating extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PostRating</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PostRating at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        PrintWriter out = response.getWriter();
+        
+        try {
+
+            //Get attributes from http request
+            String rid = request.getParameter("rid");
+            String rating = request.getParameter("rating");
+            
+            System.out.println("Rating for recipe rid = " + rid + " is " + rating);
+
+            //Create hibernate session
+            Session s = PoolManager.getSessionFactory().openSession();
+
+            //Initiate transaction
+            Transaction t = s.beginTransaction();
+
+            //Load recipe with given rid
+            Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(rid));
+            
+            Double d = Double.parseDouble(rating);
+            int q = d.intValue();
+            
+            //Get currently logged in user
+            UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
+            
+            //Create rating object
+            Rating rat = new Rating();
+            rat.setRecipe(r);
+            rat.setStars(q);
+            rat.setUser(ul.getUser());
+            //Save rating object
+            s.save(rat);
+            
+            Criteria c = s.createCriteria(Rating.class);
+            c.add(Restrictions.eq("recipe", r));
+            List<Rating> rl = c.list();
+            
+            int tot_rating = 0;
+            
+            for (Rating ra : rl) {
+                tot_rating += ra.getStars();
+            }
+            
+            int overall_rating = tot_rating/rl.size();
+            
+            r.setOverallRating(overall_rating);
+            s.update(r);
+            
+            t.commit();
+            
+            out.write("success");
+            
+        } catch (Exception e) {
+            throw new ServletException();
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

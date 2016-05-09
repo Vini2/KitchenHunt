@@ -72,9 +72,10 @@ and open the template in the editor.
                     onInit: function () {
                         console.log("On Init");
                     },
-                    onSet: function (rating, rateYoInstance) {
+                    onSet: function (rating1, rateYoInstance) {
 
-                        alert("Rating is set to: " + rating);
+                        alert("Rating is set to: " + rating1);
+                        postRating(rating1);
                     }
                 }).on("rateyo.set", function () {
                     console.log("rateyo.set");
@@ -84,6 +85,43 @@ and open the template in the editor.
                         });
 
             });
+
+
+            function postRating(rating2) {
+
+                var a;
+                var rid = <%=request.getParameter("rid")%>;
+
+                if (window.XMLHttpRequest) {
+                    a = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                    a = new ActiveXObject("Microsoft.XMLHTTP");
+                } else {
+                    alert("Browser does not support AJAX");
+                }
+
+                if (a != null) {
+                    a.onreadystatechange = function () {
+                        if (a.readyState === 4) {
+                            var res = a.responseText;
+
+                            if (res == 'Error') {
+                                alert("Error");
+                            } else if (res == 'success') {
+                                alert("Rated successfully...");
+                                reloadPage();
+                            } else {
+                                //alert("Incorrect email address or password.");
+                            }
+                        }
+                    }
+
+                    a.open("POST", "PostRating", true);
+                    a.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    a.send("rid=" + rid + "&rating=" + rating2);
+
+                }
+            }
 
 
         </script>
@@ -299,7 +337,8 @@ and open the template in the editor.
                 <div class="col-xs-12"><h3>Ingredients for <%=r.getName()%></h3></div>
             </div>
 
-            <%                Set ss = r.getRecipeHasIngredients();
+            <%                
+                Set ss = r.getRecipeHasIngredients();
                 int count = 0;
                 for (Object arg : ss) {
                     RecipeHasIngredient i = (RecipeHasIngredient) arg;
