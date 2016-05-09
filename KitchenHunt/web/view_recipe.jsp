@@ -50,11 +50,50 @@ and open the template in the editor.
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/footer-distributed.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/jquery.rateyo.min.css"/>
+
         <script type="text/javascript" src="js/myjavascript.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.rateyo.min.js"></script>
+
+        <script>
+
+            $(function () {
+
+                var rating = <%=r.getOverallRating()%>;
+
+                $("#rateYo2").rateYo({
+                    rating: rating,
+                    readOnly: true
+                });
+
+                $("#rateYo1").rateYo({
+                    rating: rating,
+                    onInit: function () {
+                        console.log("On Init");
+                    },
+                    onSet: function (rating, rateYoInstance) {
+
+                        alert("Rating is set to: " + rating);
+                    }
+                }).on("rateyo.set", function () {
+                    console.log("rateyo.set");
+                })
+                        .on("rateyo.change", function () {
+                            console.log("rateyo.change");
+                        });
+
+            });
+
+
+        </script>
+
 
 
     </head>
     <body>
+
+
 
         <!--Beginning of navigation bar-->
         <nav class="navbar navbar-inverse">
@@ -115,7 +154,8 @@ and open the template in the editor.
                         <h3 class="modal-title">Sign Up</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signUp(this);
+                                return false;" method="POST" id="testform">
                             <div class="form-group">
                                 <label for="name">Name:</label>
                                 <input type="name" class="form-control" name="signup_name" id="idname" required>
@@ -174,7 +214,8 @@ and open the template in the editor.
                         <h3 class="modal-title">Sign In</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="signin_form">
+                        <form role="form" action="" onsubmit="signIn(this);
+                                return false;" method="POST" id="signin_form">
                             <div class="form-group">
                                 <label for="email">Email address:</label>
                                 <input type="email" class="form-control" id="signin_email" name="signin_email" value="<%=email%>" required>
@@ -199,6 +240,8 @@ and open the template in the editor.
         </div>
 
 
+
+
         <!--Beginning of recipe details-->
         <div style="width:82%; margin:0 auto;" class="well">
 
@@ -206,14 +249,19 @@ and open the template in the editor.
 
                 <div class="col-xs-6 col-md-4">
                     <div class="row">
+
                         <div class="col-xs-12 col-md-12"><h2><%=r.getName()%></h2></div>
+
                     </div>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 35px;"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 35px;"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 35px;"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 35px;"></span>
-                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true" style="font-size: 35px;"></span>
-                    <br>
+
+                    <%
+                        if (request.getSession().getAttribute("user") != null) {
+                    %>
+                    <div id="rateYo1"></div>
+                    <%} else {%>
+                    <div id="rateYo2"></div>
+                    <%}%>
+
                     <h3>186 reviewed</h3>
                     <br>
                     <h4>Recipe by: <%=r.getUser().getFname()%></h4>
@@ -234,7 +282,7 @@ and open the template in the editor.
                     <%}%>
 
                 </div>
-                    
+
                 <div class="col-xs-12 col-md-8" align="right">
 
                     <%
@@ -246,7 +294,7 @@ and open the template in the editor.
                     <img src="<%=im.getPath()%>" alt="Butter Curls" width="600px" height="auto">
                 </div>
             </div>
-                <hr>
+            <hr>
             <div class="row">
                 <div class="col-xs-12"><h3>Ingredients for <%=r.getName()%></h3></div>
             </div>
@@ -335,7 +383,7 @@ and open the template in the editor.
 
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="js/sidebar.js"></script>
 </html>

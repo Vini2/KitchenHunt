@@ -28,6 +28,10 @@
         <servlet-name>RecipeSearch</servlet-name>
         <servlet-class>Servlets.RecipeSearch</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostRating</servlet-name>
+        <servlet-class>Servlets.PostRating</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>RecipeSearch</servlet-name>
         <url-pattern>/RecipeSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostRating</servlet-name>
+        <url-pattern>/PostRating</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
