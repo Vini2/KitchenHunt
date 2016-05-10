@@ -324,8 +324,8 @@ and open the template in the editor.
                             </select>
                         </div>
 
-                        <button class="btn btn-default" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
+                        <button class="btn btn-default btn-block" type="submit">
+                            <span class="glyphicon glyphicon-search"></span> Search Kitchen Hunt 
                         </button>
 
                     </form>

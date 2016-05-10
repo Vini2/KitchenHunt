@@ -40,13 +40,15 @@ public class PostRating extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
+        String msg = "";
+
         try {
 
             //Get attributes from http request
             String rid = request.getParameter("rid");
             String rating = request.getParameter("rating");
-            
+
             System.out.println("Rating for recipe rid = " + rid + " is " + rating);
 
             //Create hibernate session
@@ -57,44 +59,57 @@ public class PostRating extends HttpServlet {
 
             //Load recipe with given rid
             Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(rid));
-            
+
             Double d = Double.parseDouble(rating);
             int q = d.intValue();
-            
+
             //Get currently logged in user
             UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
-            
-            //Create rating object
-            Rating rat = new Rating();
-            rat.setRecipe(r);
-            rat.setStars(q);
-            rat.setUser(ul.getUser());
-            //Save rating object
-            s.save(rat);
-            
-            Criteria c = s.createCriteria(Rating.class);
-            c.add(Restrictions.eq("recipe", r));
-            List<Rating> rl = c.list();
-            
-            int tot_rating = 0;
-            
-            for (Rating ra : rl) {
-                tot_rating += ra.getStars();
+
+            Criteria c1 = s.createCriteria(Rating.class);
+            c1.add(Restrictions.eq("recipe", r));
+            c1.add(Restrictions.eq("user", ul.getUser()));
+            Rating rt = (Rating) c1.uniqueResult();
+
+            if (rt == null) {
+
+                //Create rating object
+                Rating rat = new Rating();
+                rat.setRecipe(r);
+                rat.setStars(q);
+                rat.setUser(ul.getUser());
+                //Save rating object
+                s.save(rat);
+
+                Criteria c2 = s.createCriteria(Rating.class);
+                c2.add(Restrictions.eq("recipe", r));
+                List<Rating> rl = c2.list();
+
+                int tot_rating = 0;
+
+                for (Rating ra : rl) {
+                    tot_rating += ra.getStars();
+                }
+
+                int overall_rating = tot_rating / rl.size();
+
+                r.setOverallRating(overall_rating);
+                s.update(r);
+
+                t.commit();
+
+                msg = "success";
+
+            } else {
+                msg = "Error";
             }
-            
-            int overall_rating = tot_rating/rl.size();
-            
-            r.setOverallRating(overall_rating);
-            s.update(r);
-            
-            t.commit();
-            
-            out.write("success");
-            
+
+            out.write(msg);
+
         } catch (Exception e) {
             throw new ServletException();
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

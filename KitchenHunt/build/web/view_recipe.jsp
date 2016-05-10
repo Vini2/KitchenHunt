@@ -106,7 +106,8 @@ and open the template in the editor.
                             var res = a.responseText;
 
                             if (res == 'Error') {
-                                alert("Error");
+                                alert("You have already rated this recipe...");
+                                reloadPage();
                             } else if (res == 'success') {
                                 alert("Rated successfully...");
                                 reloadPage();
@@ -329,7 +330,7 @@ and open the template in the editor.
                         Image im = (Image) iter.next();
                     %>
 
-                    <img src="<%=im.getPath()%>" alt="Butter Curls" width="600px" height="auto">
+                    <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" width="600px" height="auto">
                 </div>
             </div>
             <hr>

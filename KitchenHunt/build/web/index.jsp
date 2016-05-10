@@ -211,14 +211,14 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <div class="item active" >
-                        <img src="images/Slider1.jpg" alt="">
+                        <img src="images/Slider2.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
                             <h3>Thinking about what to make for dinner?</h3>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="images/Slider2.jpg" alt="">
+                        <img src="images/Slider1.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
                             <h3>Decide what to make with the stuff you have in your kitchen</h3>
                         </div>
