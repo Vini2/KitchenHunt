@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2016 11:31:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 12, 2016 3:57:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="HibFiles.Rating" table="rating" catalog="kitchenhunttest3" optimistic-lock="version">
+    <class name="HibFiles.Rating" table="rating" catalog="kitchenhunttest5" optimistic-lock="version">
         <id name="idrating" type="java.lang.Integer">
             <column name="idrating" />
             <generator class="identity" />
@@ -14,8 +14,8 @@
         <many-to-one name="user" class="HibFiles.User" fetch="select">
             <column name="user_iduser" not-null="true" />
         </many-to-one>
-        <property name="stars" type="java.lang.Integer">
-            <column name="stars" />
+        <property name="stars" type="java.lang.Double">
+            <column name="stars" precision="22" scale="0" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2016 11:31:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 12, 2016 3:57:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="HibFiles.CuisineCategory" table="cuisine_category" catalog="kitchenhunttest3" optimistic-lock="version">
+    <class name="HibFiles.CuisineCategory" table="cuisine_category" catalog="kitchenhunttest5" optimistic-lock="version">
         <id name="idcuisineCategory" type="java.lang.Integer">
             <column name="idcuisine_category" />
             <generator class="identity" />

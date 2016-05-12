@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 1, 2016 11:31:45 PM by Hibernate Tools 4.3.1
+// Generated May 12, 2016 3:57:54 PM by Hibernate Tools 4.3.1
 
 
 
@@ -12,7 +12,7 @@ public class Rating  implements java.io.Serializable {
      private Integer idrating;
      private Recipe recipe;
      private User user;
-     private Integer stars;
+     private Double stars;
 
     public Rating() {
     }
@@ -22,7 +22,7 @@ public class Rating  implements java.io.Serializable {
         this.recipe = recipe;
         this.user = user;
     }
-    public Rating(Recipe recipe, User user, Integer stars) {
+    public Rating(Recipe recipe, User user, Double stars) {
        this.recipe = recipe;
        this.user = user;
        this.stars = stars;
@@ -49,11 +49,11 @@ public class Rating  implements java.io.Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-    public Integer getStars() {
+    public Double getStars() {
         return this.stars;
     }
     
-    public void setStars(Integer stars) {
+    public void setStars(Double stars) {
         this.stars = stars;
     }
 

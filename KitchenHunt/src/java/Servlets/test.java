@@ -27,10 +27,19 @@ public class test {
     public static void main(String[] args) {
 
         Session s = PoolManager.getSessionFactory().openSession();
-        Recipe r = (Recipe) s.load(Recipe.class, 6);
+        Recipe r = (Recipe) s.load(Recipe.class, 1);
         
-  
         
+
+        Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
+        for (RecipeHasIngredient i : ss) {
+
+            Double d = i.getQuantity();
+            int q = d.intValue();
+            
+            System.out.println(i.getUnit().getName()+ i.getIngredient().getName());
+            
+        }
 
     }
 

@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 1, 2016 11:31:45 PM by Hibernate Tools 4.3.1
+// Generated May 12, 2016 3:57:54 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -19,6 +19,7 @@ public class User  implements java.io.Serializable {
      private String mobile;
      private String address;
      private Date registerDate;
+     private Set<MyKitchen> myKitchens = new HashSet<MyKitchen>(0);
      private Set<Comment> comments = new HashSet<Comment>(0);
      private Set<Recipe> recipes = new HashSet<Recipe>(0);
      private Set<UserLogin> userLogins = new HashSet<UserLogin>(0);
@@ -32,13 +33,14 @@ public class User  implements java.io.Serializable {
     public User(UserType userType) {
         this.userType = userType;
     }
-    public User(UserType userType, String fname, String lname, String mobile, String address, Date registerDate, Set<Comment> comments, Set<Recipe> recipes, Set<UserLogin> userLogins, Set<Notification> notifications, Set<Rating> ratings) {
+    public User(UserType userType, String fname, String lname, String mobile, String address, Date registerDate, Set<MyKitchen> myKitchens, Set<Comment> comments, Set<Recipe> recipes, Set<UserLogin> userLogins, Set<Notification> notifications, Set<Rating> ratings) {
        this.userType = userType;
        this.fname = fname;
        this.lname = lname;
        this.mobile = mobile;
        this.address = address;
        this.registerDate = registerDate;
+       this.myKitchens = myKitchens;
        this.comments = comments;
        this.recipes = recipes;
        this.userLogins = userLogins;
@@ -94,6 +96,13 @@ public class User  implements java.io.Serializable {
     
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
+    }
+    public Set<MyKitchen> getMyKitchens() {
+        return this.myKitchens;
+    }
+    
+    public void setMyKitchens(Set<MyKitchen> myKitchens) {
+        this.myKitchens = myKitchens;
     }
     public Set<Comment> getComments() {
         return this.comments;

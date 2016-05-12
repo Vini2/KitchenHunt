@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2016 11:31:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 12, 2016 3:57:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="HibFiles.Recipe" table="recipe" catalog="kitchenhunttest3" optimistic-lock="version">
+    <class name="HibFiles.Recipe" table="recipe" catalog="kitchenhunttest5" optimistic-lock="version">
         <id name="idrecipe" type="java.lang.Integer">
             <column name="idrecipe" />
             <generator class="identity" />
@@ -38,8 +38,11 @@
         <property name="preparingTime" type="string">
             <column name="preparing_time" />
         </property>
-        <property name="overallRating" type="java.lang.Integer">
-            <column name="overall_rating" />
+        <property name="overallRating" type="java.lang.Double">
+            <column name="overall_rating" precision="22" scale="0" />
+        </property>
+        <property name="ratedCount" type="java.lang.Integer">
+            <column name="rated_count" />
         </property>
         <set name="recipeHasIngredients" table="recipe_has_ingredient" inverse="true" lazy="true" fetch="select">
             <key>
@@ -58,6 +61,12 @@
                 <column name="recipe_idrecipe" not-null="true" />
             </key>
             <one-to-many class="HibFiles.Rating" />
+        </set>
+        <set name="myKitchens" table="my_kitchen" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="recipe_idrecipe" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.MyKitchen" />
         </set>
         <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
             <key>

@@ -61,7 +61,6 @@ public class PostRating extends HttpServlet {
             Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(rid));
 
             Double d = Double.parseDouble(rating);
-            int q = d.intValue();
 
             //Get currently logged in user
             UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
@@ -76,7 +75,7 @@ public class PostRating extends HttpServlet {
                 //Create rating object
                 Rating rat = new Rating();
                 rat.setRecipe(r);
-                rat.setStars(q);
+                rat.setStars(d);
                 rat.setUser(ul.getUser());
                 //Save rating object
                 s.save(rat);
@@ -85,15 +84,16 @@ public class PostRating extends HttpServlet {
                 c2.add(Restrictions.eq("recipe", r));
                 List<Rating> rl = c2.list();
 
-                int tot_rating = 0;
+                double tot_rating = 0;
 
                 for (Rating ra : rl) {
-                    tot_rating += ra.getStars();
+                    tot_rating = tot_rating + ra.getStars();
                 }
 
-                int overall_rating = tot_rating / rl.size();
+                double overall_rating = tot_rating / rl.size();
 
                 r.setOverallRating(overall_rating);
+                r.setRatedCount(rl.size());
                 s.update(r);
 
                 t.commit();

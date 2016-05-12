@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2016 11:31:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 12, 2016 3:57:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="HibFiles.RecipeHasIngredient" table="recipe_has_ingredient" catalog="kitchenhunttest3" optimistic-lock="version">
+    <class name="HibFiles.RecipeHasIngredient" table="recipe_has_ingredient" catalog="kitchenhunttest5" optimistic-lock="version">
         <id name="idrecipeHasIngredient" type="java.lang.Integer">
             <column name="idrecipe_has_ingredient" />
             <generator class="identity" />
@@ -14,11 +14,11 @@
         <many-to-one name="recipe" class="HibFiles.Recipe" fetch="select">
             <column name="recipe_idrecipe" not-null="true" />
         </many-to-one>
+        <many-to-one name="unit" class="HibFiles.Unit" fetch="select">
+            <column name="unit_idunit" not-null="true" />
+        </many-to-one>
         <property name="quantity" type="java.lang.Double">
             <column name="quantity" precision="22" scale="0" />
-        </property>
-        <property name="unit" type="string">
-            <column name="unit" length="45" />
         </property>
         <property name="mainIngredient" type="java.lang.Boolean">
             <column name="main_ingredient" />

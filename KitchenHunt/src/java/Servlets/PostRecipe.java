@@ -12,6 +12,7 @@ import HibFiles.Ingredient;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import HibFiles.RecipeHasIngredient;
+import HibFiles.Unit;
 import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -112,7 +113,8 @@ public class PostRecipe extends HttpServlet {
                 r.setPreparingTime(recipe_preptime);
                 r.setServingQuantity(Integer.parseInt(recipe_qty));
                 r.setSkillLevel(recipe_skill);
-                r.setOverallRating(0);
+                r.setOverallRating(0.0);
+                r.setRatedCount(0);
                 r.setNotes("New");
                 r.setDirections(recipe_directions);
 
@@ -168,36 +170,44 @@ public class PostRecipe extends HttpServlet {
                     s.save(i4);
                 }
                 
+                Unit u1 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing1_unit));
+                
                 RecipeHasIngredient rhi1 = new RecipeHasIngredient();
                 rhi1.setIngredient(i1);
                 rhi1.setMainIngredient(Boolean.TRUE);
                 rhi1.setRecipe(r);
                 rhi1.setQuantity(Double.parseDouble(recipe_ing1_qty));
-                rhi1.setUnit(recipe_ing1_unit);
+                rhi1.setUnit(u1);
                 s.save(rhi1);
+                
+                Unit u2 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing2_unit));
                 
                 RecipeHasIngredient rhi2 = new RecipeHasIngredient();
                 rhi2.setIngredient(i2);
                 rhi2.setMainIngredient(Boolean.TRUE);
                 rhi2.setRecipe(r);
                 rhi2.setQuantity(Double.parseDouble(recipe_ing2_qty));
-                rhi2.setUnit(recipe_ing2_unit);
+                rhi2.setUnit(u2);
                 s.save(rhi2);
+                
+                Unit u3 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing3_unit));
                 
                 RecipeHasIngredient rhi3 = new RecipeHasIngredient();
                 rhi3.setIngredient(i3);
                 rhi3.setMainIngredient(Boolean.TRUE);
                 rhi3.setRecipe(r);
                 rhi3.setQuantity(Double.parseDouble(recipe_ing3_qty));
-                rhi3.setUnit(recipe_ing3_unit);
+                rhi3.setUnit(u3);
                 s.save(rhi3);
+                
+                Unit u4 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing4_unit));
                 
                 RecipeHasIngredient rhi4 = new RecipeHasIngredient();
                 rhi4.setIngredient(i4);
                 rhi4.setMainIngredient(Boolean.TRUE);
                 rhi4.setRecipe(r);
                 rhi4.setQuantity(Double.parseDouble(recipe_ing4_qty));
-                rhi4.setUnit(recipe_ing4_unit);
+                rhi4.setUnit(u4);
                 s.save(rhi4);
                 
                 t.commit();

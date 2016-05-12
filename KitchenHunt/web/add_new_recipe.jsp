@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.Unit"%>
 <%@page import="HibFiles.HealthCategory"%>
 <%@page import="HibFiles.CuisineCategory"%>
 <%@page import="java.util.List"%>
@@ -307,8 +308,13 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing1_unit" id="recipe_ing1_unit" class="form-control" >
-                            <option value="g">g</option>
-                            <option value="tbs">tbs</option>
+                            <%
+                                Criteria cu1 = s.createCriteria(Unit.class);
+                                List<Unit> lu1 = cu1.list();
+                                for (Unit u : lu1) {
+                            %>
+                            <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                            <%}%>
                         </select>
                     </div>
                 </div>
@@ -324,8 +330,13 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing2_unit" id="recipe_ing2_unit" class="form-control" >
-                            <option value="g">g</option>
-                            <option value="tbs">tbs</option>
+                            <%
+                                Criteria cu2 = s.createCriteria(Unit.class);
+                                List<Unit> lu2 = cu2.list();
+                                for (Unit u : lu2) {
+                            %>
+                            <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                            <%}%>
                         </select>
                     </div>
                 </div>
@@ -341,8 +352,13 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing3_unit" id="recipe_ing3_unit" class="form-control" >
-                            <option value="g">g</option>
-                            <option value="tbs">tbs</option>
+                            <%
+                                Criteria cu3 = s.createCriteria(Unit.class);
+                                List<Unit> lu3 = cu3.list();
+                                for (Unit u : lu3) {
+                            %>
+                            <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                            <%}%>
                         </select>
                     </div>
                 </div>
@@ -358,8 +374,13 @@
                     </div>
                     <div class="col-xs-2 col-md-2">
                         <select name="recipe_ing4_unit" id="recipe_ing4_unit" class="form-control" >
-                            <option value="g">g</option>
-                            <option value="tbs">tbs</option>
+                            <%
+                                Criteria cu4 = s.createCriteria(Unit.class);
+                                List<Unit> lu4 = cu4.list();
+                                for (Unit u : lu4) {
+                            %>
+                            <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                            <%}%>
                         </select>
                     </div>
                 </div>

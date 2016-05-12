@@ -301,7 +301,7 @@ and open the template in the editor.
                     <div id="rateYo2"></div>
                     <%}%>
 
-                    <h3>186 reviewed</h3>
+                    <h3><%=r.getRatedCount()%> reviewed</h3>
                     <br>
                     <h4>Recipe by: <%=r.getUser().getFname()%></h4>
                     <br>
@@ -339,10 +339,9 @@ and open the template in the editor.
             </div>
 
             <%                
-                Set ss = r.getRecipeHasIngredients();
+                Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
                 int count = 0;
-                for (Object arg : ss) {
-                    RecipeHasIngredient i = (RecipeHasIngredient) arg;
+                for (RecipeHasIngredient i : ss) {
                     ++count;
 
                     Double d = i.getQuantity();
@@ -351,11 +350,11 @@ and open the template in the editor.
                     if (count % 3 == 1) {
             %>
             <div class="row">
-                <div class="col-xs-6 col-md-4"><%=q%><%=i.getUnit()%> <%=i.getIngredient().getName()%></div>
+                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%> <%=i.getIngredient().getName()%></div>
                 <%} else if (count % 3 == 2) {%>
-                <div class="col-xs-6 col-md-4"><%=q%><%=i.getUnit()%> <%=i.getIngredient().getName()%></div>
+                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%> <%=i.getIngredient().getName()%></div>
                 <%} else if (count % 3 == 0) {%>
-                <div class="col-xs-6 col-md-4"><%=q%><%=i.getUnit()%> <%=i.getIngredient().getName()%></div>
+                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%> <%=i.getIngredient().getName()%></div>
             </div> 
 
             <%}

@@ -3,19 +3,16 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 12, 2016 3:57:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="HibFiles.Notification" table="notification" catalog="kitchenhunttest5" optimistic-lock="version">
-        <id name="idnotification" type="java.lang.Integer">
-            <column name="idnotification" />
+    <class name="HibFiles.MyKitchen" table="my_kitchen" catalog="kitchenhunttest5" optimistic-lock="version">
+        <id name="idmyKitchen" type="java.lang.Integer">
+            <column name="idmy_kitchen" />
             <generator class="identity" />
         </id>
+        <many-to-one name="recipe" class="HibFiles.Recipe" fetch="select">
+            <column name="recipe_idrecipe" not-null="true" />
+        </many-to-one>
         <many-to-one name="user" class="HibFiles.User" fetch="select">
             <column name="user_iduser" not-null="true" />
         </many-to-one>
-        <property name="notification" type="string">
-            <column name="notification" />
-        </property>
-        <property name="notificationcol" type="timestamp">
-            <column name="notificationcol" length="19" />
-        </property>
     </class>
 </hibernate-mapping>

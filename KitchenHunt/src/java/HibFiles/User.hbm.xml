@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 1, 2016 11:31:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 12, 2016 3:57:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="HibFiles.User" table="user" catalog="kitchenhunttest3" optimistic-lock="version">
+    <class name="HibFiles.User" table="user" catalog="kitchenhunttest5" optimistic-lock="version">
         <id name="iduser" type="java.lang.Integer">
             <column name="iduser" />
             <generator class="identity" />
@@ -26,6 +26,12 @@
         <property name="registerDate" type="date">
             <column name="register_date" length="10" />
         </property>
+        <set name="myKitchens" table="my_kitchen" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.MyKitchen" />
+        </set>
         <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="user_iduser" not-null="true" />

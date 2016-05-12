@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 1, 2016 11:31:45 PM by Hibernate Tools 4.3.1
+// Generated May 12, 2016 3:57:54 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -22,10 +22,12 @@ public class Recipe  implements java.io.Serializable {
      private String notes;
      private String skillLevel;
      private String preparingTime;
-     private Integer overallRating;
+     private Double overallRating;
+     private Integer ratedCount;
      private Set<RecipeHasIngredient> recipeHasIngredients = new HashSet<RecipeHasIngredient>(0);
      private Set<Image> images = new HashSet<Image>(0);
      private Set<Rating> ratings = new HashSet<Rating>(0);
+     private Set<MyKitchen> myKitchens = new HashSet<MyKitchen>(0);
      private Set<Comment> comments = new HashSet<Comment>(0);
 
     public Recipe() {
@@ -38,7 +40,7 @@ public class Recipe  implements java.io.Serializable {
         this.healthCategory = healthCategory;
         this.user = user;
     }
-    public Recipe(CuisineCategory cuisineCategory, FoodCategory foodCategory, HealthCategory healthCategory, User user, String name, String directions, Integer servingQuantity, String notes, String skillLevel, String preparingTime, Integer overallRating, Set<RecipeHasIngredient> recipeHasIngredients, Set<Image> images, Set<Rating> ratings, Set<Comment> comments) {
+    public Recipe(CuisineCategory cuisineCategory, FoodCategory foodCategory, HealthCategory healthCategory, User user, String name, String directions, Integer servingQuantity, String notes, String skillLevel, String preparingTime, Double overallRating, Integer ratedCount, Set<RecipeHasIngredient> recipeHasIngredients, Set<Image> images, Set<Rating> ratings, Set<MyKitchen> myKitchens, Set<Comment> comments) {
        this.cuisineCategory = cuisineCategory;
        this.foodCategory = foodCategory;
        this.healthCategory = healthCategory;
@@ -50,9 +52,11 @@ public class Recipe  implements java.io.Serializable {
        this.skillLevel = skillLevel;
        this.preparingTime = preparingTime;
        this.overallRating = overallRating;
+       this.ratedCount = ratedCount;
        this.recipeHasIngredients = recipeHasIngredients;
        this.images = images;
        this.ratings = ratings;
+       this.myKitchens = myKitchens;
        this.comments = comments;
     }
    
@@ -133,12 +137,19 @@ public class Recipe  implements java.io.Serializable {
     public void setPreparingTime(String preparingTime) {
         this.preparingTime = preparingTime;
     }
-    public Integer getOverallRating() {
+    public Double getOverallRating() {
         return this.overallRating;
     }
     
-    public void setOverallRating(Integer overallRating) {
+    public void setOverallRating(Double overallRating) {
         this.overallRating = overallRating;
+    }
+    public Integer getRatedCount() {
+        return this.ratedCount;
+    }
+    
+    public void setRatedCount(Integer ratedCount) {
+        this.ratedCount = ratedCount;
     }
     public Set<RecipeHasIngredient> getRecipeHasIngredients() {
         return this.recipeHasIngredients;
@@ -160,6 +171,13 @@ public class Recipe  implements java.io.Serializable {
     
     public void setRatings(Set<Rating> ratings) {
         this.ratings = ratings;
+    }
+    public Set<MyKitchen> getMyKitchens() {
+        return this.myKitchens;
+    }
+    
+    public void setMyKitchens(Set<MyKitchen> myKitchens) {
+        this.myKitchens = myKitchens;
     }
     public Set<Comment> getComments() {
         return this.comments;
