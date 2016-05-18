@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="kitchenhunttest5"/>
-  <table-filter match-name="recipe"/>
+  <schema-selection match-catalog="kitchenhunttest6"/>
   <table-filter match-name="system_status"/>
-  <table-filter match-name="image"/>
-  <table-filter match-name="rating"/>
-  <table-filter match-name="user_type"/>
-  <table-filter match-name="user_login"/>
-  <table-filter match-name="ingredient"/>
   <table-filter match-name="cuisine_category"/>
-  <table-filter match-name="supermarket_has_ingredient"/>
-  <table-filter match-name="login_session"/>
-  <table-filter match-name="food_category"/>
-  <table-filter match-name="comment"/>
-  <table-filter match-name="supermarket"/>
-  <table-filter match-name="recipe_has_ingredient"/>
   <table-filter match-name="notification"/>
-  <table-filter match-name="user"/>
-  <table-filter match-name="health_category"/>
+  <table-filter match-name="recipe"/>
+  <table-filter match-name="user_login"/>
+  <table-filter match-name="image"/>
   <table-filter match-name="unit"/>
   <table-filter match-name="my_kitchen"/>
+  <table-filter match-name="ingredient"/>
+  <table-filter match-name="rating"/>
+  <table-filter match-name="login_session"/>
+  <table-filter match-name="supermarket"/>
+  <table-filter match-name="food_category"/>
+  <table-filter match-name="health_category"/>
+  <table-filter match-name="supermarket_has_ingredient"/>
+  <table-filter match-name="user_type"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="recipe_has_ingredient"/>
+  <table-filter match-name="comment"/>
 </hibernate-reverse-engineering>

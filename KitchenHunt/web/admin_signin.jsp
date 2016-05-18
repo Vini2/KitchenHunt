@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <title>Kitchen Hunt - Admin Sign In</title>

@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kitchenhunttest5?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kitchenhunttest6?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">12345</property>
     <mapping resource="HibFiles/Comment.hbm.xml"/>
@@ -21,8 +21,8 @@
     <mapping resource="HibFiles/Supermarket.hbm.xml"/>
     <mapping resource="HibFiles/Image.hbm.xml"/>
     <mapping resource="HibFiles/SupermarketHasIngredient.hbm.xml"/>
-    <mapping resource="HibFiles/User.hbm.xml"/>
     <mapping resource="HibFiles/LoginSession.hbm.xml"/>
+    <mapping resource="HibFiles/User.hbm.xml"/>
     <mapping resource="HibFiles/Ingredient.hbm.xml"/>
     <mapping resource="HibFiles/FoodCategory.hbm.xml"/>
     <mapping resource="HibFiles/UserLogin.hbm.xml"/>

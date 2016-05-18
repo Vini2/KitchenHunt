@@ -30,6 +30,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <title>Kitchen Hunt - Search</title>
 
         <%

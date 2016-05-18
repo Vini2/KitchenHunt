@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="java.io.OutputStream"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="HibFiles.Image"%>
 <%@page import="HibFiles.RecipeHasIngredient"%>
@@ -22,6 +23,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <title>Kitchen Hunt - View Recipe</title>
 
         <%
@@ -328,9 +330,15 @@ and open the template in the editor.
                         Set image_set = r.getImages();
                         Iterator iter = image_set.iterator();
                         Image im = (Image) iter.next();
+
+                        byte[] imageblob = im.getImageData();
+                        response.setContentType("image/gif");
+                        OutputStream o = response.getOutputStream();
+
                     %>
 
-                    <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" width="600px" height="auto">
+                    <%o.write(imageblob);%>
+                    <!--<img src="<%=im.getPath()%>" alt="<%=r.getName()%>" width="600px" height="auto">-->
                 </div>
             </div>
             <hr>
@@ -338,7 +346,7 @@ and open the template in the editor.
                 <div class="col-xs-12"><h3>Ingredients for <%=r.getName()%></h3></div>
             </div>
 
-            <%                
+            <%
                 Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
                 int count = 0;
                 for (RecipeHasIngredient i : ss) {
