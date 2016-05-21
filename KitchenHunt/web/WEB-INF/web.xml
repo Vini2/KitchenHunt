@@ -32,6 +32,10 @@
         <servlet-name>PostRating</servlet-name>
         <servlet-class>Servlets.PostRating</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToMyKitchen</servlet-name>
+        <servlet-class>Servlets.AddToMyKitchen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>PostRating</servlet-name>
         <url-pattern>/PostRating</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToMyKitchen</servlet-name>
+        <url-pattern>/AddToMyKitchen</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

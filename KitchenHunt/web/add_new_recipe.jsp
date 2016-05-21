@@ -227,10 +227,7 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Error!</strong> An error occurred while posting your recipe.
         </div>
-        <%
-                }
-            }
-        %>
+        <%}}%>
 
         <!--Post a new recipe form-->
         <div class="container">

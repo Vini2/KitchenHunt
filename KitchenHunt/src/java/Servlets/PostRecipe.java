@@ -89,12 +89,6 @@ public class PostRecipe extends HttpServlet {
 
             String msg = null;
 
-            //Create hibernate session
-            Session s = PoolManager.getSessionFactory().openSession();
-
-            //Initiate transaction
-            Transaction t = s.beginTransaction();
-
             FileItemFactory factory = new DiskFileItemFactory();
 
             ServletFileUpload upload = new ServletFileUpload(factory);
@@ -177,6 +171,13 @@ public class PostRecipe extends HttpServlet {
 
                 }
             }
+            
+            //Create hibernate session
+            Session s = PoolManager.getSessionFactory().openSession();
+
+            //Initiate transaction
+            Transaction t = s.beginTransaction();
+
 
             Criteria c0 = s.createCriteria(Recipe.class);
             c0.add(Restrictions.eq("name", recipe_name));

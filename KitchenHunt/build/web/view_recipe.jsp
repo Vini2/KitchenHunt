@@ -281,6 +281,28 @@ and open the template in the editor.
         </div>
 
 
+        <%
+            if (request.getParameter("msg") != null) {
+                if (request.getParameter("msg").equals("success")) {
+        %>
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Recipe added to My Kitchen successfully.
+        </div>
+
+        <%} else if (request.getParameter("msg").equals("exists")) {%>
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Duplicate!</strong> Recipe already exists in My Kitchen.
+        </div>
+
+        <%  } else if (request.getParameter("msg").equals("error")) {%>
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> An error occurred while adding the recipe to My Kitchen.
+        </div>
+        <%}
+            }%>
 
 
         <!--Beginning of recipe details-->
@@ -319,7 +341,7 @@ and open the template in the editor.
                     <%
                         if (request.getSession().getAttribute("user") != null) {
                     %>
-                    <h4><a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></h4>
+                    <h4><a href="AddToMyKitchen?rid=<%=r.getIdrecipe()%>" class="btn btn-success" role="button">Add to My Kitchen</a></h4>                    
                     <%}%>
 
                 </div>
