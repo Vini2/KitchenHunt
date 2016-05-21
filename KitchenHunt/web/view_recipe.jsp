@@ -331,14 +331,12 @@ and open the template in the editor.
                         Iterator iter = image_set.iterator();
                         Image im = (Image) iter.next();
 
-                        byte[] imageblob = im.getImageData();
-                        response.setContentType("image/gif");
-                        OutputStream o = response.getOutputStream();
-
-                    %>
-
-                    <%o.write(imageblob);%>
-                    <!--<img src="<%=im.getPath()%>" alt="<%=r.getName()%>" width="600px" height="auto">-->
+//                        byte[] imageblob = im.getImageData();
+//                        response.setContentType("image/gif");
+//                        OutputStream o = response.getOutputStream();
+//
+//                    o.write(imageblob);%>
+                    <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" width="600px" height="auto">
                 </div>
             </div>
             <hr>
@@ -358,11 +356,11 @@ and open the template in the editor.
                     if (count % 3 == 1) {
             %>
             <div class="row">
-                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%> <%=i.getIngredient().getName()%></div>
+                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%>  <%=i.getIngredient().getName()%></div>
                 <%} else if (count % 3 == 2) {%>
-                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%> <%=i.getIngredient().getName()%></div>
+                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%>  <%=i.getIngredient().getName()%></div>
                 <%} else if (count % 3 == 0) {%>
-                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%> <%=i.getIngredient().getName()%></div>
+                <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%>  <%=i.getIngredient().getName()%></div>
             </div> 
 
             <%}
@@ -379,12 +377,12 @@ and open the template in the editor.
         <div class="col-xs-6 col-md-4">sea salt and freshly ground black pepper</div>
     </div>-->
         <div class="row">
-            <div class="col-xs-12"><h3>Directions to prepare <%=r.getName()%></h3></div>
+            <div class="col-xs-12"><br><h3>Directions to prepare <%=r.getName()%></h3></div>
         </div>
         <div class="row">
             <div class="col-xs-12">
                 <%=r.getDirections()%>
-                <br>
+                <br><br>
             </div>
 
         </div>

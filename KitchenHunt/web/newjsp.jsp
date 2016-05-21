@@ -269,7 +269,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" disabled>Cuisine Style:</label>
                     <div class="col-sm-9">
-                        <select name="recipe_cusine" id="recipe_cuisine" class="form-control" >
+                        <select name="recipe_cuisine" id="recipe_cuisine" class="form-control" >
                             <option value="">Select Cuisine Style</option>
                             <%
                                 Criteria c2 = s.createCriteria(CuisineCategory.class);
