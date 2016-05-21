@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import HibFiles.Comment;
 import HibFiles.Image;
 import HibFiles.Ingredient;
 import HibFiles.PoolManager;
@@ -29,7 +30,13 @@ public class test {
         Session s = PoolManager.getSessionFactory().openSession();
         Recipe r = (Recipe) s.load(Recipe.class, 1);
         
+        Criteria c = s.createCriteria(Comment.class);
+        c.add(Restrictions.eq("recipe", r));
+        List<Comment> comment_list = c.list();
         
+        for (Comment comment : comment_list) {
+            
+        }
 
         Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
         for (RecipeHasIngredient i : ss) {

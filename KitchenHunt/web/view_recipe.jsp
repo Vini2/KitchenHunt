@@ -4,6 +4,10 @@
     Author     : User
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="HibFiles.Comment"%>
+<%@page import="org.hibernate.Criteria"%>
 <%@page import="java.io.OutputStream"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="HibFiles.Image"%>
@@ -410,7 +414,59 @@ and open the template in the editor.
         </div>
 
     </div>
-    <!-- of recipe details-->
+    <!-- End of recipe details-->
+
+    <br>
+
+
+    <div style="width:82%; margin:0 auto;" class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Comments</h3>
+        </div>
+        <div class="panel-body">
+            <%
+                if (request.getSession().getAttribute("user") != null) {
+            %>
+            
+            <form role="form" action="" onsubmit="postComment(this); return false;" method="POST" id="postComment_form">
+                <div class="row">
+                    <div class="form-group col-xs-11">
+                        <input type="text" class="form-control" name="comment" id="comment" placeholder="Enter your comment" required>
+                    </div>
+                    <div class="form-group col-xs-1">
+                        <input class="btn btn-success btn-block" type="submit" value="Post">
+                    </div>
+                </div>
+                <input type="text" class="form-control" name="rid" id="rid" value="<%=r.getIdrecipe()%>" style="display: none">
+            </form>
+            <%}%>
+
+            <hr>
+
+            <%
+                Criteria c = s.createCriteria(Comment.class);
+                c.add(Restrictions.eq("recipe", r));
+                List<Comment> comment_list = c.list();
+
+                for (Comment comment : comment_list) {
+            %>
+            <div class="row container-fluid">
+                <h3><small><%=comment.getUser().getFname()%> commented on <%=comment.getDate()%> at <%=comment.getTime()%></small></h3>
+                <%=comment.getCommentDesc()%>
+            </div>
+            <hr>
+            <%
+
+                }
+
+            %>
+
+        </div>
+    </div>
+
+
+
+
 
 
     <!--Beginning of footer-->

@@ -36,6 +36,10 @@
         <servlet-name>AddToMyKitchen</servlet-name>
         <servlet-class>Servlets.AddToMyKitchen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostComment</servlet-name>
+        <servlet-class>Servlets.PostComment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>AddToMyKitchen</servlet-name>
         <url-pattern>/AddToMyKitchen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostComment</servlet-name>
+        <url-pattern>/PostComment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
