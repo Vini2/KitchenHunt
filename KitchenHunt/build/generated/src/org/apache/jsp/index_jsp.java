@@ -50,6 +50,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
+      out.write("        <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"favicon.ico\" />\n");
       out.write("        <title>Kitchen Hunt</title>\n");
       out.write("\n");
       out.write("        ");
@@ -58,6 +59,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
+            request.getSession().removeAttribute("recipeList");
         
       out.write("\n");
       out.write("\n");
@@ -88,8 +90,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <!-- Brand and toggle get grouped for better mobile display -->\n");
       out.write("                <div class=\"navbar-header\">\n");
       out.write("                    <a class=\"navbar-brand\" href=\"#\">\n");
-      out.write("                        <img alt=\"Brand\" src=\"images/KitchenHunt.png\" height=\"32\" width=\"auto\">\n");
-      out.write("                        <!--<a class=\"navbar-brand\" href=\"index.jsp\">Kitchen Hunt</a>-->\n");
+      out.write("                        <!--<img alt=\"Brand\" src=\"images/KitchenHunt.png\" height=\"32\" width=\"auto\">-->\n");
+      out.write("                        <a class=\"navbar-brand\" href=\"index.jsp\">Kitchen Hunt</a>\n");
       out.write("                    </a>\n");
       out.write("                </div>\n");
       out.write("\n");
@@ -187,6 +189,23 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div id=\"signInModal\" class=\"modal fade\" role=\"dialog\" align=\"center\">\n");
       out.write("            <div class=\"modal-dialog\" >\n");
       out.write("\n");
+      out.write("                ");
+
+                    Cookie[] cookies = request.getCookies();
+                    String email = "", pass = "";
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("cookieLoginUser")) {
+                                email = cookie.getValue();
+                            }
+                            if (cookie.getName().equals("cookieLoginPassword")) {
+                                pass = cookie.getValue();
+                            }
+                        }
+                    }
+                
+      out.write("\n");
+      out.write("\n");
       out.write("                <!-- Modal content-->\n");
       out.write("                <div class=\"modal-content modal-sm\"  >\n");
       out.write("                    <div class=\"modal-header\" style=\"text-align: center\">\n");
@@ -197,11 +216,15 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <form role=\"form\" action=\"\" onsubmit=\"signIn(this); return false;\" method=\"POST\" id=\"signin_form\">\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"email\">Email address:</label>\n");
-      out.write("                                <input type=\"email\" class=\"form-control\" name=\"signin_email\" value=\"\" required>\n");
+      out.write("                                <input type=\"email\" class=\"form-control\" name=\"signin_email\" value=\"");
+      out.print(email);
+      out.write("\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"form-group\">\n");
       out.write("                                <label for=\"pwd\">Password:</label>\n");
-      out.write("                                <input type=\"password\" class=\"form-control\" name=\"signin_password\" required>\n");
+      out.write("                                <input type=\"password\" class=\"form-control\" name=\"signin_password\" value=\"");
+      out.print(pass);
+      out.write("\" required>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"checkbox\">\n");
       out.write("                                <label><input type=\"checkbox\" id=\"rememberMe\"> Remember me</label>\n");
@@ -245,14 +268,14 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <!-- Wrapper for slides -->\n");
       out.write("                <div class=\"carousel-inner\" role=\"listbox\">\n");
       out.write("                    <div class=\"item active\" >\n");
-      out.write("                        <img src=\"images/Slider1.jpg\" alt=\"\">\n");
+      out.write("                        <img src=\"images/Slider2.jpg\" alt=\"\">\n");
       out.write("                        <div class=\"carousel-caption my-carousel-content\">\n");
       out.write("                            <h3>Thinking about what to make for dinner?</h3>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("\n");
       out.write("                    <div class=\"item\">\n");
-      out.write("                        <img src=\"images/Slider2.jpg\" alt=\"\">\n");
+      out.write("                        <img src=\"images/Slider1.jpg\" alt=\"\">\n");
       out.write("                        <div class=\"carousel-caption my-carousel-content\">\n");
       out.write("                            <h3>Decide what to make with the stuff you have in your kitchen</h3>\n");
       out.write("                        </div>\n");

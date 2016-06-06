@@ -57,7 +57,30 @@
 
         <script>
             function post(frm1) {
-                document.form("recipeform").submit();
+                correct = true;
+
+                if (document.getElementById("recipe_skill").value == "") {
+                    correct = false;
+                }
+                if (document.getElementById("recipe_mealtype").value == "") {
+                    correct = false;
+                }
+                if (document.getElementById("recipe_healthcat").value == "") {
+                    correct = false;
+                }
+                if (document.getElementById("recipe_cuisine").value == "") {
+                    correct = false;
+                }
+                if (document.getElementById("images").value == "") {
+                    correct = false;
+                }
+
+                if (correct) {
+                    document.form("recipeform").submit();
+                }
+                else{
+                    alert("Make sure you have filled all the fields");
+                }
             }
         </script>
 
@@ -424,6 +447,50 @@
                             Criteria cu4 = s.createCriteria(Unit.class);
                             List<Unit> lu4 = cu4.list();
                             for (Unit u : lu4) {
+                        %>
+                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                        <%}%>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-3" disabled>Ingredient 5:</label>
+
+                <div class="col-xs-4 col-md-4">
+                    <input type="text" class="form-control" id="recipe_ing5" name="recipe_ing5" placeholder="Ingredient Name" value="">
+                </div>
+                <div class="col-xs-3 col-md-3">
+                    <input type="text" class="form-control" id="recipe_ing5_qty" name="recipe_ing5_qty" placeholder="Quantity" value="">
+
+                </div>
+                <div class="col-xs-2 col-md-2">
+                    <select name="recipe_ing5_unit" id="recipe_ing5_unit" class="form-control" >
+                        <%
+                            Criteria cu5 = s.createCriteria(Unit.class);
+                            List<Unit> lu5 = cu5.list();
+                            for (Unit u : lu5) {
+                        %>
+                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                        <%}%>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-sm-3" disabled>Ingredient 6:</label>
+
+                <div class="col-xs-4 col-md-4">
+                    <input type="text" class="form-control" id="recipe_ing6" name="recipe_ing6" placeholder="Ingredient Name" value="">
+                </div>
+                <div class="col-xs-3 col-md-3">
+                    <input type="text" class="form-control" id="recipe_ing6_qty" name="recipe_ing6_qty" placeholder="Quantity" value="">
+
+                </div>
+                <div class="col-xs-2 col-md-2">
+                    <select name="recipe_ing6_unit" id="recipe_ing6_unit" class="form-control" >
+                        <%
+                            Criteria cu6 = s.createCriteria(Unit.class);
+                            List<Unit> lu6 = cu6.list();
+                            for (Unit u : lu6) {
                         %>
                         <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
                         <%}%>

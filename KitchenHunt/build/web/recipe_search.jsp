@@ -264,6 +264,17 @@ and open the template in the editor.
 
                     <form role="form" action="RecipeSearch" method="POST" id="testform">
 
+                        <!--Enter ingredient to include-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">Ingredient to include</label>
+                            <input type="text" name="recipe_inc_ing" id="recipe_inc_ing" class="form-control" placeholder=""/>
+                        </div>
+                        
+                        <!--Enter ingredient to exclude-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">Ingredient to exclude</label>
+                            <input type="text" name="recipe_ex_ing" id="recipe_ex_ing" class="form-control" placeholder=""/>
+                        </div>
 
                         <!--Select meal type-->
                         <div class="form-group">
@@ -310,7 +321,7 @@ and open the template in the editor.
                             </select>
                         </div>
 
-                        <!--Select ingredients to exclude-->
+<!--                        Select ingredients to exclude
                         <div class="form-group">
                             <label class="control-label" for="email">Exclude</label>
                             <select name="recipe_exclude" id="recipe_exclude" class="form-control">
@@ -323,7 +334,7 @@ and open the template in the editor.
                                 <option value="<%=ing.getIdingredient()%>"><%=ing.getName()%></option>
                                 <%}%>
                             </select>
-                        </div>
+                        </div>-->
 
                         <button class="btn btn-default btn-block" type="submit">
                             <span class="glyphicon glyphicon-search"></span> Search Kitchen Hunt 

@@ -8,13 +8,16 @@ package Servlets;
 import HibFiles.CuisineCategory;
 import HibFiles.FoodCategory;
 import HibFiles.HealthCategory;
+import HibFiles.Ingredient;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
+import HibFiles.RecipeHasIngredient;
 import HibFiles.SystemStatus;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,10 +50,14 @@ public class RecipeSearch extends HttpServlet {
 
         try {
 
+            String recipe_inc_ing = request.getParameter("recipe_inc_ing");
+            String recipe_ex_ing = request.getParameter("recipe_ex_ing");
             String recipe_mealtype = request.getParameter("recipe_mealtype");
             String recipe_cusine = request.getParameter("recipe_cusine");
             String recipe_healthcat = request.getParameter("recipe_healthcat");
             String recipe_exclude = request.getParameter("recipe_exclude");
+
+            System.out.println("include " + recipe_inc_ing);
 
             //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
@@ -59,40 +66,78 @@ public class RecipeSearch extends HttpServlet {
             Transaction t = s.beginTransaction();
 
             Criteria c = s.createCriteria(Recipe.class);
-            
+
             if (!recipe_mealtype.equals("0")) {
                 FoodCategory fc = (FoodCategory) s.load(FoodCategory.class, Integer.parseInt(recipe_mealtype));
                 c.add(Restrictions.eq("foodCategory", fc));
             }
-            
+
             if (!recipe_cusine.equals("0")) {
                 CuisineCategory cc = (CuisineCategory) s.load(CuisineCategory.class, Integer.parseInt(recipe_cusine));
                 c.add(Restrictions.eq("cuisineCategory", cc));
             }
-            
+
             if (!recipe_healthcat.equals("0")) {
                 HealthCategory hc = (HealthCategory) s.load(HealthCategory.class, Integer.parseInt(recipe_healthcat));
                 c.add(Restrictions.eq("healthCategory", hc));
             }
-            
-            c.addOrder(Order.desc("idrecipe"));
+
+            c.addOrder(Order.asc("name"));
 
             List<Recipe> lr = c.list();
-            
+
             ArrayList recipe_list = new ArrayList();
 
             for (Recipe r : lr) {
-                System.out.println(r.getName() + " - " + r.getFoodCategory().getCategoryName() + " " + r.getCuisineCategory().getCuisineName() + " " + r.getHealthCategory().getCategoryName());
-                recipe_list.add(r.getIdrecipe());
-                
+
+                //System.out.println(r.getName() + " - " + r.getFoodCategory().getCategoryName() + " " + r.getCuisineCategory().getCuisineName() + " " + r.getHealthCategory().getCategoryName());
+                Set<RecipeHasIngredient> ingredients = r.getRecipeHasIngredients();
+
+                if (!recipe_inc_ing.equals("") & !recipe_ex_ing.equals("")) {
+                    boolean inc_ing_valid = false;
+                    boolean ex_ing_valid = true;
+
+                    for (RecipeHasIngredient ingredient : ingredients) {
+                        if (ingredient.getIngredient().getName().equals(recipe_inc_ing)) {
+                            inc_ing_valid = true;
+                        }
+                        if (ingredient.getIngredient().getName().equals(recipe_ex_ing)) {
+                            ex_ing_valid = false;
+                        }
+                    }
+
+                    if (inc_ing_valid & ex_ing_valid) {
+                        recipe_list.add(r.getIdrecipe());
+                    }
+                } else if (!recipe_inc_ing.equals("") & recipe_ex_ing.equals("")) {
+                    for (RecipeHasIngredient ingredient : ingredients) {
+                        if (ingredient.getIngredient().getName().equals(recipe_inc_ing)) {
+                            recipe_list.add(r.getIdrecipe());
+                            break;
+                        }
+                    }
+                } else if (!recipe_ex_ing.equals("") & recipe_inc_ing.equals("")) {
+                    boolean ex_ing_valid = false;
+                    for (RecipeHasIngredient ingredient : ingredients) {
+                        if (ingredient.getIngredient().getName().equals(recipe_ex_ing)) {
+                            ex_ing_valid = true;
+                            break;
+                        }
+
+                    }
+                    if (!ex_ing_valid) {
+                        recipe_list.add(r.getIdrecipe());
+                    }
+                } else {
+                    recipe_list.add(r.getIdrecipe());
+                }
             }
-            
+
             request.getSession().removeAttribute("recipeList");
-                    
+
             request.getSession().setAttribute("recipeList", recipe_list);
-            
-            System.out.println("recipe list set");
-            
+
+            //System.out.println("recipe list set");
             //Send redirect to recipe_search.jsp
             response.sendRedirect("recipe_search.jsp");
 
