@@ -250,19 +250,20 @@ and open the template in the editor.
                     </div>-->
 
                     <!--Auto-complete search input-->
-                    <div class="form-group">
-                        <form action="GeneralSearch" method="POST">
-                            <div class="col-sm-10">
-                                <input type="text" name="search" id="tags" class="form-control" placeholder="Search Kitchen Hunt..."/>
-                            </div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-default" type="submit">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <br>
+
+                    <form action="GeneralSearch" method="POST">
+                        <div class="form-group">
+
+                            <input type="text" name="search" id="tags" class="form-control" placeholder="Search Kitchen Hunt..."/>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-default btn-block" type="submit">
+                                <span class="glyphicon glyphicon-search"></span> Search Kitchen Hunt 
+                            </button>
+                        </div>
+                    </form>
+
                     <hr>
 
                     <form role="form" action="RecipeSearch" method="POST" id="testform">
@@ -272,7 +273,7 @@ and open the template in the editor.
                             <label class="control-label" for="email">Ingredient to include</label>
                             <input type="text" name="recipe_inc_ing" id="recipe_inc_ing" class="form-control" placeholder=""/>
                         </div>
-                        
+
                         <!--Enter ingredient to exclude-->
                         <div class="form-group">
                             <label class="control-label" for="email">Ingredient to exclude</label>
@@ -324,24 +325,26 @@ and open the template in the editor.
                             </select>
                         </div>
 
-<!--                        Select ingredients to exclude
-                        <div class="form-group">
-                            <label class="control-label" for="email">Exclude</label>
-                            <select name="recipe_exclude" id="recipe_exclude" class="form-control">
-                                <option value="0">Select Ingredient to Exclude</option>
-                                <%
-                                    Criteria c4 = s.createCriteria(Ingredient.class);
-                                    List<Ingredient> li = c4.list();
-                                    for (Ingredient ing : li) {
-                                %>
-                                <option value="<%=ing.getIdingredient()%>"><%=ing.getName()%></option>
-                                <%}%>
-                            </select>
-                        </div>-->
+                        <!--                        Select ingredients to exclude
+                                                <div class="form-group">
+                                                    <label class="control-label" for="email">Exclude</label>
+                                                    <select name="recipe_exclude" id="recipe_exclude" class="form-control">
+                                                        <option value="0">Select Ingredient to Exclude</option>
+                        <%
+                            Criteria c4 = s.createCriteria(Ingredient.class);
+                            List<Ingredient> li = c4.list();
+                            for (Ingredient ing : li) {
+                        %>
+                        <option value="<%=ing.getIdingredient()%>"><%=ing.getName()%></option>
+                        <%}%>
+                    </select>
+                </div>-->
 
                         <button class="btn btn-default btn-block" type="submit">
                             <span class="glyphicon glyphicon-search"></span> Search Kitchen Hunt 
                         </button>
+
+                        <hr><br><br>
 
                     </form>
 
@@ -382,10 +385,10 @@ and open the template in the editor.
 
                                     <!--Posted by-->
                                     <p>By: <%=r.getUser().getFname()%></p>
-                                    
+
                                     <!--Meal type-->
                                     <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-                                    
+
                                     <!--Cuisine Style-->
                                     <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
 
