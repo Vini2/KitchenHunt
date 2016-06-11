@@ -93,10 +93,14 @@ and open the template in the editor.
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                        <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
-                    </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
+                    <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -114,7 +118,6 @@ and open the template in the editor.
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
-                                <li><a href="profile.jsp">Profile</a></li>
                                 <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>

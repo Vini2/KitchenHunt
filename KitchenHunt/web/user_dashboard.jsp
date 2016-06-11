@@ -58,10 +58,14 @@
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                        <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
-                    </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
+                    <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,21 +82,13 @@
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
-                                <li><a href="profile.jsp">Profile</a></li>
                                 <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>
 
-                        <%} else {%>
-
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Kitchen<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#signInModal">Sign In</a></li>
-                            </ul>
-                        </li>
                         <%}%>
+
 
                     </ul>
 
@@ -101,101 +97,8 @@
         </nav>
         <!--End of navigation bar-->
 
-        <!-- Sign Up Modal -->
-        <div id="signUpModal" class="modal fade" role="dialog" align="center">
-            <div class="modal-dialog" >
-
-                <!-- Modal content-->
-                <div class="modal-content modal-sm"  >
-                    <div class="modal-header" style="text-align: center">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Sign Up</h3>
-                    </div>
-                    <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="signup_form">
-                            <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="name" class="form-control" name="signup_name" id="idname" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Mobile:</label>
-                                <input type="number" class="form-control" name="signup_mobile" id="idmobile" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email address:</label>
-                                <input type="email" class="form-control" name="signup_email" id="idemail" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" name="signup_password" id="idpassword" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Confirm password:</label>
-                                <input type="password" class="form-control" name="signup_confirmpassword" id="idconfirmpassword" required>
-                            </div>
-                            <div align="right">
-                                <input type="submit" value="Sign Up" class="btn btn-success btn-block"/>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Sign In Modal -->
-        <div id="signInModal" class="modal fade" role="dialog" align="center">
-            <div class="modal-dialog" >
-
-                <%
-                    Cookie[] cookies = request.getCookies();
-                    String email = "", pass = "";
-                    if (cookies != null) {
-                        for (Cookie cookie : cookies) {
-                            if (cookie.getName().equals("cookieLoginUser")) {
-                                email = cookie.getValue();
-                            }
-                            if (cookie.getName().equals("cookieLoginPassword")) {
-                                pass = cookie.getValue();
-                            }
-                        }
-                    }
-                %>
-
-                <!-- Modal content-->
-                <div class="modal-content modal-sm"  >
-                    <div class="modal-header" style="text-align: center">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Sign In</h3>
-                    </div>
-                    <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signIn(this); return false;" method="POST" id="signin_form">
-                            <div class="form-group">
-                                <label for="email">Email address:</label>
-                                <input type="email" class="form-control" name="signin_email" value="<%=email%>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" name="signin_password" value="<%=pass%>" required>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="rememberMe"> Remember me</label>
-                            </div>
-                            <div align="right">
-                                <input type="submit" value="Sign In" class="btn btn-success btn-block"/>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-
+        
+        
         <!-- Main -->
         <div class="container-fluid">
             <div class="row">
@@ -206,31 +109,21 @@
                     <hr>
 
                     <ul class="nav nav-stacked">
-                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">Settings <i class="glyphicon glyphicon-chevron-down"></i></a>
+                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
                             <ul class="nav nav-stacked collapse in" id="userMenu">
-                                <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                                <li><a href="#">Posted Recipes</a></li>
+                                <li> <a href="#">Saved Recipes</a></li>
+                                <li><a href="#">My Ingredients</a></li>
+                                <li><a href="#">Notifications <span class="badge badge-info">4</span></a></li>
+                                
                             </ul>
                         </li>
-                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>
+                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Account</strong></a>
 
                             <ul class="nav nav-stacked collapse" id="menu2">
-                                <li><a href="#">Information &amp; Stats</a>
-                                </li>
-                                <li><a href="#">Views</a>
-                                </li>
-                                <li><a href="#">Requests</a>
-                                </li>
-                                <li><a href="#">Timetable</a>
-                                </li>
-                                <li><a href="#">Alerts</a>
-                                </li>
+                                <li><a href="user_profile.jsp">Profile</a></li>
+                                <li><a href="#">Change Password</a></li>
+                                <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>
                         

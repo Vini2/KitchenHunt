@@ -64,6 +64,77 @@
     </head>
     <body>
 
+
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
+                    <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="recipe_search.jsp">Recipe Search</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a id="idabout" href="about.jsp">About</a></li>
+
+                        <%
+                            if (request.getSession().getAttribute("user") != null) {
+
+                        %>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
+                                <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
+                                <li><a href="SignOut">Sign Out</a></li>
+                            </ul>
+                        </li>
+
+                        <%} else {%>
+
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Kitchen<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#signInModal">Sign In</a></li>
+                            </ul>
+                        </li>
+                        <%}%>
+
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!--Beginning of navigation bar-->
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
