@@ -11,6 +11,7 @@ import HibFiles.Ingredient;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import HibFiles.RecipeHasIngredient;
+import HibFiles.User;
 import HibFiles.UserLogin;
 import java.util.Iterator;
 import java.util.List;
@@ -27,26 +28,35 @@ public class test {
 
     public static void main(String[] args) {
 
+         User u = new User();
+                 
         Session s = PoolManager.getSessionFactory().openSession();
-        Recipe r = (Recipe) s.load(Recipe.class, 1);
+     
+        Criteria c = s.createCriteria(Recipe.class);
+        c.add(Restrictions.eq("user", u));
+        List<Recipe> r_list = c.list();
         
-        Criteria c = s.createCriteria(Comment.class);
-        c.add(Restrictions.eq("recipe", r));
-        List<Comment> comment_list = c.list();
-        
-        for (Comment comment : comment_list) {
+        for (Recipe r : r_list) {
+            
+            
             
         }
-
-        Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
-        for (RecipeHasIngredient i : ss) {
-
-            Double d = i.getQuantity();
-            int q = d.intValue();
-            
-            System.out.println(i.getUnit().getName()+ i.getIngredient().getName());
-            
-        }
+        
+        
+        
+//        for (Comment comment : comment_list) {
+//            
+//        }
+//
+//        Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
+//        for (RecipeHasIngredient i : ss) {
+//
+//            Double d = i.getQuantity();
+//            int q = d.intValue();
+//            
+//            System.out.println(i.getUnit().getName()+ i.getIngredient().getName());
+//            
+//        }
 
     }
 

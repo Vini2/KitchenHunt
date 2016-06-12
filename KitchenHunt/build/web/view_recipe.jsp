@@ -169,7 +169,6 @@ and open the template in the editor.
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
-                                <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>
@@ -359,12 +358,7 @@ and open the template in the editor.
                         Set image_set = r.getImages();
                         Iterator iter = image_set.iterator();
                         Image im = (Image) iter.next();
-
-//                        byte[] imageblob = im.getImageData();
-//                        response.setContentType("image/gif");
-//                        OutputStream o = response.getOutputStream();
-//
-//                    o.write(imageblob);%>
+                    %>
                     <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" width="600px" height="auto">
                 </div>
             </div>
@@ -430,13 +424,13 @@ and open the template in the editor.
             <%
                 if (request.getSession().getAttribute("user") != null) {
             %>
-            
+
             <form role="form" action="" onsubmit="postComment(this); return false;" method="POST" id="postComment_form">
                 <div class="row">
-                    <div class="form-group col-xs-11">
+                    <div class="form-group col-md-11 col-xs-11">
                         <input type="text" class="form-control" name="comment" id="comment" placeholder="Enter your comment" required>
                     </div>
-                    <div class="form-group col-xs-1">
+                    <div class="form-group col-md-1 col-xs-1">
                         <input class="btn btn-success btn-block" type="submit" value="Post">
                     </div>
                 </div>

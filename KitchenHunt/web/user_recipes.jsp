@@ -1,9 +1,16 @@
 <%-- 
-    Document   : user_profile
-    Created on : May 29, 2016, 10:51:22 AM
+    Document   : user_recipes
+    Created on : Jun 11, 2016, 5:29:40 PM
     Author     : User
 --%>
 
+<%@page import="HibFiles.Image"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="HibFiles.Recipe"%>
+<%@page import="org.hibernate.Criteria"%>
 <%@page import="HibFiles.User"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="HibFiles.PoolManager"%>
@@ -105,7 +112,7 @@
                     <ul class="nav nav-stacked">
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
                             <ul class="nav nav-stacked collapse in" id="userMenu">
-                                <li><a href="user_recipes.jsp">My Recipes</a></li>
+                                <li class="active"><a href="user_recipes.jsp">My Recipes</a></li>
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
                                 <li><a href="#">My Ingredients</a></li>
                                 <li><a href="#">Notifications <span class="badge badge-info">4</span></a></li>
@@ -134,50 +141,43 @@
                     <strong><i class="glyphicon glyphicon-dashboard"></i> My Kitchen Dashboard</strong>
                     <hr>
 
+
+                    <%
+                        Session s = PoolManager.getSessionFactory().openSession();
+                        Criteria c = s.createCriteria(Recipe.class);
+                        c.add(Restrictions.eq("user", u));
+                        List<Recipe> r_list = c.list();
+
+                        for (Recipe r : r_list) {
+                    %>
                     <div class="row">
-
-                        <div class="col-md-12">
-
-                            <!--User profile details-->
-                            
-                            <div style="width:50%; margin:0 auto;">
-                                <div align="center"><h1><small id="profile_title">My Profile</small></h1></div>
-                                <br>
-                                <form class="form-horizontal" role="form" onsubmit="update(this); return false;" method="POST" id="profile_form">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="email" disabled>Name:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="profile_name" name="profile_name" placeholder="" value="<%=u.getFname()%>" disabled required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="email" disabled>Address:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="profile_address" name="profile_address" placeholder="" value="<%=u.getAddress()%>" disabled required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-2" for="email" disabled>Telephone:</label>
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="profile_telephone" name="profile_telephone" placeholder="" value="<%=u.getMobile()%>" disabled required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group"> 
-                                        <div class="col-sm-offset-2 col-sm-10" align="right" id="action_button">
-                                            <button type="button" class="btn btn-success" onclick="enable()" id='btn_edit'>Edit</button>
-                                            <button type="submit" class="btn btn-success" id="btn_update" style="display: none">Update</button>
-                                        </div>
-                                    </div>
-                                </form>
+                        <div class="col-sm-4">
+                            <%
+                                Set image_set = r.getImages();
+                                Iterator iter = image_set.iterator();
+                                Image im = (Image) iter.next();
+                            %>
+                            <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" height="200px" width="auto">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="col-sm-12">
+                                <h4><%=r.getName()%></h4>
                             </div>
-
-                            <br><br><br><br><br><br>
-
+                            <div class="col-sm-12">
+                                <p><%=r.getRatedCount()%> Ratings</p>
+                                <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
+                                <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
+                                <p>Health Category: <%=r.getHealthCategory().getCategoryName()%></p>
+                                <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> </p>
+                            </div>
                         </div>
 
                     </div>
-
                     <hr>
+                    <%}%>
+
+
+
 
                 </div>
                 <!--/col-span-9-->
@@ -185,7 +185,7 @@
         </div>
         <!-- /Main -->
 
-       
+
 
 
         <!--Beginning of footer-->
@@ -229,4 +229,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/sidebar.js"></script>
 </html>
+
 

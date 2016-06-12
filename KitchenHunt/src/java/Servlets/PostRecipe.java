@@ -322,11 +322,11 @@ public class PostRecipe extends HttpServlet {
                 
                 t.commit();
                 
-                response.sendRedirect("add_new_recipe.jsp?msg=success");
+                response.sendRedirect("user_post_new_recipe.jsp?msg=success");
                 
 
             } else {
-                response.sendRedirect("add_new_recipe.jsp?msg=exists");
+                response.sendRedirect("user_post_new_recipe.jsp?msg=exists");
             }
             
             

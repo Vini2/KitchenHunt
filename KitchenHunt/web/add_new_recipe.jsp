@@ -77,8 +77,7 @@
 
                 if (correct) {
                     document.form("recipeform").submit();
-                }
-                else{
+                } else {
                     alert("Make sure you have filled all the fields");
                 }
             }
@@ -253,22 +252,26 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Error!</strong> An error occurred while posting your recipe.
         </div>
-        <%}}%>
+        <%}
+            }%>
 
         <!--Post a new recipe form-->
-        <div class="container">
-            <div class="page-header" align="center">
-                <h1><small>Post a New Recipe</small></h1>
-            </div>
-        </div>
+
 
 
     </div>
 
     <form class="form-horizontal" role="form" method="POST" action="PostRecipe" onsubmit="post(this); return false;" enctype="multipart/form-data" id="recipeform">
-        <div style="width:50%; margin:0 auto;">
+        <div >
+
+            <div class="container" align="center">
+                <div align="center">
+                    <h1><small>Post a New Recipe</small></h1>
+                </div>
+            </div>
+
             <div class="form-group">
-                <label class="control-label col-sm-3" disabled>Recipe Name:</label>
+                <label class="control-label col-sm-3" disabled>Name:</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="recipe_name" name="recipe_name" placeholder="" value="" required>
                 </div>

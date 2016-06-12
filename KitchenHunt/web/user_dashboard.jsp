@@ -82,7 +82,6 @@
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
-                                <li><a href="add_new_recipe.jsp">Post Recipe</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>
@@ -104,15 +103,15 @@
             <div class="row">
                 <div class="col-sm-3">
                     <!-- Left column -->
-                    <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+                    <strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong>
 
                     <hr>
 
                     <ul class="nav nav-stacked">
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
                             <ul class="nav nav-stacked collapse in" id="userMenu">
-                                <li><a href="#">Posted Recipes</a></li>
-                                <li> <a href="#">Saved Recipes</a></li>
+                                <li><a href="user_recipes.jsp">My Recipes</a></li>
+                                <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
                                 <li><a href="#">My Ingredients</a></li>
                                 <li><a href="#">Notifications <span class="badge badge-info">4</span></a></li>
                                 
@@ -121,7 +120,7 @@
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Account</strong></a>
 
                             <ul class="nav nav-stacked collapse" id="menu2">
-                                <li><a href="user_profile.jsp">Profile</a></li>
+                                <li><a href="user_profile.jsp">My Profile</a></li>
                                 <li><a href="#">Change Password</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
@@ -137,7 +136,7 @@
 
                     <!-- column 2 -->
                     
-                    <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Kitchen Dashboard</strong></a>
+                    <strong><i class="glyphicon glyphicon-dashboard"></i> My Kitchen Dashboard</strong>
                     <hr>
 
                     <div class="row">
