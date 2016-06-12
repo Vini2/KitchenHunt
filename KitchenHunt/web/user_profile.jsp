@@ -4,6 +4,10 @@
     Author     : User
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="HibFiles.Notification"%>
 <%@page import="HibFiles.User"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="HibFiles.PoolManager"%>
@@ -14,7 +18,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <title>Kitchen Hunt - Profile</title>
+        <title>Kitchen Hunt - My Profile</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -56,11 +60,15 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                        <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
-                    </a>
+                <div class="navbar-header" style="font-family: Precious">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
+                    <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -70,7 +78,7 @@
                         <li><a href="recipe_search.jsp">Recipe Search</a></li>
                         <li><a href="#">Help</a></li>
                         <li><a id="idabout" href="about.jsp">About</a></li>
-
+                        
                         <%
                             if (request.getSession().getAttribute("user") != null) {
                         %>
@@ -104,18 +112,29 @@
 
                     <ul class="nav nav-stacked">
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
-                            <ul class="nav nav-stacked collapse in" id="userMenu">
+                            <ul class="nav nav-stacked collapse" id="userMenu">
                                 <li><a href="user_recipes.jsp">My Recipes</a></li>
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
-                                <li><a href="#">My Ingredients</a></li>
-                                <li><a href="#">Notifications <span class="badge badge-info">4</span></a></li>
+                                <li><a href="user_ingredients.jsp">My Ingredients</a></li>
+                                <li><a href="user_add_new_category.jsp">Add New Category</a></li>
+
+                                <%
+
+                                    Criteria c = s1.createCriteria(Notification.class);
+                                    c.add(Restrictions.eq("user", u));
+                                    List<Notification> n_list = c.list();
+
+                                    int len = n_list.size();
+                                %>
+
+                                <li><a href="user_notifications.jsp">Notifications <span class="badge badge-info"><%=len%></span></a></li>
 
                             </ul>
                         </li>
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Account</strong></a>
 
-                            <ul class="nav nav-stacked collapse" id="menu2">
-                                <li><a href="#">My Profile</a></li>
+                            <ul class="nav nav-stacked collapse in" id="menu2">
+                                <li><a href="user_profile.jsp">My Profile <span class="glyphicon glyphicon-chevron-right"></span></a></li>
                                 <li><a href="#">Change Password</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>

@@ -1,11 +1,10 @@
 <%-- 
-    Document   : user_recipes
-    Created on : Jun 11, 2016, 5:29:40 PM
+    Document   : user_ingredients
+    Created on : Jun 12, 2016, 2:58:52 PM
     Author     : User
 --%>
 
 <%@page import="HibFiles.Notification"%>
-<%@page import="HibFiles.MyKitchen"%>
 <%@page import="HibFiles.Image"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
@@ -23,7 +22,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <title>Kitchen Hunt - My Recipes</title>
+        <title>Kitchen Hunt - My Ingredients</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -87,7 +86,7 @@
                         <%
                             if (request.getSession().getAttribute("user") != null) {
                         %>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=u.getFname()%><span class="caret"></span></a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
@@ -118,17 +117,16 @@
                     <ul class="nav nav-stacked">
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
                             <ul class="nav nav-stacked collapse in" id="userMenu">
-                                <li class="active"><a href="user_recipes.jsp">My Recipes <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                <li class="active"><a href="user_recipes.jsp">My Recipes</a></li>
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
-                                <li><a href="user_ingredients.jsp">My Ingredients</a></li>
+                                <li><a href="user_ingredients.jsp">My Ingredients <span class="glyphicon glyphicon-chevron-right"></span></a></li>
                                 <li><a href="user_add_new_category.jsp">Add New Category</a></li>
-                                
 
                                 <%
 
-                                    Criteria cn = s1.createCriteria(Notification.class);
-                                    cn.add(Restrictions.eq("user", u));
-                                    List<Notification> n_list = cn.list();
+                                    Criteria c = s1.createCriteria(Notification.class);
+                                    c.add(Restrictions.eq("user", u));
+                                    List<Notification> n_list = c.list();
 
                                     int len = n_list.size();
                                 %>
@@ -149,7 +147,7 @@
                     </ul>
 
                     <hr>
-
+                    
                 </div>
                 <!-- /col-3 -->
                 <div class="col-sm-9">
@@ -158,100 +156,11 @@
 
                     <strong><i class="glyphicon glyphicon-dashboard"></i> My Kitchen Dashboard</strong>
                     <hr>
+                    
+                    <div align="center"><h1><small id="">My Ingredients</small></h1></div>
 
+                    
 
-                    <%
-                        if (request.getParameter("msg") != null) {
-                            if (request.getParameter("msg").equals("success")) {
-                    %>
-                    <div class="alert alert-success fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>Success!</strong> Recipe removed from My Kitchen successfully.
-                    </div>
-
-                    <%  } else if (request.getParameter("msg").equals("error")) {%>
-                    <div class="alert alert-danger fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>Error!</strong> An error occurred while removing the recipe from My Kitchen.
-                    </div>
-                    <%}
-            }%>
-
-
-                    <div class="row">
-
-                        <div align="center"><h1><small id="">My Posted Recipes</small></h1></div>
-                        <br>
-
-                        <%
-                            Session s = PoolManager.getSessionFactory().openSession();
-                            Criteria c = s.createCriteria(Recipe.class);
-                            c.add(Restrictions.eq("user", u));
-                            List<Recipe> r_list = c.list();
-
-                            for (Recipe r : r_list) {
-                        %>
-                        <div class="col-sm-6 well-lg">
-                            <div class="col-sm-6">
-                                <%
-                                    Set image_set = r.getImages();
-                                    Iterator iter = image_set.iterator();
-                                    Image im = (Image) iter.next();
-                                %>
-                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" height="140px" width="auto">
-                            </div>
-                            <div class="col-sm-6">
-                                <h4><%=r.getName()%></h4>
-                                <p><%=r.getRatedCount()%> Ratings</p>
-                                <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-                                <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> </p>
-
-                            </div>
-
-                        </div>
-
-                        <%}%>
-                    </div>
-
-                    <div class="row">
-
-                        <hr>
-
-                        <div align="center"><h1><small id="">My Kitchen Saved Recipes</small></h1></div>
-                        <br>
-
-
-                        <%
-                            Criteria c1 = s.createCriteria(MyKitchen.class);
-                            c1.add(Restrictions.eq("user", u));
-                            List<MyKitchen> mk_list = c1.list();
-
-                            for (MyKitchen mk : mk_list) {
-                                Recipe r = mk.getRecipe();
-                        %>
-                        <div class="col-sm-6 well-lg">
-                            <div class="col-sm-6">
-                                <%
-                                    Set image_set = r.getImages();
-                                    Iterator iter = image_set.iterator();
-                                    Image im = (Image) iter.next();
-                                %>
-                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" height="140px" width="auto">
-                            </div>
-                            <div class="col-sm-6">
-                                <h4><%=r.getName()%></h4>
-                                <p><%=r.getRatedCount()%> Ratings</p>
-                                <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-                                <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
-                                    <a href="RemoveFromMyKitchen?rid=<%=r.getIdrecipe()%>" class="btn btn-danger" role="button">Remove</a>
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <%}%>
-                    </div>
 
                 </div>
                 <!--/col-span-9-->
@@ -267,7 +176,7 @@
 
             <div class="footer-right">
 
-                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.facebook.com/kitchenhuntr/"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-linkedin"></i></a>
                 <a href="#"><i class="fa fa-github"></i></a>
@@ -303,5 +212,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/sidebar.js"></script>
 </html>
+
 
 

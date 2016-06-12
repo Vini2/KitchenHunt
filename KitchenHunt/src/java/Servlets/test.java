@@ -8,6 +8,8 @@ package Servlets;
 import HibFiles.Comment;
 import HibFiles.Image;
 import HibFiles.Ingredient;
+import HibFiles.MyKitchen;
+import HibFiles.Notification;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import HibFiles.RecipeHasIngredient;
@@ -28,22 +30,32 @@ public class test {
 
     public static void main(String[] args) {
 
-         User u = new User();
-                 
         Session s = PoolManager.getSessionFactory().openSession();
-     
-        Criteria c = s.createCriteria(Recipe.class);
+
+        
+        Criteria c1 = s.createCriteria(User.class);
+        c1.add(Restrictions.eq("fname", "Sanduni Prasadi"));
+        User u = (User) c1.uniqueResult();
+        
+        Criteria c = s.createCriteria(MyKitchen.class);
         c.add(Restrictions.eq("user", u));
-        List<Recipe> r_list = c.list();
-        
-        for (Recipe r : r_list) {
-            
-            
-            
+        List<MyKitchen> n_list = c.list();
+
+        int len = n_list.size();
+
+        for (MyKitchen not : n_list) {
+            System.out.println(not.getRecipe().getName());
         }
-        
-        
-        
+
+//        Criteria c = s.createCriteria(Notification.class);
+//        c.add(Restrictions.eq("user", u));
+//        List<Notification> n_list = c.list();
+//        
+//        int len = n_list.size();
+//        
+//        for (Notification not : n_list) {
+//            
+//        }
 //        for (Comment comment : comment_list) {
 //            
 //        }
@@ -57,7 +69,6 @@ public class test {
 //            System.out.println(i.getUnit().getName()+ i.getIngredient().getName());
 //            
 //        }
-
     }
 
 }

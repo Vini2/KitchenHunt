@@ -92,7 +92,7 @@ and open the template in the editor.
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
+                <div class="navbar-header" style="font-family: Precious">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -392,15 +392,8 @@ and open the template in the editor.
                                     <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
 
                                     <!--View Recipe button-->
-                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
+                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default btn-block" role="button">View Recipe</a> 
 
-                                        <%
-                                            if (request.getSession().getAttribute("user") != null) {
-                                        %>
-
-                                        <!--Add to My Kitchen button-->
-                                        <a href="#" class="btn btn-success" role="button">Add to My Kitchen</a></p>
-                                        <%}%>
                                 </div>
                             </div>
                         </div>

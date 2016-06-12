@@ -40,6 +40,10 @@
         <servlet-name>PostComment</servlet-name>
         <servlet-class>Servlets.PostComment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveFromMyKitchen</servlet-name>
+        <servlet-class>Servlets.RemoveFromMyKitchen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>PostComment</servlet-name>
         <url-pattern>/PostComment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromMyKitchen</servlet-name>
+        <url-pattern>/RemoveFromMyKitchen</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

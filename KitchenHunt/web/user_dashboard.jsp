@@ -4,6 +4,10 @@
     Author     : User
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="HibFiles.Notification"%>
 <%@page import="HibFiles.User"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="HibFiles.PoolManager"%>
@@ -14,7 +18,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <title>Kitchen Hunt - My Kitchen</title>
+        <title>Kitchen Hunt - My Kitchen Dashboard</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -57,7 +61,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
+                <div class="navbar-header" style="font-family: Precious">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -112,9 +116,20 @@
                             <ul class="nav nav-stacked collapse in" id="userMenu">
                                 <li><a href="user_recipes.jsp">My Recipes</a></li>
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
-                                <li><a href="#">My Ingredients</a></li>
-                                <li><a href="#">Notifications <span class="badge badge-info">4</span></a></li>
-                                
+                                <li><a href="user_ingredients.jsp">My Ingredients</a></li>
+                                <li><a href="user_add_new_category.jsp">Add New Category</a></li>
+
+                                <%
+
+                                    Criteria c = s1.createCriteria(Notification.class);
+                                    c.add(Restrictions.eq("user", u));
+                                    List<Notification> n_list = c.list();
+
+                                    int len = n_list.size();
+                                %>
+
+                                <li><a href="user_notifications.jsp">Notifications <span class="badge badge-info"><%=len%></span></a></li>
+
                             </ul>
                         </li>
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Account</strong></a>
