@@ -252,7 +252,6 @@ and open the template in the editor.
 
                     <form action="GeneralSearch" method="POST">
                         <div class="form-group">
-
                             <input type="text" name="search" id="tags" class="form-control" placeholder="Search Kitchen Hunt..."/>
                         </div>
 
