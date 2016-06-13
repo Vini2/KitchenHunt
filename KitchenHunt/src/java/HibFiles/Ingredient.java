@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 12, 2016 7:49:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 12, 2016 7:31:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,14 +13,16 @@ public class Ingredient  implements java.io.Serializable {
 
      private Integer idingredient;
      private String name;
+     private Set<MyIngredient> myIngredients = new HashSet<MyIngredient>(0);
      private Set<SupermarketHasIngredient> supermarketHasIngredients = new HashSet<SupermarketHasIngredient>(0);
      private Set<RecipeHasIngredient> recipeHasIngredients = new HashSet<RecipeHasIngredient>(0);
 
     public Ingredient() {
     }
 
-    public Ingredient(String name, Set<SupermarketHasIngredient> supermarketHasIngredients, Set<RecipeHasIngredient> recipeHasIngredients) {
+    public Ingredient(String name, Set<MyIngredient> myIngredients, Set<SupermarketHasIngredient> supermarketHasIngredients, Set<RecipeHasIngredient> recipeHasIngredients) {
        this.name = name;
+       this.myIngredients = myIngredients;
        this.supermarketHasIngredients = supermarketHasIngredients;
        this.recipeHasIngredients = recipeHasIngredients;
     }
@@ -38,6 +40,13 @@ public class Ingredient  implements java.io.Serializable {
     
     public void setName(String name) {
         this.name = name;
+    }
+    public Set<MyIngredient> getMyIngredients() {
+        return this.myIngredients;
+    }
+    
+    public void setMyIngredients(Set<MyIngredient> myIngredients) {
+        this.myIngredients = myIngredients;
     }
     public Set<SupermarketHasIngredient> getSupermarketHasIngredients() {
         return this.supermarketHasIngredients;

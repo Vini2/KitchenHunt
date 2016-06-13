@@ -8,6 +8,7 @@
                 li = document.createElement("li"),
                 img = document.createElement("img");
         img.src = source;
+        img.class = "img-responsive";
         li.appendChild(img);
         list.appendChild(li);
         

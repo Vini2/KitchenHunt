@@ -359,8 +359,19 @@ and open the template in the editor.
                             if (request.getSession().getAttribute("recipeList") != null) {
                                 ArrayList recipeList = (ArrayList) request.getSession().getAttribute("recipeList");
 
-                                for (Object object : recipeList) {
-                                    Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(object.toString()));
+                                if (recipeList.size() == 0) {
+
+                        %>
+                            
+                        <div class="container-fluid" align="center">
+                            <img src="images/no results found.jpg" class="img-responsive">
+                        </div>
+                        
+                        <%
+                                    
+                    } else {
+                        for (Object object : recipeList) {
+                            Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(object.toString()));
                         %>
 
                         <div class="col-sm-6 col-md-4">
@@ -397,6 +408,7 @@ and open the template in the editor.
                             </div>
                         </div>
                         <%}
+                            }
                         } else {%>
 
                         <div class="container-fluid" align="center">

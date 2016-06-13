@@ -4,6 +4,8 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.MyIngredient"%>
+<%@page import="HibFiles.Ingredient"%>
 <%@page import="HibFiles.Notification"%>
 <%@page import="HibFiles.Image"%>
 <%@page import="java.util.Iterator"%>
@@ -147,7 +149,7 @@
                     </ul>
 
                     <hr>
-                    
+
                 </div>
                 <!-- /col-3 -->
                 <div class="col-sm-9">
@@ -156,10 +158,32 @@
 
                     <strong><i class="glyphicon glyphicon-dashboard"></i> My Kitchen Dashboard</strong>
                     <hr>
-                    
-                    <div align="center"><h1><small id="">My Ingredients</small></h1></div>
 
-                    
+                    <div align="center"><h1><small id="">My Ingredients</small></h1></div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <ul class="list-group">
+                                <%
+                                    Criteria c1 = s1.createCriteria(MyIngredient.class);
+                                    c1.add(Restrictions.eq("user", u));
+                                    List<MyIngredient> mi_list = c1.list();
+
+                                    for (MyIngredient mi : mi_list) {
+                                        Ingredient i = mi.getIngredient();
+                                %>
+                                <li class="list-group-item"><%=i.getName()%></li>
+                                    <%}%>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-8">
+
+                        </div>
+
+                    </div>
+
 
 
                 </div>

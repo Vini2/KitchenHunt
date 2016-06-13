@@ -41,7 +41,7 @@ function signUp(frm1) {
                     alert("Registration Successful...!");
                     reloadPage();
                 } else {
-                    alert("nope");
+                    alert("An error occured during the sign up process. Please try again later.");
                 }
             }
         }

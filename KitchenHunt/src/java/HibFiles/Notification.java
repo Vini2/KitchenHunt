@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 12, 2016 7:49:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 12, 2016 7:31:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,8 +12,10 @@ public class Notification  implements java.io.Serializable {
 
      private Integer idnotification;
      private User user;
+     private String category;
      private String notification;
-     private Date notificationcol;
+     private Date date;
+     private String status;
 
     public Notification() {
     }
@@ -22,10 +24,12 @@ public class Notification  implements java.io.Serializable {
     public Notification(User user) {
         this.user = user;
     }
-    public Notification(User user, String notification, Date notificationcol) {
+    public Notification(User user, String category, String notification, Date date, String status) {
        this.user = user;
+       this.category = category;
        this.notification = notification;
-       this.notificationcol = notificationcol;
+       this.date = date;
+       this.status = status;
     }
    
     public Integer getIdnotification() {
@@ -42,6 +46,13 @@ public class Notification  implements java.io.Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+    public String getCategory() {
+        return this.category;
+    }
+    
+    public void setCategory(String category) {
+        this.category = category;
+    }
     public String getNotification() {
         return this.notification;
     }
@@ -49,12 +60,19 @@ public class Notification  implements java.io.Serializable {
     public void setNotification(String notification) {
         this.notification = notification;
     }
-    public Date getNotificationcol() {
-        return this.notificationcol;
+    public Date getDate() {
+        return this.date;
     }
     
-    public void setNotificationcol(Date notificationcol) {
-        this.notificationcol = notificationcol;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 

@@ -3,13 +3,13 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 12, 2016 7:31:21 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="HibFiles.MyKitchen" table="my_kitchen" catalog="kitchenhunttest7" optimistic-lock="version">
-        <id name="idmyKitchen" type="java.lang.Integer">
-            <column name="idmy_kitchen" />
+    <class name="HibFiles.MyIngredient" table="my_ingredient" catalog="kitchenhunttest7" optimistic-lock="version">
+        <id name="idingredientHasUser" type="java.lang.Integer">
+            <column name="idingredient_has_user" />
             <generator class="identity" />
         </id>
-        <many-to-one name="recipe" class="HibFiles.Recipe" fetch="select">
-            <column name="recipe_idrecipe" not-null="true" />
+        <many-to-one name="ingredient" class="HibFiles.Ingredient" fetch="select">
+            <column name="ingredient_idingredient" not-null="true" />
         </many-to-one>
         <many-to-one name="user" class="HibFiles.User" fetch="select">
             <column name="user_iduser" not-null="true" />

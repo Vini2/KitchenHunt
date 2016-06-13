@@ -159,7 +159,7 @@
 
                             <!--User profile details-->
                             
-                            <div style="width:50%; margin:0 auto;">
+                            <div style="width:80%; margin:0 auto;">
                                 <div align="center"><h1><small id="profile_title">My Profile</small></h1></div>
                                 <br>
                                 <form class="form-horizontal" role="form" onsubmit="update(this); return false;" method="POST" id="profile_form">

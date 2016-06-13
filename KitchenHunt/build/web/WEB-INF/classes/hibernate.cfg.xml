@@ -4,12 +4,13 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kitchenhunttest6?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kitchenhunttest7?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">12345</property>
     <mapping resource="HibFiles/Comment.hbm.xml"/>
     <mapping resource="HibFiles/HealthCategory.hbm.xml"/>
     <mapping resource="HibFiles/RecipeHasIngredient.hbm.xml"/>
+    <mapping resource="HibFiles/MyIngredient.hbm.xml"/>
     <mapping resource="HibFiles/MyKitchen.hbm.xml"/>
     <mapping resource="HibFiles/Rating.hbm.xml"/>
     <mapping resource="HibFiles/UserType.hbm.xml"/>

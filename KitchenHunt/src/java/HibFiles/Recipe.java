@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated May 12, 2016 7:49:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 12, 2016 7:31:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -24,6 +24,7 @@ public class Recipe  implements java.io.Serializable {
      private String preparingTime;
      private Double overallRating;
      private Integer ratedCount;
+     private String status;
      private Set<RecipeHasIngredient> recipeHasIngredients = new HashSet<RecipeHasIngredient>(0);
      private Set<Image> images = new HashSet<Image>(0);
      private Set<Rating> ratings = new HashSet<Rating>(0);
@@ -40,7 +41,7 @@ public class Recipe  implements java.io.Serializable {
         this.healthCategory = healthCategory;
         this.user = user;
     }
-    public Recipe(CuisineCategory cuisineCategory, FoodCategory foodCategory, HealthCategory healthCategory, User user, String name, String directions, Integer servingQuantity, String notes, String skillLevel, String preparingTime, Double overallRating, Integer ratedCount, Set<RecipeHasIngredient> recipeHasIngredients, Set<Image> images, Set<Rating> ratings, Set<MyKitchen> myKitchens, Set<Comment> comments) {
+    public Recipe(CuisineCategory cuisineCategory, FoodCategory foodCategory, HealthCategory healthCategory, User user, String name, String directions, Integer servingQuantity, String notes, String skillLevel, String preparingTime, Double overallRating, Integer ratedCount, String status, Set<RecipeHasIngredient> recipeHasIngredients, Set<Image> images, Set<Rating> ratings, Set<MyKitchen> myKitchens, Set<Comment> comments) {
        this.cuisineCategory = cuisineCategory;
        this.foodCategory = foodCategory;
        this.healthCategory = healthCategory;
@@ -53,6 +54,7 @@ public class Recipe  implements java.io.Serializable {
        this.preparingTime = preparingTime;
        this.overallRating = overallRating;
        this.ratedCount = ratedCount;
+       this.status = status;
        this.recipeHasIngredients = recipeHasIngredients;
        this.images = images;
        this.ratings = ratings;
@@ -150,6 +152,13 @@ public class Recipe  implements java.io.Serializable {
     
     public void setRatedCount(Integer ratedCount) {
         this.ratedCount = ratedCount;
+    }
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
     }
     public Set<RecipeHasIngredient> getRecipeHasIngredients() {
         return this.recipeHasIngredients;

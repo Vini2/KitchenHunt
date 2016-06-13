@@ -82,6 +82,11 @@ public class PostRecipe extends HttpServlet {
             String recipe_ing4 = null;
             String recipe_ing4_qty = null;
             String recipe_ing4_unit = null;
+            
+            String recipe_ing5 = null;
+            String recipe_ing5_qty = null;
+            String recipe_ing5_unit = null;
+            
 
             String recipe_directions = null;
 
@@ -165,7 +170,19 @@ public class PostRecipe extends HttpServlet {
                     } else if (fileitem.getFieldName().equals("recipe_ing4_unit")) {
                         recipe_ing4_unit = fileitem.getString();
                         System.out.println(recipe_ing4_unit);
-                    }
+                        
+                    } else if (fileitem.getFieldName().equals("recipe_ing5")) {
+                        recipe_ing5 = fileitem.getString();
+                        System.out.println(recipe_ing5);
+                    } else if (fileitem.getFieldName().equals("recipe_ing5_qty")) {
+                        recipe_ing5_qty = fileitem.getString();
+                        System.out.println(recipe_ing5_qty);
+                    } else if (fileitem.getFieldName().equals("recipe_ing5_unit")) {
+                        recipe_ing5_unit = fileitem.getString();
+                        System.out.println(recipe_ing5_unit);
+                        
+                    } 
+                    
                 } else {
                     image_file = fileitem;
 
@@ -209,6 +226,7 @@ public class PostRecipe extends HttpServlet {
                 r.setFoodCategory(fc);
                 r.setCuisineCategory(cc);
                 r.setHealthCategory(hc);
+                r.setStatus("New");
 
                 s.save(r);
 
@@ -271,6 +289,18 @@ public class PostRecipe extends HttpServlet {
                     i4.setName(recipe_ing4.toLowerCase());
                     s.save(i4);
                 }
+                
+                Criteria c5 = s.createCriteria(Ingredient.class);
+                c5.add(Restrictions.eq("name", recipe_ing5));
+                Ingredient i5 = (Ingredient) c5.uniqueResult();
+
+                if (i5 == null) {
+                    i5 = new Ingredient();
+                    i5.setName(recipe_ing5.toLowerCase());
+                    s.save(i5);
+                }
+                
+                
 
                 if (recipe_ing1 != null) {
                     Unit u1 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing1_unit));
@@ -319,6 +349,19 @@ public class PostRecipe extends HttpServlet {
                     rhi4.setUnit(u4);
                     s.save(rhi4);
                 }
+                
+                if (recipe_ing5 != null) {
+                    Unit u5 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing5_unit));
+
+                    RecipeHasIngredient rhi5 = new RecipeHasIngredient();
+                    rhi5.setIngredient(i5);
+                    rhi5.setMainIngredient(Boolean.TRUE);
+                    rhi5.setRecipe(r);
+                    rhi5.setQuantity(Double.parseDouble(recipe_ing5_qty));
+                    rhi5.setUnit(u5);
+                    s.save(rhi5);
+                }
+                
                 
                 t.commit();
                 

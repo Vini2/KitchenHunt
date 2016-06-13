@@ -6,6 +6,7 @@
 package Servlets;
 
 import HibFiles.Comment;
+import HibFiles.Notification;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import HibFiles.UserLogin;
@@ -70,6 +71,16 @@ public class PostComment extends HttpServlet {
             com.setUser(ul.getUser());
             
             s.save(com);
+            
+            Notification n = new Notification();
+            n.setCategory("Comment on Recipe");
+            n.setDate(new Date());
+            n.setUser(r.getUser());
+            n.setStatus("Unread");
+            n.setNotification(ul.getUser().getFname() + " commented on your recipe " + r.getName() + ".");
+            
+            s.save(n);
+            
             t.commit();
             
             msg="success";

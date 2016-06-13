@@ -123,6 +123,7 @@
 
                                     Criteria c = s1.createCriteria(Notification.class);
                                     c.add(Restrictions.eq("user", u));
+                                    c.add(Restrictions.eq("status", "Unread"));
                                     List<Notification> n_list = c.list();
 
                                     int len = n_list.size();

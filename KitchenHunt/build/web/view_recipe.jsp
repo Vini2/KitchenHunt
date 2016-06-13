@@ -359,7 +359,7 @@ and open the template in the editor.
                         Iterator iter = image_set.iterator();
                         Image im = (Image) iter.next();
                     %>
-                    <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" width="600px" height="auto">
+                    <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" class="img-responsive" width="600px" height="auto">
                 </div>
             </div>
             <hr>

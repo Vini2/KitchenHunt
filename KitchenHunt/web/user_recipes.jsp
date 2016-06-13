@@ -191,23 +191,36 @@
 
                             for (Recipe r : r_list) {
                         %>
-                        <div class="col-sm-6 well-lg">
-                            <div class="col-sm-6">
+                        
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+
                                 <%
                                     Set image_set = r.getImages();
                                     Iterator iter = image_set.iterator();
                                     Image im = (Image) iter.next();
                                 %>
-                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" height="140px" width="auto">
-                            </div>
-                            <div class="col-sm-6">
-                                <h4><%=r.getName()%></h4>
-                                <p><%=r.getRatedCount()%> Ratings</p>
-                                <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-                                <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> </p>
 
-                            </div>
+                                <!--Image-->
+                                <%if (im != null) {%>
+                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
+                                <%}%>
+                                <div class="caption">
 
+                                    <!--Recipe name-->
+                                    <h3><%=r.getName()%></h3>
+
+                                    <!--Meal type-->
+                                    <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
+
+                                    <!--Cuisine Style-->
+                                    <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
+
+                                    <!--View Recipe button-->
+                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default btn-block" role="button">View Recipe</a> 
+
+                                </div>
+                            </div>
                         </div>
 
                         <%}%>
@@ -229,27 +242,38 @@
                             for (MyKitchen mk : mk_list) {
                                 Recipe r = mk.getRecipe();
                         %>
-                        <div class="col-sm-6 well-lg">
-                            <div class="col-sm-6">
+                        
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+
                                 <%
                                     Set image_set = r.getImages();
                                     Iterator iter = image_set.iterator();
                                     Image im = (Image) iter.next();
                                 %>
-                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" height="140px" width="auto">
-                            </div>
-                            <div class="col-sm-6">
-                                <h4><%=r.getName()%></h4>
-                                <p><%=r.getRatedCount()%> Ratings</p>
-                                <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-                                <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default" role="button">View Recipe</a> 
-                                    <a href="RemoveFromMyKitchen?rid=<%=r.getIdrecipe()%>" class="btn btn-danger" role="button">Remove</a>
-                                </p>
 
-                            </div>
+                                <!--Image-->
+                                <%if (im != null) {%>
+                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
+                                <%}%>
+                                <div class="caption">
 
+                                    <!--Recipe name-->
+                                    <h3><%=r.getName()%></h3>
+
+                                    <!--Meal type-->
+                                    <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
+
+                                    <!--Cuisine Style-->
+                                    <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
+
+                                    <!--View Recipe button-->
+                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default btn-block" role="button">View Recipe</a> 
+                                    <p><a href="RemoveFromMyKitchen?rid=<%=r.getIdrecipe()%>" class="btn btn-danger btn-block" role="button">Remove Recipe</a></p>
+                                </div>
+                            </div>
                         </div>
-
+                        
                         <%}%>
                     </div>
 

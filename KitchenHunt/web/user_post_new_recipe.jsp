@@ -221,7 +221,7 @@
                     <br>
 
                     <form class="form-horizontal" role="form" method="POST" action="PostRecipe" onsubmit="post(this); return false;" enctype="multipart/form-data" id="recipeform">
-                        <div style="width:70%; margin:0 auto;">
+                        <div style="width:100%; margin:0 auto;">
                             <div class="form-group">
                                 <label class="control-label col-sm-3" disabled>Recipe Name:</label>
                                 <div class="col-sm-9">
@@ -433,28 +433,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="control-label col-sm-3" disabled>Ingredient 6:</label>
-
-                                <div class="col-xs-4 col-md-4">
-                                    <input type="text" class="form-control" id="recipe_ing6" name="recipe_ing6" placeholder="Ingredient Name" value="">
-                                </div>
-                                <div class="col-xs-3 col-md-3">
-                                    <input type="text" class="form-control" id="recipe_ing6_qty" name="recipe_ing6_qty" placeholder="Quantity" value="">
-
-                                </div>
-                                <div class="col-xs-2 col-md-2">
-                                    <select name="recipe_ing6_unit" id="recipe_ing6_unit" class="form-control" >
-                                        <%
-                                            Criteria cu6 = s.createCriteria(Unit.class);
-                                            List<Unit> lu6 = cu6.list();
-                                            for (Unit u : lu6) {
-                                        %>
-                                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
-                                        <%}%>
-                                    </select>
-                                </div>
-                            </div>
+                            
 
                             <div class="form-group row">
                                 <div class="col-sm-3">
