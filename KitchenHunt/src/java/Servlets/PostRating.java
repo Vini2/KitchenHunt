@@ -5,12 +5,14 @@
  */
 package Servlets;
 
+import HibFiles.Notification;
 import HibFiles.PoolManager;
 import HibFiles.Rating;
 import HibFiles.Recipe;
 import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -95,6 +97,15 @@ public class PostRating extends HttpServlet {
                 r.setOverallRating(overall_rating);
                 r.setRatedCount(rl.size());
                 s.update(r);
+
+                Notification n = new Notification();
+                n.setCategory("Rate on Recipe");
+                n.setDate(new Date());
+                n.setUser(r.getUser());
+                n.setStatus("Unread");
+                n.setNotification(ul.getUser().getFname() + " rated your recipe " + r.getName() + ".");
+
+                s.save(n);
 
                 t.commit();
 

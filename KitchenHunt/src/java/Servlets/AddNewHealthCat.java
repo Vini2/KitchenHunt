@@ -5,26 +5,25 @@
  */
 package Servlets;
 
-import HibFiles.Comment;
-import HibFiles.Notification;
+import HibFiles.CuisineCategory;
+import HibFiles.HealthCategory;
 import HibFiles.PoolManager;
-import HibFiles.Recipe;
-import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author User
  */
-public class PostComment extends HttpServlet {
+public class AddNewHealthCat extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,55 +41,39 @@ public class PostComment extends HttpServlet {
 
         try {
 
-            //Get attributes from http request
-            String rid = request.getParameter("rid");
-            String comment = request.getParameter("comment");
+            String health = request.getParameter("health");
+            health = health.trim();
 
-            System.out.println(rid);
-            System.out.println(comment);
-
+            System.out.println(health);
+            
             String msg = "";
 
-            //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
-
-            //Initiate transaction
             Transaction t = s.beginTransaction();
 
-            //Load recipe with given rid
-            Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(rid));
+            Criteria c = s.createCriteria(HealthCategory.class);
+            c.add(Restrictions.eq("categoryName", health));
+            HealthCategory hc = (HealthCategory) c.uniqueResult();
 
-            //Get currently logged in user
-            UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
-
-            Comment com = new Comment();
-            com.setRecipe(r);
-            com.setCommentDesc(comment);
-            com.setDate(new Date());
-            com.setTime(new Date());
-            com.setUser(ul.getUser());
-
-            s.save(com);
-
-            if (ul.getUser() != r.getUser()) {
-
-                Notification n = new Notification();
-                n.setCategory("Comment on Recipe");
-                n.setDate(new Date());
-                n.setUser(r.getUser());
-                n.setStatus("Unread");
-                n.setNotification(ul.getUser().getFname() + " commented on your recipe " + r.getName() + " : " + comment);
-
-                s.save(n);
+            if (hc == null) {
+                
+                HealthCategory hc_new = new HealthCategory();
+                hc_new.setCategoryName(health);
+                s.save(hc_new);
+                
+                t.commit();
+                
+                msg="success";
+                
+            } else {
+                msg="exists";
             }
-            t.commit();
-
-            msg = "success";
-
-            out.write(msg);
+            
+            response.sendRedirect("user_add_new_category.jsp?msg="+msg);
 
         } catch (Exception e) {
             throw new ServletException();
+//            response.sendRedirect("user_add_new_category.jsp?msg=error");
         }
     }
 

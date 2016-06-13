@@ -44,6 +44,18 @@
         <servlet-name>RemoveFromMyKitchen</servlet-name>
         <servlet-class>Servlets.RemoveFromMyKitchen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewMealType</servlet-name>
+        <servlet-class>Servlets.AddNewMealType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewCuisineStyle</servlet-name>
+        <servlet-class>Servlets.AddNewCuisineStyle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewHealthCat</servlet-name>
+        <servlet-class>Servlets.AddNewHealthCat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -87,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>RemoveFromMyKitchen</servlet-name>
         <url-pattern>/RemoveFromMyKitchen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewMealType</servlet-name>
+        <url-pattern>/AddNewMealType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewCuisineStyle</servlet-name>
+        <url-pattern>/AddNewCuisineStyle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewHealthCat</servlet-name>
+        <url-pattern>/AddNewHealthCat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

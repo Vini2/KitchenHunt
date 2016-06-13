@@ -160,6 +160,31 @@
                     <strong><i class="glyphicon glyphicon-dashboard"></i> My Kitchen Dashboard</strong>
                     <hr>
 
+
+                    <%
+                        if (request.getParameter("msg") != null) {
+                            if (request.getParameter("msg").equals("success")) {
+                    %>
+                    <div class="alert alert-success fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> Category added successfully.
+                    </div>
+
+                    <%} else if (request.getParameter("msg").equals("exists")) {%>
+                    <div class="alert alert-warning fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Duplicate!</strong> Category already exists.
+                    </div>
+
+                    <%  } else if (request.getParameter("msg").equals("error")) {%>
+                    <div class="alert alert-danger fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> An error occurred while adding the category.
+                    </div>
+                    <%}
+            }%>
+
+
                     <div class="row">
                         <div align="center"><h1><small id="">Meal Type</small></h1></div>
                         <br>
@@ -176,7 +201,17 @@
                         </div>
 
                         <div class="col-sm-6">
+                            <form action="AddNewMealType" method="POST">
+                                <div class="form-group">
+                                    <input type="text" name="meal" id="idmeal" class="form-control" placeholder="Enter meal type"/>
+                                </div>
 
+                                <div class="form-group">
+                                    <button class="btn btn-default btn-block" type="submit">
+                                        <span class="glyphicon glyphicon-plus"></span> Add New Meal Type
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
                     </div>
@@ -198,7 +233,17 @@
                         </div>
 
                         <div class="col-sm-6">
+                            <form action="AddNewCuisineStyle" method="POST">
+                                <div class="form-group">
+                                    <input type="text" name="cuisine" id="idcuisine" class="form-control" placeholder="Enter cuisine style"/>
+                                </div>
 
+                                <div class="form-group">
+                                    <button class="btn btn-default btn-block" type="submit">
+                                        <span class="glyphicon glyphicon-plus"></span> Add New Cuisine Style
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <hr>
@@ -219,7 +264,17 @@
                         </div>
 
                         <div class="col-sm-6">
+                            <form action="AddNewHealthCat" method="POST">
+                                <div class="form-group">
+                                    <input type="text" name="health" id="idhealth" class="form-control" placeholder="Enter health category"/>
+                                </div>
 
+                                <div class="form-group">
+                                    <button class="btn btn-default btn-block" type="submit">
+                                        <span class="glyphicon glyphicon-plus"></span> Add New Health Category
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <hr>
