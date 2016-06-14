@@ -446,28 +446,26 @@ and open the template in the editor.
 
         <div class="footer-right">
 
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-github"></i></a>
+                <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
 
-        </div>
+            </div>
 
-        <div class="footer-left">
+            <div class="footer-left">
 
-            <p class="footer-links">
-                <a href="#">Home</a>
-                ·
-                <a href="#">Recipe Search</a>
-                ·
-                <a href="#">Help</a>
-                ·
-                <a href="#">About</a>
-                ·
-                <a href="#">My Kitchen</a>
-                ·
-                <a href="#">Contact</a>
-            </p>
+                <p class="footer-links">
+                    <a href="index.jsp">Home</a>
+                    ·
+                    <a href="recipe_search.jsp">Recipe Search</a>
+                    ·
+                    <a href="help.jsp">Help</a>
+                    ·
+                    <a href="about.jsp">About</a>
+                    ·
+                    <a href="#">Contact</a>
+                </p>
 
             <p>Kitchen Hunt &copy; 2016</p>
         </div>
