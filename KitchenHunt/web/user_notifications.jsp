@@ -10,6 +10,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="org.hibernate.criterion.Order"%>
 <%@page import="HibFiles.Recipe"%>
 <%@page import="org.hibernate.Criteria"%>
 <%@page import="HibFiles.User"%>
@@ -128,6 +129,7 @@
                                     Criteria c = s1.createCriteria(Notification.class);
                                     c.add(Restrictions.eq("user", u));
                                     c.add(Restrictions.eq("status", "Unread"));
+                                    c.addOrder(Order.desc("date"));
                                     List<Notification> n_list = c.list();
 
                                     int len = n_list.size();
@@ -168,6 +170,7 @@
                     %>
                     
                     <div class="col-sm-12 row well">
+                        <a href="NotificationSeen?notid=<%=not.getIdnotification()%>" class="close" aria-label="close">&times;</a>
                         <h4><%=not.getCategory()%> on <%=not.getDate()%></h4>
                         <p><%=not.getNotification()%></p>
                         

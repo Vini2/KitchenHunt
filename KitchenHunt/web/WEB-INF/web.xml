@@ -64,6 +64,10 @@
         <servlet-name>Contact</servlet-name>
         <servlet-class>Servlets.Contact</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NotificationSeen</servlet-name>
+        <servlet-class>Servlets.NotificationSeen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>Contact</servlet-name>
         <url-pattern>/Contact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotificationSeen</servlet-name>
+        <url-pattern>/NotificationSeen</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

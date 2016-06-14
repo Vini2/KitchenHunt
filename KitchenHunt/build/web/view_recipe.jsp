@@ -439,26 +439,25 @@ and open the template in the editor.
             </form>
             <%}%>
 
-            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <%
+                            Criteria c = s.createCriteria(Comment.class);
+                            c.add(Restrictions.eq("recipe", r));
+                            List<Comment> comment_list = c.list();
 
-            <%
-                Criteria c = s.createCriteria(Comment.class);
-                c.add(Restrictions.eq("recipe", r));
-                List<Comment> comment_list = c.list();
+                            for (Comment comment : comment_list) {
+                        %>
 
-                for (Comment comment : comment_list) {
-            %>
-            <div class="row container-fluid">
-                <h3><small><%=comment.getUser().getFname()%> commented on <%=comment.getDate()%> at <%=comment.getTime()%></small></h3>
-                <%=comment.getCommentDesc()%>
+                        <li class="list-group-item">
+                            <strong><%=comment.getUser().getFname()%> commented on <%=comment.getDate()%> at <%=comment.getTime()%> - </strong>
+                            <%=comment.getCommentDesc()%>
+                        </li>
+                        <%}%>
+                    </ul>
+                </div>
             </div>
-            <hr>
-            <%
-
-                }
-
-            %>
-
         </div>
     </div>
 
@@ -472,26 +471,26 @@ and open the template in the editor.
 
         <div class="footer-right">
 
-                <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+            <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
 
-            </div>
+        </div>
 
-            <div class="footer-left">
+        <div class="footer-left">
 
-                <p class="footer-links">
-                    <a href="index.jsp">Home</a>
-                    ·
-                    <a href="recipe_search.jsp">Recipe Search</a>
-                    ·
-                    <a href="help.jsp">Help</a>
-                    ·
-                    <a href="about.jsp">About</a>
-                    ·
-                    <a href="contact_us.jsp">Contact</a>
-                </p>
+            <p class="footer-links">
+                <a href="index.jsp">Home</a>
+                ·
+                <a href="recipe_search.jsp">Recipe Search</a>
+                ·
+                <a href="help.jsp">Help</a>
+                ·
+                <a href="about.jsp">About</a>
+                ·
+                <a href="contact_us.jsp">Contact</a>
+            </p>
 
             <p>Kitchen Hunt &copy; 2016</p>
         </div>

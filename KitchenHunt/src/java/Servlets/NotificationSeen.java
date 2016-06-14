@@ -5,14 +5,10 @@
  */
 package Servlets;
 
-import HibFiles.Comment;
 import HibFiles.Notification;
 import HibFiles.PoolManager;
-import HibFiles.Recipe;
-import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +20,7 @@ import org.hibernate.Transaction;
  *
  * @author User
  */
-public class PostComment extends HttpServlet {
+public class NotificationSeen extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,59 +35,28 @@ public class PostComment extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        
         try {
-
-            //Get attributes from http request
-            String rid = request.getParameter("rid");
-            String comment = request.getParameter("comment");
-
-            System.out.println(rid);
-            System.out.println(comment);
-
-            String msg = "";
-
-            //Create hibernate session
+            
+            String notification_id = request.getParameter("notid");
+            
             Session s = PoolManager.getSessionFactory().openSession();
-
-            //Initiate transaction
             Transaction t = s.beginTransaction();
-
-            //Load recipe with given rid
-            Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(rid));
-
-            //Get currently logged in user
-            UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
-
-            Comment com = new Comment();
-            com.setRecipe(r);
-            com.setCommentDesc(comment);
-            com.setDate(new Date());
-            com.setTime(new Date());
-            com.setUser(ul.getUser());
-
-            s.save(com);
-
-            if (!ul.getUser().getFname().equals(r.getUser().getFname())) {
-
-                Notification n = new Notification();
-                n.setCategory("Comment on Recipe");
-                n.setDate(new Date());
-                n.setUser(r.getUser());
-                n.setStatus("Unread");
-                n.setNotification(ul.getUser().getFname() + " commented on your recipe " + r.getName() + " : " + comment);
-
-                s.save(n);
-            }
+            
+            Notification n = (Notification) s.load(Notification.class, Integer.parseInt(notification_id));
+            
+            n.setStatus("Seen");
+            
+            s.update(n);
+            
             t.commit();
-
-            msg = "success";
-
-            out.write(msg);
-
+            
+            response.sendRedirect("user_notifications.jsp");
+            
         } catch (Exception e) {
             throw new ServletException();
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
