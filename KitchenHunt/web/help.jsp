@@ -1,6 +1,6 @@
 <%-- 
-    Document   : error_page
-    Created on : May 1, 2016, 2:19:37 AM
+    Document   : help
+    Created on : Jun 14, 2016, 1:53:55 PM
     Author     : User
 --%>
 
@@ -11,7 +11,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <title>Kitchen Hunt - 404</title>
+        <title>Kitchen Hunt</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -34,14 +34,13 @@
         <link href="css/sidebar.css" rel="stylesheet">
         <link href="font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/footer-distributed.css">
-        <link rel="stylesheet" href="css/mycss.css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         <script type="text/javascript" src="js/myjavascript.js"></script>
 
 
-
     </head>
     <body>
+
 
         <!--Beginning of navigation bar-->
         <nav class="navbar navbar-inverse">
@@ -55,7 +54,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                    <a class="navbar-brand" href="index.jsp"><img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="28" width="auto"></a>
+                    <a class="navbar-brand" href="index.jsp">
+                        <img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="28" width="auto">
+                    </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -105,14 +106,14 @@
                         <h3 class="modal-title">Sign Up</h3>
                     </div>
                     <div class="modal-body" align="left">
-                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="testform">
+                        <form role="form" action="" onsubmit="signUp(this); return false;" method="POST" id="signup_form">
                             <div class="form-group">
                                 <label for="name">Name:</label>
                                 <input type="name" class="form-control" name="signup_name" id="idname" required>
                             </div>
                             <div class="form-group">
                                 <label for="name">Mobile:</label>
-                                <input type="number" class="form-control" name="signup_mobile" id="idmobile" required>
+                                <input type="text" class="form-control" name="signup_mobile" id="idmobile" onKeyPress="return numbersonly(this, event)" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address:</label>
@@ -188,15 +189,30 @@
             </div>
         </div>
 
-        <!--404 error message-->
+        <!--Welcome message-->
         <div class="container" align="center">
-            <div class="jumbotron">
-                <h1>Page Not Found!</h1> 
-                <p>Seems like the content you are searching for is not available...</p> <br>
-                <img src="images/404.png" alt="" height="300px" width="auto">
-            </div>
+            <h1 id="welcomeMsg">Welcome to Kitchen Hunt!</h1>  
+            <br>
+            <h2><small>Getting started</small></h2>
+
+            You can search recipes by clicking on the Recipe Search tab in the menu bar or by clicking on the Get Started button in the home page.
+            <br><br>
         </div>
 
+        <div class="container" align="center">
+            <img src='images/recipe_search_steps.jpg' class='img-responsive'/>
+        </div>
+        <hr>
+        <div class="container" align="center">
+            <h2><small>My Kitchen</small></h2>
+            You can create your own free My Kitchen account in just few steps.
+            <br>
+            You can save your favourite recipes, post recipes, comment on recipes, rate recipes and get updates when new recipes are posted.
+            <br>
+            <img src="images/MyKitchen.png" height="200px" width="=auto">
+        </div>
+
+        
 
         <!--Beginning of footer-->
         <footer class="footer-distributed">
@@ -238,5 +254,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/sidebar.js"></script>
 </html>
-
-

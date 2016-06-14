@@ -160,7 +160,7 @@ and open the template in the editor.
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="recipe_search.jsp">Recipe Search</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="help.jsp">Help</a></li>
                         <li><a id="idabout" href="about.jsp">About</a></li>
 
                         <%                            if (request.getSession().getAttribute("user") != null) {

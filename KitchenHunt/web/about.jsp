@@ -62,7 +62,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="recipe_search.jsp">Recipe Search</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="help.jsp">Help</a></li>
                         <li><a id="idabout" href="about.jsp">About</a></li>
 
                         <%
@@ -195,12 +195,14 @@
         </div>
         
         <div class="container" align="center">
-            <img src="images/Slider2.jpg" alt="" width="1000px" height="auto">
+            <img src="images/profile pic.png" alt="" width="250px" height="auto">
+            <br><br>
+            <h4>Kitchen Hunt is a global cooking community where anyone can join and share their knowledge on cuisine.</h4>
+            <h4>Anyone who is passionate about cooking and cuisine can join Kitchen Hunt.</h4>
+            <h4>Now you do not have to go through huge recipe books.</h4>
+            <h4>You can simply enter the ingredients you have in your kitchen and get the recipes you can make instantly.</h4>
         </div>
         
-        <div class="container" align="center">
-            <img src="images/Slider5.jpg" alt="" width="1000px" height="auto">
-        </div>
 
 
         <!--Beginning of footer-->

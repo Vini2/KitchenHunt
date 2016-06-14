@@ -100,7 +100,9 @@ and open the template in the editor.
                         <span class="icon-bar"></span>
                     </button>
                     <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                    <a class="navbar-brand" href="index.jsp"><img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="28" width="auto"></a>
+                    <a class="navbar-brand" href="index.jsp">
+                        <img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="28" width="auto">
+                    </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -108,7 +110,7 @@ and open the template in the editor.
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="recipe_search.jsp">Recipe Search</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="help.jsp">Help</a></li>
                         <li><a id="idabout" href="about.jsp">About</a></li>
 
                         <%
@@ -385,7 +387,7 @@ and open the template in the editor.
 
                                 <!--Image-->
                                 <%if (im != null) {%>
-                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
+                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" class="img-responsive">
                                 <%}%>
                                 <div class="caption">
 

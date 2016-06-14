@@ -64,7 +64,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="recipe_search.jsp">Recipe Search</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="help.jsp">Help</a></li>
                         <li><a id="idabout" href="about.jsp">About</a></li>
 
                         <%
@@ -218,42 +218,42 @@
                     <div class="item active" >
                         <img src="images/Slider2.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
-                            <h3>Thinking about what to make for dinner?</h3>
+                            <h4>Thinking about what to make for dinner?</h4>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="images/Slider1.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
-                            <h3>Decide what to make with the stuff you have in your kitchen</h3>
+                            <h4>Grab the stuff you have in your kitchen</h4>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="images/Slider3.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
-                            <h3>Ranging from vegetables, fruits, beverages, sweets to desserts</h3>
+                            <h4>Find out what you can make</h4>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="images/Slider4.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
-                            <h3>Recipes you can make in just few minutes</h3>
+                            <h4>Recipes you can make just within few minutes</h4>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="images/Slider5.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
-                            <h3>The world of cuisine open for anyone</h3>
+                            <h4>The world of cuisine open for anyone</h4>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="images/Slider6.jpg" alt="">
                         <div class="carousel-caption my-carousel-content">
-                            <h3>Healthy eating made easy</h3>
+                            <h4>Healthy eating made easy</h4>
                         </div>
                     </div>
                 </div>
