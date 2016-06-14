@@ -265,7 +265,7 @@ public class PostRecipe extends HttpServlet {
                 List<MyIngredient> mi1_list = cm1.list();
 
                 for (MyIngredient mi : mi1_list) {
-                    if (ul.getUser() != mi.getUser()) {
+                    if (!ul.getUser().getFname().equals(mi.getUser().getFname())) {
                         Notification n = new Notification();
                         n.setDate(new Date());
                         n.setCategory("New Recipe Posted");
@@ -292,7 +292,7 @@ public class PostRecipe extends HttpServlet {
                 List<MyIngredient> mi2_list = cm2.list();
 
                 for (MyIngredient mi : mi2_list) {
-                    if (ul.getUser() != mi.getUser()) {
+                    if (!ul.getUser().getFname().equals(mi.getUser().getFname())) {
                         Notification n = new Notification();
                         n.setDate(new Date());
                         n.setCategory("New Recipe Posted");
@@ -319,7 +319,7 @@ public class PostRecipe extends HttpServlet {
                 List<MyIngredient> mi3_list = cm3.list();
 
                 for (MyIngredient mi : mi3_list) {
-                    if (ul.getUser() != mi.getUser()) {
+                    if (!ul.getUser().getFname().equals(mi.getUser().getFname())) {
                         Notification n = new Notification();
                         n.setDate(new Date());
                         n.setCategory("New Recipe Posted");
@@ -346,7 +346,7 @@ public class PostRecipe extends HttpServlet {
                 List<MyIngredient> mi4_list = cm4.list();
 
                 for (MyIngredient mi : mi4_list) {
-                    if (ul.getUser() != mi.getUser()) {
+                    if (!ul.getUser().getFname().equals(mi.getUser().getFname())) {
                         Notification n = new Notification();
                         n.setDate(new Date());
                         n.setCategory("New Recipe Posted");
@@ -373,7 +373,7 @@ public class PostRecipe extends HttpServlet {
                 List<MyIngredient> mi5_list = cm5.list();
 
                 for (MyIngredient mi : mi5_list) {
-                    if (ul.getUser() != mi.getUser()) {
+                    if (!ul.getUser().getFname().equals(mi.getUser().getFname())) {
                         Notification n = new Notification();
                         n.setDate(new Date());
                         n.setCategory("New Recipe Posted");

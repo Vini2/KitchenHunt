@@ -108,6 +108,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <li><a href=\"recipe_search.jsp\">Recipe Search</a></li>\n");
       out.write("                        <li><a href=\"help.jsp\">Help</a></li>\n");
       out.write("                        <li><a id=\"idabout\" href=\"about.jsp\">About</a></li>\n");
+      out.write("                        <li><a id=\"idcontact\" href=\"contact_us.jsp\">Contact Us</a></li>\n");
       out.write("\n");
       out.write("                        ");
 
@@ -351,7 +352,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    ·\n");
       out.write("                    <a href=\"about.jsp\">About</a>\n");
       out.write("                    ·\n");
-      out.write("                    <a href=\"#\">Contact</a>\n");
+      out.write("                    <a href=\"contact_us.jsp\">Contact</a>\n");
       out.write("                </p>\n");
       out.write("\n");
       out.write("                <p>Kitchen Hunt &copy; 2016</p>\n");

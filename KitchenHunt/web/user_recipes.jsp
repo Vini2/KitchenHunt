@@ -129,13 +129,18 @@
 
                                     Criteria cn = s1.createCriteria(Notification.class);
                                     cn.add(Restrictions.eq("user", u));
+                                    cn.add(Restrictions.eq("status", "Unread"));
                                     List<Notification> n_list = cn.list();
 
                                     int len = n_list.size();
                                 %>
 
-                                <li><a href="user_notifications.jsp">Notifications <span class="badge badge-info"><%=len%></span></a></li>
-
+                                <li><a href="user_notifications.jsp">Notifications 
+                                        <%if (len != 0) {%>
+                                        <span class="badge badge-info"><%=len%></span> 
+                                        <%}%>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Account</strong></a>

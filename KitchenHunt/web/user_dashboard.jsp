@@ -7,6 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.hibernate.criterion.Restrictions"%>
 <%@page import="org.hibernate.Criteria"%>
+<%@page import="org.hibernate.criterion.Order"%>
 <%@page import="HibFiles.Notification"%>
 <%@page import="HibFiles.User"%>
 <%@page import="org.hibernate.Session"%>
@@ -130,8 +131,12 @@
                                     int len = n_list.size();
                                 %>
 
-                                <li><a href="user_notifications.jsp">Notifications <span class="badge badge-info"><%=len%></span></a></li>
-
+                                <li><a href="user_notifications.jsp">Notifications 
+                                        <%if (len != 0) {%>
+                                        <span class="badge badge-info"><%=len%></span> 
+                                        <%}%>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Account</strong></a>

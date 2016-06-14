@@ -135,7 +135,13 @@
                                     int len = n_list.size();
                                 %>
 
-                                <li><a href="user_notifications.jsp">Notifications <span class="badge badge-info"><%=len%></span> <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                <li><a href="user_notifications.jsp">Notifications 
+                                        <%if (len != 0) {%>
+                                        <span class="badge badge-info"><%=len%></span> 
+                                        <%}%>
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>
@@ -166,25 +172,31 @@
                     <br>
 
                     <%
-                        for (Notification not : n_list) {
+                        if (n_list.size() != 0) {
+                            for (Notification not : n_list) {
                     %>
-                    
+
                     <div class="col-sm-12 row well">
                         <a href="NotificationSeen?notid=<%=not.getIdnotification()%>" class="close" aria-label="close">&times;</a>
                         <h4><%=not.getCategory()%> on <%=not.getDate()%></h4>
                         <p><%=not.getNotification()%></p>
-                        
+
                     </div>
 
+                    <%}
+                    } else {%>
+                    <div class="row" align="center">
+                        No new notifications.
+                    </div>
                     <%}%>
-
                 </div>
                 <!--/col-span-9-->
             </div>
         </div>
         <!-- /Main -->
 
-
+        <br><br><br><br><br><br>
+        <br><br><br><br><br><br>
 
 
         <!--Beginning of footer-->
