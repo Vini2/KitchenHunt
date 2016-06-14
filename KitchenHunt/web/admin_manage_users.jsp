@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin_view_recipe
-    Created on : Jun 14, 2016, 11:21:49 PM
+    Document   : admin_manage_users
+    Created on : Jun 15, 2016, 12:57:41 AM
     Author     : User
 --%>
 
@@ -17,6 +17,7 @@
 <%@page import="org.hibernate.Session"%>
 <%@page import="HibFiles.PoolManager"%>
 <%@page import="HibFiles.UserLogin"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +42,6 @@
                 response.sendRedirect("index.jsp");
             } else {
                 User u = (User) s.load(User.class, ul.getUser().getIduser());
-                Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(request.getParameter("rid")));
 
         %>
 
@@ -101,16 +101,16 @@
                     <!-- Left column -->
                     <ul class="nav nav-stacked">
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
-                            <ul class="nav nav-stacked collapse in" id="userMenu">
-                                <li><a href="admin_publish_recipe.jsp">Publish Recipes <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                            <ul class="nav nav-stacked collapse" id="userMenu">
+                                <li><a href="admin_publish_recipe.jsp">Publish Recipes</a></li>
                                 <li><a href="admin_manage_category.jsp">Manage Categories</a></li>
 
                             </ul>
                         </li>
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Users</strong></a>
 
-                            <ul class="nav nav-stacked collapse" id="menu2">
-                                <li><a href="admin_manage_users.jsp">Manage Users</a></li>
+                            <ul class="nav nav-stacked collapse in" id="menu2">
+                                <li><a href="admin_manage_users.jsp">Manage Users <span class="glyphicon glyphicon-chevron-right"></span></a></li>
                                 <li><a href="admin_manage_admins.jsp">Manage Administrators</a></li>
                             </ul>
                         </li>
@@ -131,121 +131,49 @@
 
                         <div class="col-md-12">
 
-                            <%                                if (request.getParameter("msg") != null) {
-                                    if (request.getParameter("msg").equals("success")) {
+                            <%                                
+                                Criteria c = s.createCriteria(User.class);
+                                List<User> u_list = c.list();
                             %>
-                            <div class="alert alert-success fade in">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Success!</strong> Recipe was published successfully.
-                            </div>
 
-                            <%  } else if (request.getParameter("msg").equals("error")) {%>
-                            <div class="alert alert-danger fade in">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Error!</strong> An error occurred while publishing.
-                            </div>
-                            <%}
-                                }%>
+                            <table class="table table-striped">
 
-                            <!--Beginning of recipe details-->
-                            <div style="width:100%; margin:0 auto;" class="well">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Registered Date</th>
+                                        <th>Mobile</th>
+                                        <th>Activate/Deactivate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        for (User user : u_list) {
+                                            Set<UserLogin> user_set = user.getUserLogins();
+                                            Iterator iter = user_set.iterator();
+                                            UserLogin user_ul = (UserLogin) iter.next();
+                                    %>
+                                    <tr>
+                                        <td><%=user.getFname()%></td>
+                                        <td><%=user.getRegisterDate()%></td>
+                                        <td><%=user.getMobile()%></td>
+                                        <td>
+                                            <%if (user_ul.getSystemStatus().getStatusName().equals("Active")) {%>
+                                            <a href="ActivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Deactivate</a> 
+                                            <%} else if (user_ul.getSystemStatus().getStatusName().equals("Deactivated")) {%>
+                                            <a href="DeactivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Activate</a>
+                                            <%} else if (user_ul.getSystemStatus().getStatusName().equals("Pending")) {%>
+                                            <a href="DeactivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Activate</a>
+                                            <%}%>
+                                        </td>
+                                    </tr>
 
-                                <div class="row">
 
-                                    <div class="col-xs-6 col-md-4">
-                                        <div class="row">
-
-                                            <div class="col-xs-12 col-md-12"><h2><%=r.getName()%></h2></div>
-
-                                        </div>
-
-                                        <%
-                                            if (request.getSession().getAttribute("user") != null) {
-                                        %>
-                                        <div id="rateYo1"></div>
-                                        <%} else {%>
-                                        <div id="rateYo2"></div>
-                                        <%}%>
-
-                                        <h3><%=r.getRatedCount()%> reviewed</h3>
-                                        <br>
-                                        <h4>Recipe by: <%=r.getUser().getFname()%></h4>
-                                        <br>
-
-                                        <h4>Skill Level: <%=r.getSkillLevel()%></h4>
-
-                                        <h4>Preparation Time: <%=r.getPreparingTime()%></h4>
-
-                                        <h4>Serves: <%=r.getServingQuantity()%></h4>
-
-                                        <br>
-
-                                        <%if(r.getStatus().equals("New")){%>
-                                        <h4><a href="PublishRecipe?rid=<%=r.getIdrecipe()%>" class="btn btn-primary" role="button">Publish Recipe</a></h4>                    
-                                        <%}%>
-
-                                    </div>
-
-                                    <div class="col-xs-12 col-md-8" align="right">
-
-                                        <%
-                                            Set image_set = r.getImages();
-                                            Iterator iter = image_set.iterator();
-                                            Image im = (Image) iter.next();
-                                        %>
-                                        <img src="<%=im.getPath()%>" alt="<%=r.getName()%>" class="img-responsive" width="600px" height="auto">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-xs-12"><h3>Ingredients for <%=r.getName()%></h3></div>
-                                </div>
-
-                                <%
-                                    Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
-                                    int count = 0;
-                                    for (RecipeHasIngredient i : ss) {
-                                        ++count;
-
-                                        Double d = i.getQuantity();
-                                        int q = d.intValue();
-
-                                        if (count % 3 == 1) {
-                                %>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%>  <%=i.getIngredient().getName()%></div>
-                                    <%} else if (count % 3 == 2) {%>
-                                    <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%>  <%=i.getIngredient().getName()%></div>
-                                    <%} else if (count % 3 == 0) {%>
-                                    <div class="col-xs-6 col-md-4"><%=q%> <%=i.getUnit().getName()%>  <%=i.getIngredient().getName()%></div>
-                                </div> 
-
-                                <%}
-                                    }%>
-                            </div>
-                            <!--<div class="row">
-                            <div class="col-xs-6 col-md-4">2 star anise</div>
-                            <div class="col-xs-6 col-md-4">4 baking potatoes</div>
-                            <div class="col-xs-6 col-md-4">200ml/7fl oz double cream</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-md-4">1 lemon, juice only</div>
-                            <div class="col-xs-6 col-md-4">3 tbsp chives, finely sliced</div>
-                            <div class="col-xs-6 col-md-4">sea salt and freshly ground black pepper</div>
-                        </div>-->
-                            <div class="row">
-                                <div class="col-xs-12"><br><h3>Directions to prepare <%=r.getName()%></h3></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <%=r.getDirections()%>
-                                    <br><br>
-                                </div>
-
-                            </div>
+                                    <%}%>
+                                </tbody>
+                            </table>
 
                         </div>
-                        <!-- End of recipe details-->
 
                     </div>
 

@@ -6,16 +6,14 @@
 package Servlets;
 
 import HibFiles.PoolManager;
-import HibFiles.Recipe;
-import HibFiles.Unit;
 import HibFiles.User;
-import java.util.Date;
+import HibFiles.UserLogin;
+import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.lang.time.DateUtils;
+import java.util.Set;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -28,17 +26,18 @@ public class test {
         Session s = PoolManager.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
 
-        Criteria c = s.createCriteria(Recipe.class);
-        c.add(Restrictions.eq("status", "New"));
-        List<Recipe> r_list = c.list();
+        Criteria c = s.createCriteria(User.class);
+        List<User> u_list = c.list();
 
-        for (Recipe recipe : r_list) {
+        for (User user : u_list) {
+
+            
+            Set<UserLogin> user_set = user.getUserLogins();
+            Iterator iter = user_set.iterator();
+            UserLogin user_ul = (UserLogin) iter.next();
             
         }
 
-        Unit un = new Unit();
-        
-        
     }
 
 }

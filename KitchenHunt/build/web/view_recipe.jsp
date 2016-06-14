@@ -8,7 +8,6 @@
 <%@page import="org.hibernate.criterion.Restrictions"%>
 <%@page import="HibFiles.Comment"%>
 <%@page import="org.hibernate.Criteria"%>
-<%@page import="java.io.OutputStream"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="HibFiles.Image"%>
 <%@page import="HibFiles.RecipeHasIngredient"%>
