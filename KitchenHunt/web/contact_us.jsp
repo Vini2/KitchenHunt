@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Apr 17, 2016, 12:10:56 AM
+    Document   : contact_us
+    Created on : Jun 14, 2016, 7:01:16 PM
     Author     : User
 --%>
 
@@ -11,7 +11,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <title>Kitchen Hunt</title>
+        <title>Kitchen Hunt - Contact Us</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -38,9 +38,9 @@
         <script type="text/javascript" src="js/myjavascript.js"></script>
 
 
+
     </head>
     <body>
-
 
         <!--Beginning of navigation bar-->
         <nav class="navbar navbar-inverse">
@@ -54,9 +54,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                    <a class="navbar-brand" href="index.jsp">
-                        <img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="28" width="auto">
-                    </a>
+                    <a class="navbar-brand" href="index.jsp"><img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="28" width="auto"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -114,7 +112,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Mobile:</label>
-                                <input type="text" class="form-control" name="signup_mobile" id="idmobile" onKeyPress="return numbersonly(this, event)" required>
+                                <input type="number" class="form-control" name="signup_mobile" id="idmobile" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address:</label>
@@ -190,87 +188,69 @@
             </div>
         </div>
 
-        <!--Welcome message-->
+        <!--About details-->
         <div class="container">
             <div class="page-header" align="center">
-                <h1 id="welcomeMsg">Welcome to Kitchen Hunt!</h1>      
-                <h2><small>Search Recipes with the Ingredients You have in Your Kitchen</small></h2>
-                <h2><a id="getStarted" href="recipe_search.jsp"><button type="submit" value="" class="btn btn-default"/>Get Started</button></a></h2>
+                <h1><small id="contact_us_title">Contact Us</small></h1>
             </div>
         </div>
 
+        <br>
 
-        <!--Beginning of image slider-->
-        <div class="container">
-            <br>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active" >
-                        <img src="images/Slider2.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h4>Thinking about what to make for dinner?</h4>
-                        </div>
-                    </div>
+        <div class="container row" style="width:80%; margin:0 auto;">
 
-                    <div class="item">
-                        <img src="images/Slider1.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h4>Grab the stuff you have in your kitchen</h4>
-                        </div>
-                    </div>
+            <%
+                if (request.getParameter("msg") != null) {
+                    if (request.getParameter("msg").equals("success")) {
+            %>
+            <div class="alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> Your message was sent successfully. We will contact you soon.
+            </div>
 
-                    <div class="item">
-                        <img src="images/Slider3.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h4>Find out what you can make</h4>
-                        </div>
-                    </div>
+            <%  } else if (request.getParameter("msg").equals("error")) {%>
+            <div class="alert alert-danger fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> An error occurred while sending your message.
+            </div>
+            <%}
+                    }%>
 
-                    <div class="item">
-                        <img src="images/Slider4.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h4>Recipes you can make just within few minutes</h4>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="images/Slider5.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h4>The world of cuisine open for anyone</h4>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="images/Slider6.jpg" alt="">
-                        <div class="carousel-caption my-carousel-content">
-                            <h4>Healthy eating made easy</h4>
-                        </div>
+            <form class="form-horizontal" action="Contact"  method="POST" id="contact_form">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email" disabled>Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>
                     </div>
                 </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email" disabled>Email:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="" value="" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email" disabled>Subject:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="" value="" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email" disabled>Message:</label>
+                    <div class="col-sm-10">
+                        <textarea rows="10" cols="20" class="form-control" id="message" name="message" placeholder="" value="" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10" align="right" id="action_button">
+                        <button type="submit" class="btn btn-success" id='btn_send'>Send Message</button>
+                    </div>
+                </div>
+                <br><br>
+            </form>
         </div>
-        <!--End of image slider-->
+
 
 
         <!--Beginning of footer-->
@@ -311,4 +291,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/sidebar.js"></script>
 </html>
-

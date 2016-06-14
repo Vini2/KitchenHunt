@@ -5,20 +5,15 @@
  */
 package Servlets;
 
+import HibFiles.CuisineCategory;
 import HibFiles.PoolManager;
-import HibFiles.SystemStatus;
-import HibFiles.User;
-import HibFiles.UserLogin;
-import HibFiles.UserType;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
-import java.util.Date;
 import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.Transport;
 import javax.mail.Authenticator;
+import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
@@ -34,7 +29,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author User
  */
-public class SignUp extends HttpServlet {
+public class Contact extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,91 +45,32 @@ public class SignUp extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        System.out.println("inside servlet");
-
         try {
 
-            //Get attributes from http request
             String name = request.getParameter("name");
             String email = request.getParameter("email");
-            String mobile = request.getParameter("mobile");
-            String upassword = request.getParameter("password");
-            String confirmpassword = request.getParameter("confirmpassword");
-
-            System.out.println(name + email + mobile + upassword);
+            String msubject = request.getParameter("subject");
+            String message = request.getParameter("message");
 
             String msg = "";
 
-            if (upassword.equals(confirmpassword)) {
+            //Send Contact Us Email
+            text = "Name: " + name + "<br><br>"
+                    + "Email: " + email + "<br><br>"
+                    + "Message: " + message + "<br><br>";
+            System.out.println(text);
+            System.out.println("Sending contact us email");
+            subject = msubject;
+            sendMail();
+            System.out.println("Contact us email sent");
 
-                //Create hibernate session
-                Session s = PoolManager.getSessionFactory().openSession();
-
-                //Initiate transaction
-                Transaction t = s.beginTransaction();
-
-                //Get system status
-                Criteria c = s.createCriteria(SystemStatus.class);
-                c.add(Restrictions.eq("statusName", "Active"));
-                SystemStatus ss = (SystemStatus) c.uniqueResult();
-
-                //Get user type
-                Criteria c1 = s.createCriteria(UserType.class);
-                c1.add(Restrictions.eq("typeName", "User"));
-                UserType ut = (UserType) c1.uniqueResult();
-
-                //Get user login
-                Criteria c2 = s.createCriteria(UserLogin.class);
-                c2.add(Restrictions.eq("email", email));
-                UserLogin ul = (UserLogin) c2.uniqueResult();
-
-                if (ul == null) {
-
-                    //If user does not exist, create new user and save
-                    User u = new User();
-                    u.setFname(name);
-                    u.setMobile(mobile);
-                    u.setRegisterDate(new Date());
-                    u.setUserType(ut);
-
-                    s.save(u);
-
-                    //Create new user login and save
-                    UserLogin ul1 = new UserLogin();
-                    ul1.setEmail(email);
-                    ul1.setPassword(Security.encrypt(upassword));
-                    ul1.setUser(u);
-                    ul1.setSystemStatus(ss);
-
-                    s.save(ul1);
-
-                    //Commit changes
-                    t.commit();
-
-                    //Send Verification Email
-                    text = "Hi " + name + ",<br><br>Thanks for creating your new Kitchen Hunt account.<br><br>Now you can enjoy the features of your My Kitchen account. <br><br>If you did not create a Kitchen Hunt account, just ignore this message.";
-                    System.out.println(text);
-                    System.out.println("Sending verification email");
-                    to = email;
-                    sendMail();
-                    System.out.println("Verification email sent");
-
-                    msg = "success";
-
-                } else {
-                    msg = "Error1";
-                }
-
-                System.out.println(name + " " + email + " " + mobile + " " + upassword + " " + confirmpassword);
-
-            } else {
-                msg = "Error2";
-            }
-
-            out.write("success");
+            msg="success";
+            
+            response.sendRedirect("contact_us.jsp?msg=" + msg);
 
         } catch (Exception e) {
-            throw new ServletException(e);
+            throw new ServletException();
+//            response.sendRedirect("user_add_new_category.jsp?msg=error");
         }
     }
 
@@ -149,8 +85,8 @@ public class SignUp extends HttpServlet {
     static String password = "kitchenhunt@123";
     static String host = "smtp.gmail.com";
     static String port = "587";
-    static String to = "";
-    static String subject = "Welcome to Kitchen Hunt";
+    static String to = "kitchenhunt.com@gmail.com";
+    static String subject = "Message from Contact Us";
     static String text = "";
 
     public static void sendMail() {

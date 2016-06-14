@@ -38,7 +38,7 @@ function signUp(frm1) {
                 } else if (res == 'Error1') {
                     alert("The email address entered already exists.");
                 } else if (res == 'success') {
-                    alert("Registration Successful...!");
+                    alert("Registration Successful...! Please sign in to your account.");
                     reloadPage();
                 } else {
                     alert("An error occured during the sign up process. Please try again later.");

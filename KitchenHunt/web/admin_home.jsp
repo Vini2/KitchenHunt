@@ -506,7 +506,7 @@
                     ·
                     <a href="about.jsp">About</a>
                     ·
-                    <a href="#">Contact</a>
+                    <a href="contact_us.jsp">Contact</a>
                 </p>
 
                 <p>Kitchen Hunt &copy; 2016</p>

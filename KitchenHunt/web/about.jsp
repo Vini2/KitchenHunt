@@ -64,6 +64,7 @@
                         <li><a href="recipe_search.jsp">Recipe Search</a></li>
                         <li><a href="help.jsp">Help</a></li>
                         <li><a id="idabout" href="about.jsp">About</a></li>
+                        <li><a id="idcontact" href="contact_us.jsp">Contact Us</a></li>
 
                         <%
                             if (request.getSession().getAttribute("user") != null) {
@@ -228,7 +229,7 @@
                     ·
                     <a href="about.jsp">About</a>
                     ·
-                    <a href="#">Contact</a>
+                    <a href="contact_us.jsp">Contact</a>
                 </p>
 
                 <p>Kitchen Hunt &copy; 2016</p>

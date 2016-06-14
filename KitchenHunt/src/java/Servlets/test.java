@@ -5,23 +5,14 @@
  */
 package Servlets;
 
-import HibFiles.Comment;
-import HibFiles.Image;
-import HibFiles.Ingredient;
-import HibFiles.MyIngredient;
-import HibFiles.MyKitchen;
-import HibFiles.Notification;
-import HibFiles.PoolManager;
-import HibFiles.Recipe;
-import HibFiles.RecipeHasIngredient;
-import HibFiles.User;
-import HibFiles.UserLogin;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -29,61 +20,55 @@ import org.hibernate.criterion.Restrictions;
  */
 public class test {
 
-    public static void main(String[] args) {
+    final String senderEmailID = "kitchenhunt.com@gmail.com";
+    final String senderPassword = "kitchenhunt@123";
+    final String emailSMTPserver = "smtp.gmail.com";
+    final String emailServerPort = "465";
+    String receiverEmailID = null;
+    static String emailSubject = "Test Mail";
+    static String emailBody = "Hello :)";
 
-        Session s = PoolManager.getSessionFactory().openSession();
-        MyIngredient i = new MyIngredient();
-        
-        
-        
-        
-        Criteria c1 = s.createCriteria(User.class);
-        c1.add(Restrictions.eq("fname", "Sanduni Prasadi"));
-        User u = (User) c1.uniqueResult();
-        
-//        Criteria c = s.createCriteria(MyIngredient.class);
-//        c.add(Restrictions.eq("user", u));
-//        List<MyIngredient> mi_list = c.list();
-//        
-//        for (MyIngredient mi : mi_list) {
-//            
-//        }
-
-        
-        
-//        Criteria c = s.createCriteria(MyKitchen.class);
-//        c.add(Restrictions.eq("user", u));
-//        List<MyKitchen> n_list = c.list();
-//        
-//        int len = n_list.size();
-//
-//        for (MyKitchen not : n_list) {
-//            System.out.println(not.getRecipe().getName());
-//        }
-
-        Criteria c = s.createCriteria(Notification.class);
-        c.add(Restrictions.eq("user", u));
-        c.add(Restrictions.eq("status", "Unread"));
-        List<Notification> n_list = c.list();
-        
-        int len = n_list.size();
-        
-        for (Notification not : n_list) {
-            
+    public test(String receiverEmailID, String emailSubject, String emailBody) {
+        this.receiverEmailID = receiverEmailID;
+        this.emailSubject = emailSubject;
+        this.emailBody = emailBody;
+        Properties props = new Properties();
+        props.put("mail.smtp.user", senderEmailID);
+        props.put("mail.smtp.host", emailSMTPserver);
+        props.put("mail.smtp.port", emailServerPort);
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.socketFactory.port", emailServerPort);
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.fallback", "false");
+        SecurityManager security = System.getSecurityManager();
+        try {
+            Authenticator auth = new SMTPAuthenticator();
+            Session session = Session.getInstance(props, auth);
+            MimeMessage msg = new MimeMessage(session);
+            msg.setText(emailBody);
+            msg.setSubject(emailSubject);
+            msg.setFrom(new InternetAddress(senderEmailID));
+            msg.addRecipient(Message.RecipientType.TO,
+                    new InternetAddress(receiverEmailID));
+            Transport.send(msg);
+            System.out.println("Message send Successfully:)");
+        } catch (Exception mex) {
+            mex.printStackTrace();
         }
-//        for (Comment comment : comment_list) {
-//            
-//        }
-//
-//        Set<RecipeHasIngredient> ss = r.getRecipeHasIngredients();
-//        for (RecipeHasIngredient i : ss) {
-//
-//            Double d = i.getQuantity();
-//            int q = d.intValue();
-//            
-//            System.out.println(i.getUnit().getName()+ i.getIngredient().getName());
-//            
-//        }
+    }
+
+    public class SMTPAuthenticator extends javax.mail.Authenticator {
+
+        public PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(senderEmailID, senderPassword);
+        }
+    }
+
+    public static void main(String[] args) {
+        test mailSender;
+        mailSender = new test("viji.mallawaarachchi@gmail.com", "Testing Code 2 example", "Testing Code Body yess");
+        System.out.println("Success");
     }
 
 }
