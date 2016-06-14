@@ -4,6 +4,11 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.Recipe"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.criterion.Restrictions"%>
+<%@page import="org.hibernate.Criteria"%>
 <%@page import="HibFiles.User"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="HibFiles.PoolManager"%>
@@ -26,13 +31,12 @@
             UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
             Session s = PoolManager.getSessionFactory().openSession();
 
-            User u = (User) s.load(User.class, ul.getUser().getIduser());
-
             if (request.getSession().getAttribute("user") == null) {
-                response.sendRedirect("index.jsp");
-            } else if (!u.getUserType().getTypeName().equals("Admin")) {
+                response.sendRedirect("admin_signin.jsp");
+            } else if (!ul.getUser().getUserType().getTypeName().equals("Admin")) {
                 response.sendRedirect("index.jsp");
             } else {
+                User u = (User) s.load(User.class, ul.getUser().getIduser());
 
         %>
 
@@ -73,14 +77,9 @@
                     <a class="navbar-brand" href="index.jsp"><img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="28" width="auto"></a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    
+
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
-                            <ul id="g-account-menu" class="dropdown-menu" role="menu">
-                                <li><a href="#">My Profile</a></li>
-                            </ul>
-                        </li>
+                        
                         <li><a href="AdminSignOut"><i class="glyphicon glyphicon-lock"></i> Sign Out</a></li>
                     </ul>
                 </div>
@@ -95,101 +94,32 @@
             <div class="row">
                 <div class="col-sm-3">
                     <!-- Left column -->
-                    <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
-
-                    <hr>
-
                     <ul class="nav nav-stacked">
-                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">Settings <i class="glyphicon glyphicon-chevron-down"></i></a>
+                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
                             <ul class="nav nav-stacked collapse in" id="userMenu">
-                                <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                                <li><a href="admin_publish_recipe.jsp">Publish Recipes</a></li>
+                                <li><a href="admin_manage_category.jsp">Manage Categories</a></li>
+
                             </ul>
                         </li>
-                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>
+                        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><strong>Users</strong></a>
 
                             <ul class="nav nav-stacked collapse" id="menu2">
-                                <li><a href="#">Information &amp; Stats</a>
-                                </li>
-                                <li><a href="#">Views</a>
-                                </li>
-                                <li><a href="#">Requests</a>
-                                </li>
-                                <li><a href="#">Timetable</a>
-                                </li>
-                                <li><a href="#">Alerts</a>
-                                </li>
+                                <li><a href="admin_manage_users.jsp">Manage Users</a></li>
+                                <li><a href="admin_manage_admins.jsp">Manage Administrators</a></li>
                             </ul>
                         </li>
-                        <li class="nav-header">
-                            <a href="#" data-toggle="collapse" data-target="#menu3"> Social Media <i class="glyphicon glyphicon-chevron-right"></i></a>
-                            <ul class="nav nav-stacked collapse" id="menu3">
-                                <li><a href=""><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
-                                <li><a href=""><i class="glyphicon glyphicon-circle"></i> Twitter</a></li>
-                            </ul>
-                        </li>
+
                     </ul>
 
                     <hr>
 
-                    <a href="#"><strong><i class="glyphicon glyphicon-link"></i> Resources</strong></a>
 
-                    <hr>
-
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="nav-header"></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-list"></i> Layouts &amp; Templates</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-briefcase"></i> Toolbox</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-link"></i> Widgets</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> Reports</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-book"></i> Pages</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-star"></i> Social Media</a></li>
-                    </ul>
-
-                    <hr>
-                    <ul class="nav nav-stacked">
-                        <li class="active"><a href="http://bootply.com" title="The Bootstrap Playground" target="ext">Playground</a></li>
-                        <li><a href="/tagged/bootstrap-3">Bootstrap 3</a></li>
-                        <li><a href="/61518" title="Bootstrap 3 Panel">Panels</a></li>
-                        <li><a href="/61521" title="Bootstrap 3 Icons">Glyphicons</a></li>
-                        <li><a href="/62603">Layout</a></li>
-                    </ul>
-
-                    <hr>
-
-                    <a href="#"><strong><i class="glyphicon glyphicon-list"></i> More Templates</strong></a>
-
-                    <hr>
-
-                    <ul class="nav nav-stacked">
-                        <li class="active"><a rel="nofollow" href="http://goo.gl/pQoXEh" target="ext">Premium Themes</a></li>
-                        <li><a rel="nofollow" href="https://wrapbootstrap.com/?ref=bootply">Wrap Bootstrap</a></li>
-                        <li><a rel="nofollow" href="http://bootstrapzero.com">BootstrapZero</a></li>
-                    </ul>
                 </div>
                 <!-- /col-3 -->
                 <div class="col-sm-9">
 
-                    <!-- column 2 -->
-                    <ul class="list-inline pull-right">
-                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i></a></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-comment"></i><span class="count">3</span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">1. Is there a way..</a></li>
-                                <li><a href="#">2. Hello, admin. I would..</a></li>
-                                <li><a href="#"><strong>All messages</strong></a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
-                        <li><a title="Add Widget" data-toggle="modal" href="#addWidgetModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Widget</a></li>
-                    </ul>
-                    <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+                    <a href="admin_home.jsp"><strong><i class="glyphicon glyphicon-dashboard"></i> Administrator Dashboard</strong></a>
                     <hr>
 
                     <div class="row">
@@ -197,22 +127,74 @@
                         <div class="col-md-12">
 
                             <div class="panel panel-default">
+                                <%                                    Criteria c = s.createCriteria(User.class);
+                                    c.add(Restrictions.between("registerDate", new Date(), new Date()));
+                                    List<User> u_list = c.list();
+
+                                %>
                                 <div class="well">
-                                    <h4>New Users <span class="badge pull-right">3</span></h4>
+                                    <h4>New Users Registered Today <span class="badge pull-right"><%=u_list.size()%></span></h4>
                                 </div>
                                 <div class="panel-body">
-                                    <p>This is a dashboard-style layout that uses Bootstrap 3. You can use this template as a starting point to create something more unique.</p>
-                                    <p>Visit the Bootstrap Playground at <a href="http://bootply.com">Bootply</a> to tweak this layout or discover more useful code snippets.</p>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Mobile</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                for (User us : u_list) {
+                                            %>
+                                            <tr>
+                                                <td><%=us.getFname()%></td>
+                                                <td><%=us.getMobile()%></td>
+                                                <td><%=us.getAddress()%></td>
+                                            </tr>
+
+
+                                            <%}%>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
                             <div class="panel panel-default">
+                                <%
+                                    Criteria c1 = s.createCriteria(Recipe.class);
+                                    c1.add(Restrictions.eq("status", "New"));
+                                    List<Recipe> r_list = c1.list();
+                                %>
                                 <div class="well">
-                                    <h4>New Recipes Posted <span class="badge pull-right">5</span></h4>
+                                    <h4>New Recipes Pending to be Published <span class="badge pull-right"><%=r_list.size()%></span></h4>
                                 </div>
                                 <div class="panel-body">
-                                    <p>This is a dashboard-style layout that uses Bootstrap 3. You can use this template as a starting point to create something more unique.</p>
-                                    <p>Visit the Bootstrap Playground at <a href="http://bootply.com">Bootply</a> to tweak this layout or discover more useful code snippets.</p>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Recipe Name</th>
+                                                <th>Posted By</th>
+                                                <th>View Recipe</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                for (Recipe recipe : r_list) {
+                                            %>
+                                            <tr>
+                                                <td><%=recipe.getName()%></td>
+                                                <td><%=recipe.getUser().getFname()%></td>
+                                                <td>
+                                                    <a href="admin_view_recipe.jsp?rid=<%=recipe.getIdrecipe()%>" class="btn btn-primary" role="button">View</a> 
+                                                </td>
+                                            </tr>
+
+
+                                            <%}%>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 

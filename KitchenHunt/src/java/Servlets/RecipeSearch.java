@@ -66,6 +66,7 @@ public class RecipeSearch extends HttpServlet {
             Transaction t = s.beginTransaction();
 
             Criteria c = s.createCriteria(Recipe.class);
+            c.add(Restrictions.eq("status", "Published"));
 
             if (!recipe_mealtype.equals("0")) {
                 FoodCategory fc = (FoodCategory) s.load(FoodCategory.class, Integer.parseInt(recipe_mealtype));

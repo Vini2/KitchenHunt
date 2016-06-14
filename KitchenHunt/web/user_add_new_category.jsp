@@ -209,7 +209,7 @@
                         <div class="col-sm-6">
                             <form action="AddNewMealType" method="POST">
                                 <div class="form-group">
-                                    <input type="text" name="meal" id="idmeal" class="form-control" placeholder="Enter meal type"/>
+                                    <input type="text" name="meal" id="idmeal" class="form-control" placeholder="Enter meal type" required/>
                                 </div>
 
                                 <div class="form-group">
@@ -241,7 +241,7 @@
                         <div class="col-sm-6">
                             <form action="AddNewCuisineStyle" method="POST">
                                 <div class="form-group">
-                                    <input type="text" name="cuisine" id="idcuisine" class="form-control" placeholder="Enter cuisine style"/>
+                                    <input type="text" name="cuisine" id="idcuisine" class="form-control" placeholder="Enter cuisine style" required/>
                                 </div>
 
                                 <div class="form-group">
@@ -272,7 +272,7 @@
                         <div class="col-sm-6">
                             <form action="AddNewHealthCat" method="POST">
                                 <div class="form-group">
-                                    <input type="text" name="health" id="idhealth" class="form-control" placeholder="Enter health category"/>
+                                    <input type="text" name="health" id="idhealth" class="form-control" placeholder="Enter health category" required/>
                                 </div>
 
                                 <div class="form-group">

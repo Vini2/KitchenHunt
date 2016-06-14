@@ -68,6 +68,30 @@
         <servlet-name>NotificationSeen</servlet-name>
         <servlet-class>Servlets.NotificationSeen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PublishRecipe</servlet-name>
+        <servlet-class>Servlets.PublishRecipe</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddNewMealType</servlet-name>
+        <servlet-class>Servlets.AdminAddNewMealType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddNewCuisineStyle</servlet-name>
+        <servlet-class>Servlets.AdminAddNewCuisineStyle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddNewHealthCat</servlet-name>
+        <servlet-class>Servlets.AdminAddNewHealthCat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveCategory</servlet-name>
+        <servlet-class>Servlets.RemoveCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddNewUnit</servlet-name>
+        <servlet-class>Servlets.AdminAddNewUnit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -135,6 +159,30 @@
     <servlet-mapping>
         <servlet-name>NotificationSeen</servlet-name>
         <url-pattern>/NotificationSeen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublishRecipe</servlet-name>
+        <url-pattern>/PublishRecipe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddNewMealType</servlet-name>
+        <url-pattern>/AdminAddNewMealType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddNewCuisineStyle</servlet-name>
+        <url-pattern>/AdminAddNewCuisineStyle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddNewHealthCat</servlet-name>
+        <url-pattern>/AdminAddNewHealthCat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveCategory</servlet-name>
+        <url-pattern>/RemoveCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddNewUnit</servlet-name>
+        <url-pattern>/AdminAddNewUnit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
