@@ -97,7 +97,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <span class=\"icon-bar\"></span>\n");
       out.write("                    </button>\n");
       out.write("                    <!--<img alt=\"Brand\" src=\"images/KitchenHunt.png\" height=\"32\" width=\"auto\">-->\n");
-      out.write("                    <a class=\"navbar-brand\" href=\"index.jsp\">Kitchen Hunt</a>\n");
+      out.write("                    <a class=\"navbar-brand\" href=\"index.jsp\">\n");
+      out.write("                        <img alt=\"Kitchen Hunt\" src=\"images/KitchenHunt.png\" height=\"32\" width=\"auto\">\n");
+      out.write("                    </a>\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <!-- Collect the nav links, forms, and other content for toggling -->\n");

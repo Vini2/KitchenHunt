@@ -176,9 +176,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-2" for="email" disabled>Telephone:</label>
+                                        <label class="control-label col-sm-2" for="email" disabled>Mobile:</label>
                                         <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="profile_telephone" name="profile_telephone" placeholder="" value="<%=u.getMobile()%>" disabled required>
+                                            <input type="number" class="form-control" id="profile_telephone" name="profile_telephone" placeholder="" value="<%=u.getMobile()%>" onKeyPress="return numbersonly(this, event)" disabled required>
                                         </div>
                                     </div>
                                     <div class="form-group"> 

@@ -167,7 +167,7 @@
                     %>
                     
                     <div class="col-sm-12 row well">
-                        <h4>Ing added on <%=not.getDate()%></h4>
+                        <h4><%=not.getCategory()%> on <%=not.getDate()%></h4>
                         <p><%=not.getNotification()%></p>
                         
                     </div>

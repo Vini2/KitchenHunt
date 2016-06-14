@@ -159,6 +159,37 @@
                     <strong><i class="glyphicon glyphicon-dashboard"></i> My Kitchen Dashboard</strong>
                     <hr>
 
+
+                    <%
+                        if (request.getParameter("msg") != null) {
+                            if (request.getParameter("msg").equals("success")) {
+                    %>
+                    <div class="alert alert-success fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> Ingredient added successfully.
+                    </div>
+
+                    <%} else if (request.getParameter("msg").equals("exists")) {%>
+                    <div class="alert alert-warning fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Duplicate!</strong> Ingredient already exists.
+                    </div>
+
+                    <%  } else if (request.getParameter("msg").equals("notexists")) {%>
+                    <div class="alert alert-danger fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> Ingredient you entered does not exist.
+                    </div>
+                    
+                    <%  } else if (request.getParameter("msg").equals("error")) {%>
+                    <div class="alert alert-danger fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> An error occurred while adding the ingredient.
+                    </div>
+                    <%}
+            }%>
+
+
                     <div align="center"><h1><small id="">My Ingredients</small></h1></div>
                     <br>
                     <div class="row">
@@ -179,7 +210,17 @@
                         </div>
 
                         <div class="col-sm-8">
+                            <form action="AddMyIngredient" method="POST">
+                                <div class="form-group">
+                                    <input type="text" name="ing" id="iding" class="form-control" placeholder="Enter ingredient"/>
+                                </div>
 
+                                <div class="form-group">
+                                    <button class="btn btn-default btn-block" type="submit">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Ingredient
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
                     </div>

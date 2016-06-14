@@ -56,6 +56,10 @@
         <servlet-name>AddNewHealthCat</servlet-name>
         <servlet-class>Servlets.AddNewHealthCat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMyIngredient</servlet-name>
+        <servlet-class>Servlets.AddMyIngredient</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>AddNewHealthCat</servlet-name>
         <url-pattern>/AddNewHealthCat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMyIngredient</servlet-name>
+        <url-pattern>/AddMyIngredient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

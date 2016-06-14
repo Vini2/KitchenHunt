@@ -6,7 +6,10 @@
 package Servlets;
 
 import HibFiles.FoodCategory;
+import HibFiles.Ingredient;
+import HibFiles.MyIngredient;
 import HibFiles.PoolManager;
+import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -22,7 +25,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author User
  */
-public class AddNewMealType extends HttpServlet {
+public class AddMyIngredient extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,39 +43,51 @@ public class AddNewMealType extends HttpServlet {
 
         try {
 
-            String meal = request.getParameter("meal");
-            meal = meal.trim();
+            String ing = request.getParameter("ing");
+            ing = ing.trim();
 
-            System.out.println(meal);
-            
+            System.out.println(ing);
+
             String msg = "";
 
             Session s = PoolManager.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
-
-            Criteria c = s.createCriteria(FoodCategory.class);
-            c.add(Restrictions.eq("categoryName", meal));
-            FoodCategory fc = (FoodCategory) c.uniqueResult();
-
-            if (fc == null) {
-                
-                FoodCategory fc_new = new FoodCategory();
-                fc_new.setCategoryName(meal);
-                s.save(fc_new);
-                
-                t.commit();
-                
-                msg="success";
-                
-            } else {
-                msg="exists";
-            }
             
-            response.sendRedirect("user_add_new_category.jsp?msg="+msg);
+            UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
+
+            Criteria c = s.createCriteria(Ingredient.class);
+            c.add(Restrictions.eq("name", ing));
+            Ingredient i = (Ingredient) c.uniqueResult();
+
+            if (i != null) {
+
+                Criteria c1 = s.createCriteria(MyIngredient.class);
+                c1.add(Restrictions.eq("ingredient", i));
+                MyIngredient mi = (MyIngredient) c1.uniqueResult();
+                
+                if (mi==null) {
+                    
+                    MyIngredient mi_new = new MyIngredient();
+                    mi_new.setIngredient(i);
+                    mi_new.setUser(ul.getUser());
+                    s.save(mi_new);
+                    
+                    t.commit();
+                    msg = "success";
+                }
+                else{
+                    msg = "exists";
+                }
+
+            } else {
+                msg = "notexists";
+            }
+
+            response.sendRedirect("user_ingredients.jsp?msg=" + msg);
 
         } catch (Exception e) {
             throw new ServletException();
-//            response.sendRedirect("user_add_new_category.jsp?msg=error");
+//            response.sendRedirect("user_ingredients.jsp?msg=error");
         }
     }
 

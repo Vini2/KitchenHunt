@@ -10,6 +10,8 @@ import HibFiles.FoodCategory;
 import HibFiles.HealthCategory;
 import HibFiles.Image;
 import HibFiles.Ingredient;
+import HibFiles.MyIngredient;
+import HibFiles.Notification;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import HibFiles.RecipeHasIngredient;
@@ -19,6 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -82,11 +85,10 @@ public class PostRecipe extends HttpServlet {
             String recipe_ing4 = null;
             String recipe_ing4_qty = null;
             String recipe_ing4_unit = null;
-            
+
             String recipe_ing5 = null;
             String recipe_ing5_qty = null;
             String recipe_ing5_unit = null;
-            
 
             String recipe_directions = null;
 
@@ -170,7 +172,7 @@ public class PostRecipe extends HttpServlet {
                     } else if (fileitem.getFieldName().equals("recipe_ing4_unit")) {
                         recipe_ing4_unit = fileitem.getString();
                         System.out.println(recipe_ing4_unit);
-                        
+
                     } else if (fileitem.getFieldName().equals("recipe_ing5")) {
                         recipe_ing5 = fileitem.getString();
                         System.out.println(recipe_ing5);
@@ -180,21 +182,20 @@ public class PostRecipe extends HttpServlet {
                     } else if (fileitem.getFieldName().equals("recipe_ing5_unit")) {
                         recipe_ing5_unit = fileitem.getString();
                         System.out.println(recipe_ing5_unit);
-                        
-                    } 
-                    
+
+                    }
+
                 } else {
                     image_file = fileitem;
 
                 }
             }
-            
+
             //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
 
             //Initiate transaction
             Transaction t = s.beginTransaction();
-
 
             Criteria c0 = s.createCriteria(Recipe.class);
             c0.add(Restrictions.eq("name", recipe_name));
@@ -249,7 +250,7 @@ public class PostRecipe extends HttpServlet {
 
                 s.save(im);
 
-                //Save ingredients 
+                //Save ingredient 1
                 Criteria c1 = s.createCriteria(Ingredient.class);
                 c1.add(Restrictions.eq("name", recipe_ing1));
                 Ingredient i1 = (Ingredient) c1.uniqueResult();
@@ -260,6 +261,23 @@ public class PostRecipe extends HttpServlet {
                     s.save(i1);
                 }
 
+                Criteria cm1 = s.createCriteria(MyIngredient.class);
+                cm1.add(Restrictions.eq("ingredient", i1));
+                List<MyIngredient> mi1_list = cm1.list();
+
+                for (MyIngredient mi : mi1_list) {
+                    if (ul.getUser() != mi.getUser()) {
+                        Notification n = new Notification();
+                        n.setDate(new Date());
+                        n.setCategory("New Recipe Posted");
+                        n.setStatus("Unread");
+                        n.setUser(mi.getUser());
+                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i1.getName() + " has been posted by " + ul.getUser().getFname());
+                        s.save(n);
+                    }
+                }
+
+                //save ingredient 2
                 Criteria c2 = s.createCriteria(Ingredient.class);
                 c2.add(Restrictions.eq("name", recipe_ing2));
                 Ingredient i2 = (Ingredient) c2.uniqueResult();
@@ -270,6 +288,23 @@ public class PostRecipe extends HttpServlet {
                     s.save(i2);
                 }
 
+                Criteria cm2 = s.createCriteria(MyIngredient.class);
+                cm2.add(Restrictions.eq("ingredient", i2));
+                List<MyIngredient> mi2_list = cm2.list();
+
+                for (MyIngredient mi : mi2_list) {
+                    if (ul.getUser() != mi.getUser()) {
+                        Notification n = new Notification();
+                        n.setDate(new Date());
+                        n.setCategory("New Recipe Posted");
+                        n.setStatus("Unread");
+                        n.setUser(mi.getUser());
+                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i2.getName() + " has been posted by " + ul.getUser().getFname());
+                        s.save(n);
+                    }
+                }
+
+                //save ingredient 3
                 Criteria c3 = s.createCriteria(Ingredient.class);
                 c3.add(Restrictions.eq("name", recipe_ing3));
                 Ingredient i3 = (Ingredient) c3.uniqueResult();
@@ -280,6 +315,23 @@ public class PostRecipe extends HttpServlet {
                     s.save(i3);
                 }
 
+                Criteria cm3 = s.createCriteria(MyIngredient.class);
+                cm3.add(Restrictions.eq("ingredient", i3));
+                List<MyIngredient> mi3_list = cm3.list();
+
+                for (MyIngredient mi : mi3_list) {
+                    if (ul.getUser() != mi.getUser()) {
+                        Notification n = new Notification();
+                        n.setDate(new Date());
+                        n.setCategory("New Recipe Posted");
+                        n.setStatus("Unread");
+                        n.setUser(mi.getUser());
+                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i3.getName() + " has been posted by " + ul.getUser().getFname());
+                        s.save(n);
+                    }
+                }
+
+                //Save ingredient 4
                 Criteria c4 = s.createCriteria(Ingredient.class);
                 c4.add(Restrictions.eq("name", recipe_ing4));
                 Ingredient i4 = (Ingredient) c4.uniqueResult();
@@ -289,7 +341,24 @@ public class PostRecipe extends HttpServlet {
                     i4.setName(recipe_ing4.toLowerCase());
                     s.save(i4);
                 }
-                
+
+                Criteria cm4 = s.createCriteria(MyIngredient.class);
+                cm4.add(Restrictions.eq("ingredient", i4));
+                List<MyIngredient> mi4_list = cm4.list();
+
+                for (MyIngredient mi : mi4_list) {
+                    if (ul.getUser() != mi.getUser()) {
+                        Notification n = new Notification();
+                        n.setDate(new Date());
+                        n.setCategory("New Recipe Posted");
+                        n.setStatus("Unread");
+                        n.setUser(mi.getUser());
+                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i4.getName() + " has been posted by " + ul.getUser().getFname());
+                        s.save(n);
+                    }
+                }
+
+                //Save ingredient 5
                 Criteria c5 = s.createCriteria(Ingredient.class);
                 c5.add(Restrictions.eq("name", recipe_ing5));
                 Ingredient i5 = (Ingredient) c5.uniqueResult();
@@ -299,8 +368,22 @@ public class PostRecipe extends HttpServlet {
                     i5.setName(recipe_ing5.toLowerCase());
                     s.save(i5);
                 }
-                
-                
+
+                Criteria cm5 = s.createCriteria(MyIngredient.class);
+                cm5.add(Restrictions.eq("ingredient", i5));
+                List<MyIngredient> mi5_list = cm5.list();
+
+                for (MyIngredient mi : mi5_list) {
+                    if (ul.getUser() != mi.getUser()) {
+                        Notification n = new Notification();
+                        n.setDate(new Date());
+                        n.setCategory("New Recipe Posted");
+                        n.setStatus("Unread");
+                        n.setUser(mi.getUser());
+                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i5.getName() + " has been posted by " + ul.getUser().getFname());
+                        s.save(n);
+                    }
+                }
 
                 if (recipe_ing1 != null) {
                     Unit u1 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing1_unit));
@@ -349,7 +432,7 @@ public class PostRecipe extends HttpServlet {
                     rhi4.setUnit(u4);
                     s.save(rhi4);
                 }
-                
+
                 if (recipe_ing5 != null) {
                     Unit u5 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing5_unit));
 
@@ -361,18 +444,14 @@ public class PostRecipe extends HttpServlet {
                     rhi5.setUnit(u5);
                     s.save(rhi5);
                 }
-                
-                
+
                 t.commit();
-                
+
                 response.sendRedirect("user_post_new_recipe.jsp?msg=success");
-                
 
             } else {
                 response.sendRedirect("user_post_new_recipe.jsp?msg=exists");
             }
-            
-            
 
         } catch (Exception e) {
             throw new ServletException(e);

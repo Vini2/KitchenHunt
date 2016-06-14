@@ -38,10 +38,9 @@
         <script type="text/javascript" src="js/myjavascript.js"></script>
 
 
-
     </head>
     <body>
-        
+
 
         <!--Beginning of navigation bar-->
         <nav class="navbar navbar-inverse">
@@ -55,7 +54,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!--<img alt="Brand" src="images/KitchenHunt.png" height="32" width="auto">-->
-                    <a class="navbar-brand" href="index.jsp">Kitchen Hunt</a>
+                    <a class="navbar-brand" href="index.jsp">
+                        <img alt="Kitchen Hunt" src="images/KitchenHunt.png" height="30" width="auto">
+                    </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -112,7 +113,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Mobile:</label>
-                                <input type="number" class="form-control" name="signup_mobile" id="idmobile" required>
+                                <input type="text" class="form-control" name="signup_mobile" id="idmobile" onKeyPress="return numbersonly(this, event)" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address:</label>
