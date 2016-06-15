@@ -255,7 +255,7 @@ and open the template in the editor.
 
                     <form action="GeneralSearch" method="POST">
                         <div class="form-group">
-                            <input type="text" name="search" id="tags" class="form-control" placeholder="Search Kitchen Hunt..."/>
+                            <input type="text" name="search" id="tags" class="form-control" placeholder="Search Kitchen Hunt..." required/>
                         </div>
 
                         <div class="form-group">
@@ -448,9 +448,8 @@ and open the template in the editor.
         <div class="footer-right">
 
                 <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+                <a href="https://twitter.com/kitchenhuntr" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://github.com/Vini2/KitchenHunt" target="_blank"><i class="fa fa-github"></i></a>
 
             </div>
 
@@ -459,9 +458,7 @@ and open the template in the editor.
                 <p class="footer-links">
                     <a href="index.jsp">Home</a>
                     ·
-                    <a href="recipe_search.jsp">Recipe Search</a>
-                    ·
-                    <a href="help.jsp">Help</a>
+                    <a href="recipe_search.jsp">Recipes</a>
                     ·
                     <a href="about.jsp">About</a>
                     ·

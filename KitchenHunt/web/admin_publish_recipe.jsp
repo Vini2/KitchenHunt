@@ -1,13 +1,9 @@
 <%-- 
-    Document   : admin_manage_admins
-    Created on : Jun 15, 2016, 1:25:03 AM
+    Document   : admin_publish_recipe
+    Created on : Jun 15, 2016, 2:06:10 PM
     Author     : User
 --%>
 
-<%@page import="HibFiles.Image"%>
-<%@page import="HibFiles.RecipeHasIngredient"%>
-<%@page import="java.util.Set"%>
-<%@page import="java.util.Iterator"%>
 <%@page import="HibFiles.Recipe"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
@@ -103,7 +99,7 @@
                     <ul class="nav nav-stacked">
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
                             <ul class="nav nav-stacked collapse" id="userMenu">
-                                <li><a href="admin_publish_recipe.jsp">Publish Recipes</a></li>
+                                <li><a href="admin_publish_recipe.jsp">Publish Recipes <span class="glyphicon glyphicon-chevron-right"></span></a></li>
                                 <li><a href="admin_manage_category.jsp">Manage Categories</a></li>
 
                             </ul>
@@ -112,7 +108,7 @@
 
                             <ul class="nav nav-stacked collapse in" id="menu2">
                                 <li><a href="admin_manage_users.jsp">Manage Users</a></li>
-                                <li><a href="admin_manage_admins.jsp">Manage Administrators <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                <li><a href="admin_manage_admins.jsp">Manage Administrators</a></li>
                             </ul>
                         </li>
 
@@ -130,65 +126,46 @@
 
                     <div class="row">
 
+                        <%                            
+                            Criteria c1 = s.createCriteria(Recipe.class);
+                            c1.add(Restrictions.eq("status", "New"));
+                            List<Recipe> r_list = c1.list();
+
+                        %>
+
                         <div class="col-md-12">
 
-                            <%                                Criteria c = s.createCriteria(User.class);
-                                c.addOrder(Order.asc("fname"));
-                                List<User> u_list = c.list();
-                            %>
-
+                            <%if (r_list.size() != 0) {%>
                             <table class="table table-striped">
-
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Registered Date</th>
-                                        <th>Mobile</th>
-                                        <th>Make Administrator</th>
+                                        <th>Recipe Name</th>
+                                        <th>Posted By</th>
+                                        <th>View Recipe</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%
-                                        for (User user : u_list) {
-
-                                            Set<UserLogin> user_set = user.getUserLogins();
-                                            Iterator iter = user_set.iterator();
-                                            UserLogin user_ul = (UserLogin) iter.next();
-                                            
-                                            String logged_in = ul.getUser().getIduser()+"";
-                                            String us = user.getIduser()+"";
-
-                                            if (!logged_in.equals(us)) {
+                                        for (Recipe recipe : r_list) {
                                     %>
                                     <tr>
+                                        <td><%=recipe.getName()%></td>
+                                        <td><%=recipe.getUser().getFname()%></td>
                                         <td>
-                                            <%=user.getFname()%> 
-                                            <%if (user.getUserType().getTypeName().equals("Admin")) {%>
-                                            (Administrator)
-                                            <%}%>
-                                        </td>
-                                        <td><%=user.getRegisterDate()%></td>
-                                        <td><%=user.getMobile()%></td>
-                                        <td>
-                                            <%if (user_ul.getSystemStatus().getStatusName().equals("Active")) {
-                                                    if (user.getUserType().getTypeName().equals("User")) {
-                                            %>
-                                            <a href="MakeAdmin?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Make Administrator</a>
-                                            <%} else if (user.getUserType().getTypeName().equals("Admin")) {%>
-                                            <a href="RemoveAdmin?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Remove Administrator</a>
-                                            <%}
-                                                }%>
+                                            <a href="admin_view_recipe.jsp?rid=<%=recipe.getIdrecipe()%>" class="btn btn-primary" role="button">View</a> 
                                         </td>
                                     </tr>
 
 
-                                    <%}
-                                        }%>
+                                    <%}%>
                                 </tbody>
                             </table>
+                            <%} else {%>
+                            No pending recipes
+                            <%}%>
 
                         </div>
-                        
+                        <br><br><br><br><br><br><br><br>
 
                     </div>
 
@@ -201,8 +178,8 @@
     </div>
     <!-- /Main -->
 
+    <br><br><br><br><br><br><br><br><br><br><br><br>
 
-    <br><br><br><br><br><br><br><br>
 
     <!--Beginning of footer-->
     <footer class="footer-distributed">
@@ -242,4 +219,3 @@
     <script src="js/scripts.js"></script>
 </body>
 </html>
-

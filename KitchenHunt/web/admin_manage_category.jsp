@@ -87,7 +87,7 @@
                 <div class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav navbar-right">
-                        
+
                         <li><a href="AdminSignOut"><i class="glyphicon glyphicon-lock"></i> Sign Out</a></li>
                     </ul>
                 </div>
@@ -134,8 +134,7 @@
 
                         <div class="col-md-12">
 
-                            <%                                
-                                if (request.getParameter("msg") != null) {
+                            <%                                if (request.getParameter("msg") != null) {
                                     if (request.getParameter("msg").equals("success")) {
                             %>
                             <div class="alert alert-success fade in">
@@ -155,7 +154,7 @@
                                 <strong>Error!</strong> An error occurred while adding the category.
                             </div>
                             <%}
-                        }%>
+                                }%>
 
 
                             <div class="row">
@@ -257,7 +256,7 @@
                                 </div>
                             </div>
                             <hr>
-                            
+
                             <div class="row">
                                 <div align="center"><h1><small id="">Unit </small></h1></div>
                                 <br>
@@ -312,9 +311,8 @@
         <div class="footer-right">
 
             <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-github"></i></a>
+            <a href="https://twitter.com/kitchenhuntr" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://github.com/Vini2/KitchenHunt" target="_blank"><i class="fa fa-github"></i></a>
 
         </div>
 
@@ -323,9 +321,7 @@
             <p class="footer-links">
                 <a href="index.jsp">Home</a>
                 ·
-                <a href="recipe_search.jsp">Recipe Search</a>
-                ·
-                <a href="help.jsp">Help</a>
+                <a href="recipe_search.jsp">Recipes</a>
                 ·
                 <a href="about.jsp">About</a>
                 ·

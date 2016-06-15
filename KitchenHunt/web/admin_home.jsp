@@ -79,7 +79,7 @@
                 <div class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav navbar-right">
-                        
+
                         <li><a href="AdminSignOut"><i class="glyphicon glyphicon-lock"></i> Sign Out</a></li>
                     </ul>
                 </div>
@@ -136,6 +136,7 @@
                                     <h4>New Users Registered Today <span class="badge pull-right"><%=u_list.size()%></span></h4>
                                 </div>
                                 <div class="panel-body">
+                                    <%if (u_list.size() != 0) {%>
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -158,6 +159,9 @@
                                             <%}%>
                                         </tbody>
                                     </table>
+                                    <%} else {%>
+                                    No new users
+                                    <%}%>
                                 </div>
                             </div>
 
@@ -171,6 +175,7 @@
                                     <h4>New Recipes Pending to be Published <span class="badge pull-right"><%=r_list.size()%></span></h4>
                                 </div>
                                 <div class="panel-body">
+                                    <%if (r_list.size() != 0) {%>
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -195,6 +200,9 @@
                                             <%}%>
                                         </tbody>
                                     </table>
+                                    <%} else {%>
+                                    No pending recipes
+                                    <%}%>
                                 </div>
                             </div>
 
@@ -471,9 +479,8 @@
             <div class="footer-right">
 
                 <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+                <a href="https://twitter.com/kitchenhuntr" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://github.com/Vini2/KitchenHunt" target="_blank"><i class="fa fa-github"></i></a>
 
             </div>
 
@@ -482,9 +489,7 @@
                 <p class="footer-links">
                     <a href="index.jsp">Home</a>
                     ·
-                    <a href="recipe_search.jsp">Recipe Search</a>
-                    ·
-                    <a href="help.jsp">Help</a>
+                    <a href="recipe_search.jsp">Recipes</a>
                     ·
                     <a href="about.jsp">About</a>
                     ·

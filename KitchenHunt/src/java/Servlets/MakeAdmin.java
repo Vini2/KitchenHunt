@@ -5,26 +5,28 @@
  */
 package Servlets;
 
-import HibFiles.Comment;
-import HibFiles.Notification;
 import HibFiles.PoolManager;
-import HibFiles.Recipe;
-import HibFiles.UserLogin;
+import HibFiles.SystemStatus;
+import HibFiles.User;
+import HibFiles.UserType;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author User
  */
-public class PostComment extends HttpServlet {
+public class MakeAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,59 +40,29 @@ public class PostComment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         PrintWriter out = response.getWriter();
 
         try {
 
-            //Get attributes from http request
-            String rid = request.getParameter("rid");
-            String comment = request.getParameter("comment");
+            String id = request.getParameter("id");
 
-            System.out.println(rid);
-            System.out.println(comment);
-
-            String msg = "";
-
-            //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
-
-            //Initiate transaction
             Transaction t = s.beginTransaction();
+            
+            User u = (User) s.load(User.class, Integer.parseInt(id));
+            
+            Criteria c = s.createCriteria(UserType.class);
+            c.add(Restrictions.eq("typeName", "Admin"));
+            UserType ut = (UserType) c.uniqueResult();
+            
+            u.setUserType(ut);
 
-            //Load recipe with given rid
-            Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(rid));
-
-            //Get currently logged in user
-            UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
-
-            Comment com = new Comment();
-            com.setRecipe(r);
-            com.setCommentDesc(comment);
-            com.setDate(new Date());
-            com.setTime(new Date());
-            com.setUser(ul.getUser());
-
-            s.save(com);
-
-            String logged_in = ul.getUser().getIduser() + "";
-            String us = r.getUser().getIduser() + "";
-
-            if (!logged_in.equals(us)) {
-
-                Notification n = new Notification();
-                n.setCategory("Comment on Recipe");
-                n.setDate(new Date());
-                n.setUser(r.getUser());
-                n.setStatus("Unread");
-                n.setNotification(ul.getUser().getFname() + " commented on your recipe " + r.getName() + " : " + comment);
-
-                s.save(n);
-            }
+            s.update(u);
+            
             t.commit();
 
-            msg = "success";
-
-            out.write(msg);
+            response.sendRedirect("admin_manage_admins.jsp");
 
         } catch (Exception e) {
             throw new ServletException();

@@ -92,6 +92,26 @@
         <servlet-name>AdminAddNewUnit</servlet-name>
         <servlet-class>Servlets.AdminAddNewUnit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveRecipe</servlet-name>
+        <servlet-class>Servlets.RemoveRecipe</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeactivateAccount</servlet-name>
+        <servlet-class>Servlets.DeactivateAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActivateAccount</servlet-name>
+        <servlet-class>Servlets.ActivateAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MakeAdmin</servlet-name>
+        <servlet-class>Servlets.MakeAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveAdmin</servlet-name>
+        <servlet-class>Servlets.RemoveAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -183,6 +203,26 @@
     <servlet-mapping>
         <servlet-name>AdminAddNewUnit</servlet-name>
         <url-pattern>/AdminAddNewUnit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveRecipe</servlet-name>
+        <url-pattern>/RemoveRecipe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeactivateAccount</servlet-name>
+        <url-pattern>/DeactivateAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActivateAccount</servlet-name>
+        <url-pattern>/ActivateAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MakeAdmin</servlet-name>
+        <url-pattern>/MakeAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveAdmin</servlet-name>
+        <url-pattern>/RemoveAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

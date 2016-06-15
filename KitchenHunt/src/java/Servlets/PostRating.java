@@ -98,15 +98,20 @@ public class PostRating extends HttpServlet {
                 r.setRatedCount(rl.size());
                 s.update(r);
 
-                Notification n = new Notification();
-                n.setCategory("Rate on Recipe");
-                n.setDate(new Date());
-                n.setUser(r.getUser());
-                n.setStatus("Unread");
-                n.setNotification(ul.getUser().getFname() + " rated your recipe " + r.getName() + ".");
+                String logged_in = ul.getUser().getIduser() + "";
+                String us = r.getUser().getIduser() + "";
 
-                s.save(n);
+                if (!logged_in.equals(us)) {
 
+                    Notification n = new Notification();
+                    n.setCategory("Rate on Recipe");
+                    n.setDate(new Date());
+                    n.setUser(r.getUser());
+                    n.setStatus("Unread");
+                    n.setNotification(ul.getUser().getFname() + " rated your recipe " + r.getName() + ".");
+
+                    s.save(n);
+                }
                 t.commit();
 
                 msg = "success";

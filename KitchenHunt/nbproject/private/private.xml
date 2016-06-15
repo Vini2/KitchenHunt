@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/src/java/HibFiles/Notification.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/src/java/Servlets/RecipeSearch.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/src/java/Servlets/PostRecipe.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/src/java/Servlets/test.java</file>
+            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/user_notifications.jsp</file>
+            <file>file:/C:/Users/User/Documents/GitHub/KitchenHunt/KitchenHunt/web/admin_manage_admins.jsp</file>
         </group>
     </open-files>
 </project-private>

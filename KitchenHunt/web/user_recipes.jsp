@@ -123,7 +123,7 @@
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
                                 <li><a href="user_ingredients.jsp">My Ingredients</a></li>
                                 <li><a href="user_add_new_category.jsp">Add New Category</a></li>
-                                
+
 
                                 <%
 
@@ -181,7 +181,7 @@
                         <strong>Error!</strong> An error occurred while removing the recipe from My Kitchen.
                     </div>
                     <%}
-            }%>
+                        }%>
 
 
                     <div class="row">
@@ -197,7 +197,7 @@
 
                             for (Recipe r : r_list) {
                         %>
-                        
+
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
 
@@ -222,8 +222,14 @@
                                     <!--Cuisine Style-->
                                     <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
 
+                                    <%
+                                        if (r.getStatus().equals("Published")) {
+                                    %>
                                     <!--View Recipe button-->
                                     <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default btn-block" role="button">View Recipe</a> 
+                                        <%} else if (r.getStatus().equals("New")) {%>
+                                    <p><a href="#" class="btn btn-default btn-block" role="button" disabled>To be Moderated</a> 
+                                        <%}%>
 
                                 </div>
                             </div>
@@ -248,7 +254,7 @@
                             for (MyKitchen mk : mk_list) {
                                 Recipe r = mk.getRecipe();
                         %>
-                        
+
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
 
@@ -279,7 +285,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <%}%>
                     </div>
 
@@ -298,9 +304,8 @@
             <div class="footer-right">
 
                 <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+                <a href="https://twitter.com/kitchenhuntr" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://github.com/Vini2/KitchenHunt" target="_blank"><i class="fa fa-github"></i></a>
 
             </div>
 
@@ -309,9 +314,7 @@
                 <p class="footer-links">
                     <a href="index.jsp">Home</a>
                     ·
-                    <a href="recipe_search.jsp">Recipe Search</a>
-                    ·
-                    <a href="help.jsp">Help</a>
+                    <a href="recipe_search.jsp">Recipes</a>
                     ·
                     <a href="about.jsp">About</a>
                     ·

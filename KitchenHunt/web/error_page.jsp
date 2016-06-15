@@ -194,7 +194,7 @@
             <div class="jumbotron">
                 <h1>Page Not Found!</h1> 
                 <p>Seems like the content you are searching for is not available...</p> <br>
-                <img src="images/404.png" alt="" height="300px" width="auto">
+                <img src="images/404.png" alt="" class="img-responsive" height="300px" width="auto">
             </div>
         </div>
 
@@ -205,9 +205,8 @@
             <div class="footer-right">
 
                 <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-github"></i></a>
+                <a href="https://twitter.com/kitchenhuntr" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://github.com/Vini2/KitchenHunt" target="_blank"><i class="fa fa-github"></i></a>
 
             </div>
 
@@ -216,9 +215,7 @@
                 <p class="footer-links">
                     <a href="index.jsp">Home</a>
                     ·
-                    <a href="recipe_search.jsp">Recipe Search</a>
-                    ·
-                    <a href="help.jsp">Help</a>
+                    <a href="recipe_search.jsp">Recipes</a>
                     ·
                     <a href="about.jsp">About</a>
                     ·

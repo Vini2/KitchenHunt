@@ -9,6 +9,7 @@ import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,7 @@ public class GeneralSearch extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
 
         try {
@@ -44,14 +45,16 @@ public class GeneralSearch extends HttpServlet {
             String a = request.getParameter("search");
             String b = a.trim();
 
+            ArrayList recipe_list = new ArrayList();
+
             if (b.equals("")) {
                 response.sendRedirect("error_page.jsp");
             } else {
 
                 try {
-                    
+
                     String name = request.getParameter("search");
-                    
+
                     System.out.println(name);
 
                     Session s = PoolManager.getSessionFactory().openSession();
@@ -61,21 +64,28 @@ public class GeneralSearch extends HttpServlet {
                     c.add(Restrictions.eq("name", name));
                     Recipe r = (Recipe) c.uniqueResult();
 
-                    if (r == null) {
+                    if (r != null) {
+                        recipe_list.add(r);
                         response.sendRedirect("error_page.jsp");
+
+                    }
+
+                    request.getSession().removeAttribute("recipeList");
+
+                    request.getSession().setAttribute("recipeList", recipe_list);
+
+                    if (recipe_list.size() == 0) {
+                        response.sendRedirect("recipe_search.jsp");
                     } else {
                         response.sendRedirect("view_recipe.jsp?rid=" + r.getIdrecipe());
-                        
+
                     }
-                    
+
                 } catch (ArrayIndexOutOfBoundsException ae) {
                     response.sendRedirect("error_page.jsp");
                 }
 
-
             }
-
-
 
         } catch (Exception e) {
             throw new ServletException(e);

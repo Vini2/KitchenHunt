@@ -13,6 +13,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.hibernate.criterion.Restrictions"%>
 <%@page import="org.hibernate.Criteria"%>
+<%@page import="org.hibernate.criterion.Order"%>
 <%@page import="HibFiles.User"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="HibFiles.PoolManager"%>
@@ -84,7 +85,7 @@
                 <div class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav navbar-right">
-                        
+
                         <li><a href="AdminSignOut"><i class="glyphicon glyphicon-lock"></i> Sign Out</a></li>
                     </ul>
                 </div>
@@ -133,6 +134,7 @@
 
                             <%                                
                                 Criteria c = s.createCriteria(User.class);
+                                c.addOrder(Order.asc("fname"));
                                 List<User> u_list = c.list();
                             %>
 
@@ -152,6 +154,11 @@
                                             Set<UserLogin> user_set = user.getUserLogins();
                                             Iterator iter = user_set.iterator();
                                             UserLogin user_ul = (UserLogin) iter.next();
+                                            
+                                            String logged_in = ul.getUser().getIduser()+"";
+                                            String us = user.getIduser()+"";
+
+                                            if (!logged_in.equals(us)) {
                                     %>
                                     <tr>
                                         <td><%=user.getFname()%></td>
@@ -159,17 +166,17 @@
                                         <td><%=user.getMobile()%></td>
                                         <td>
                                             <%if (user_ul.getSystemStatus().getStatusName().equals("Active")) {%>
-                                            <a href="ActivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Deactivate</a> 
+                                            <a href="DeactivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Deactivate</a> 
                                             <%} else if (user_ul.getSystemStatus().getStatusName().equals("Deactivated")) {%>
-                                            <a href="DeactivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Activate</a>
+                                            <a href="ActivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Activate</a>
                                             <%} else if (user_ul.getSystemStatus().getStatusName().equals("Pending")) {%>
-                                            <a href="DeactivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Activate</a>
+                                            <a href="ActivateAccount?id=<%=user.getIduser()%>" class="btn btn-primary" role="button">Activate</a>
                                             <%}%>
                                         </td>
                                     </tr>
 
 
-                                    <%}%>
+                                    <%}}%>
                                 </tbody>
                             </table>
 
@@ -187,7 +194,7 @@
     <!-- /Main -->
 
 
-
+    <br><br><br><br><br><br><br><br>
 
     <!--Beginning of footer-->
     <footer class="footer-distributed">
@@ -195,9 +202,8 @@
         <div class="footer-right">
 
             <a href="https://www.facebook.com/kitchenhuntr/" target="_blank"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-github"></i></a>
+            <a href="https://twitter.com/kitchenhuntr" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://github.com/Vini2/KitchenHunt" target="_blank"><i class="fa fa-github"></i></a>
 
         </div>
 
@@ -206,9 +212,7 @@
             <p class="footer-links">
                 <a href="index.jsp">Home</a>
                 ·
-                <a href="recipe_search.jsp">Recipe Search</a>
-                ·
-                <a href="help.jsp">Help</a>
+                <a href="recipe_search.jsp">Recipes</a>
                 ·
                 <a href="about.jsp">About</a>
                 ·
