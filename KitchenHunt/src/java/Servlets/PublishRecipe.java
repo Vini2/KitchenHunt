@@ -10,6 +10,7 @@ import HibFiles.Notification;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import HibFiles.RecipeHasIngredient;
+import HibFiles.Request;
 import HibFiles.UserLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,6 +58,7 @@ public class PublishRecipe extends HttpServlet {
 
             s.update(r);
 
+            //Notify the user that the recipe was published
             Notification not = new Notification();
             not.setDate(new Date());
             not.setCategory("Recipe Published");
@@ -64,6 +66,27 @@ public class PublishRecipe extends HttpServlet {
             not.setUser(r.getUser());
             not.setNotification("Your recipe names " + r.getName() + " has been published successfully.");
             s.save(not);
+
+            //Check for requests posted for the recipe
+            Criteria cr = s.createCriteria(Request.class);
+            cr.add(Restrictions.eq("recipeName", r.getName()));
+            List<Request> req_list = cr.list();
+
+            for (Request request1 : req_list) {
+
+                //Notify requested users
+                Notification not1 = new Notification();
+                not1.setUser(request1.getUser());
+                not1.setCategory("Recipe posted for Request");
+                not1.setDate(new Date());
+                not1.setStatus("Unread");
+                not1.setNotification("A recipe named "+ r.getName() + " has been posted by " + r.getUser().getFname() + " in response to your request.");
+                s.save(not1);
+                
+                request1.setStatus("Responded");
+                s.update(request1);
+                
+            }
 
             Set<RecipeHasIngredient> ing_set = r.getRecipeHasIngredients();
 

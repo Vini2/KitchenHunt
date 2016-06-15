@@ -196,7 +196,9 @@
                             c.add(Restrictions.eq("user", u));
                             List<Recipe> r_list = c.list();
 
-                            for (Recipe r : r_list) {
+                            if (r_list.size() != 0) {
+
+                                for (Recipe r : r_list) {
                         %>
 
                         <div class="col-sm-6 col-md-4">
@@ -237,6 +239,9 @@
                         </div>
 
                         <%}%>
+                        <%} else {%>
+                        <div align="center">No recipes posted.</div>
+                        <%}%>
                     </div>
 
                     <div class="row">
@@ -252,8 +257,10 @@
                             c1.add(Restrictions.eq("user", u));
                             List<MyKitchen> mk_list = c1.list();
 
-                            for (MyKitchen mk : mk_list) {
-                                Recipe r = mk.getRecipe();
+                            if (mk_list.size() != 0) {
+
+                                for (MyKitchen mk : mk_list) {
+                                    Recipe r = mk.getRecipe();
                         %>
 
                         <div class="col-sm-6 col-md-4">
@@ -287,6 +294,9 @@
                             </div>
                         </div>
 
+                        <%}%>
+                        <%} else {%>
+                        <div align="center">No recipes saved.</div>
                         <%}%>
                     </div>
 

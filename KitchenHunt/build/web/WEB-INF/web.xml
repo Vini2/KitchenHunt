@@ -116,6 +116,10 @@
         <servlet-name>ForgotPassEmail</servlet-name>
         <servlet-class>Servlets.ForgotPassEmail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostRequest</servlet-name>
+        <servlet-class>Servlets.PostRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>ForgotPassEmail</servlet-name>
         <url-pattern>/ForgotPassEmail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostRequest</servlet-name>
+        <url-pattern>/PostRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

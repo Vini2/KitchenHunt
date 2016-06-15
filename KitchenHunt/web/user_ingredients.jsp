@@ -209,14 +209,19 @@
 
                                 if (mi_list.size() != 0) {
                             %>
-                            <ul class="list-group">
-                                <%
-                                    for (MyIngredient mi : mi_list) {
-                                        Ingredient i = mi.getIngredient();
-                                %>
-                                <li class="list-group-item"><%=i.getName()%></li>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <%
+                                        for (MyIngredient mi : mi_list) {
+                                            Ingredient i = mi.getIngredient();
+                                    %>
+
+                                    <tr>
+                                        <td><%=i.getName()%></td>
+                                    </tr>
                                     <%}%>
-                            </ul>
+                                </tbody>
+                            </table>
                             <%} else {%>
                             No ingredients added
                             <%}%>
@@ -225,11 +230,11 @@
                         <div class="col-sm-8">
                             <form action="AddMyIngredient" method="POST">
                                 <div class="form-group">
-                                    <input type="text" name="ing" id="iding" class="form-control" placeholder="Enter ingredient"/>
+                                    <input type="text" name="ing" id="iding" class="form-control" placeholder="Enter ingredient" required/>
                                 </div>
 
-                                <div class="form-group">
-                                    <button class="btn btn-default btn-block" type="submit">
+                                <div class="form-group" align="right">
+                                    <button class="btn btn-default" type="submit">
                                         <span class="glyphicon glyphicon-plus"></span> Add Ingredient
                                     </button>
                                 </div>

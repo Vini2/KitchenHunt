@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="HibFiles.Request"%>
 <%@page import="HibFiles.MyIngredient"%>
 <%@page import="HibFiles.Ingredient"%>
 <%@page import="HibFiles.Notification"%>
@@ -24,7 +25,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <title>Kitchen Hunt - My Ingredients</title>
+        <title>Kitchen Hunt - My Requests</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -187,45 +188,54 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Error!</strong> Ingredient you entered does not exist.
                     </div>
-                    
+
                     <%  } else if (request.getParameter("msg").equals("error")) {%>
                     <div class="alert alert-danger fade in">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Error!</strong> An error occurred while adding the ingredient.
                     </div>
                     <%}
-            }%>
+                        }%>
 
 
                     <div align="center"><h1><small id="">Request for a Recipe</small></h1></div>
                     <br>
                     <div class="row">
 
-                        <div class="col-sm-4">
-                            <ul class="list-group">
-                                <%
-                                    Criteria c1 = s1.createCriteria(MyIngredient.class);
-                                    c1.add(Restrictions.eq("user", u));
-                                    List<MyIngredient> mi_list = c1.list();
+                        <div class="col-sm-6">
+                            <%
+                                Criteria c1 = s1.createCriteria(Request.class);
+                                c1.add(Restrictions.eq("user", u));
+                                List<Request> req_list = c1.list();
 
-                                    for (MyIngredient mi : mi_list) {
-                                        Ingredient i = mi.getIngredient();
-                                %>
-                                <li class="list-group-item"><%=i.getName()%></li>
+                                if (req_list.size() != 0) {
+                            %>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <%for (Request req : req_list) {%>
+
+                                    <tr>
+                                        <td><%=req.getRecipeName()%></td>
+                                        <td><%=req.getStatus()%></td>
+                                    </tr>
+                                    
+
                                     <%}%>
-                            </ul>
+                                </tbody>
+                            </table>
+                            <%} else {%>
+                            No requests posted
+                            <%}%>
                         </div>
 
-                        <div class="col-sm-8">
-                            <form action="AddMyIngredient" method="POST">
+                        <div class="col-sm-6">
+                            <form action="PostRequest" method="POST">
                                 <div class="form-group">
-                                    <input type="text" name="ing" id="iding" class="form-control" placeholder="Enter ingredient"/>
+                                    <input type="text" name="req" id="req" class="form-control" placeholder="Enter recipe name" required/>
                                 </div>
 
-                                <div class="form-group">
-                                    <button class="btn btn-default btn-block" type="submit">
-                                        <span class="glyphicon glyphicon-plus"></span> Add Ingredient
-                                    </button>
+                                <div class="form-group" align="right">
+                                    <button class="btn btn-default" type="submit">Post Request</button>
                                 </div>
                             </form>
                         </div>

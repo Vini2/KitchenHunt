@@ -161,10 +161,14 @@
                                 <div align="center"><h1><small id="">Meal Type</small></h1></div>
                                 <br>
                                 <div class="col-sm-6">
+                                    <%
+                                        Criteria c1 = s.createCriteria(FoodCategory.class);
+                                        List<FoodCategory> lfc = c1.list();
+
+                                        if (lfc.size() != 0) {
+                                    %>
                                     <ul class="list-group">
                                         <%
-                                            Criteria c1 = s.createCriteria(FoodCategory.class);
-                                            List<FoodCategory> lfc = c1.list();
                                             for (FoodCategory fc : lfc) {
                                         %>
                                         <li class="list-group-item">
@@ -172,6 +176,9 @@
                                             <%=fc.getCategoryName()%></li>
                                             <%}%>
                                     </ul>
+                                    <%} else {%>
+                                    No categories found
+                                    <%}%>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -195,10 +202,15 @@
                                 <div align="center"><h1><small id="">Cuisine Style </small></h1></div>
                                 <br>
                                 <div class="col-sm-6">
+
+                                    <%
+                                        Criteria c2 = s.createCriteria(CuisineCategory.class);
+                                        List<CuisineCategory> lcs = c2.list();
+
+                                        if (lcs.size() != 0) {
+                                    %>
                                     <ul class="list-group">
                                         <%
-                                            Criteria c2 = s.createCriteria(CuisineCategory.class);
-                                            List<CuisineCategory> lcs = c2.list();
                                             for (CuisineCategory cc : lcs) {
                                         %>
                                         <li class="list-group-item">
@@ -206,6 +218,9 @@
                                             <%=cc.getCuisineName()%></li>
                                             <%}%>
                                     </ul>
+                                    <%} else {%>
+                                    No categories found
+                                    <%}%>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -228,10 +243,14 @@
                                 <div align="center"><h1><small id="">Health Category</small></h1></div>
                                 <br>
                                 <div class="col-sm-6">
+                                    <%
+                                        Criteria c3 = s.createCriteria(HealthCategory.class);
+                                        List<HealthCategory> lhc = c3.list();
+
+                                        if (lhc.size() != 0) {
+                                    %>
                                     <ul class="list-group">
                                         <%
-                                            Criteria c3 = s.createCriteria(HealthCategory.class);
-                                            List<HealthCategory> lhc = c3.list();
                                             for (HealthCategory hc : lhc) {
                                         %>
                                         <li class="list-group-item">
@@ -239,6 +258,9 @@
                                             <%=hc.getCategoryName()%></li>
                                             <%}%>
                                     </ul>
+                                    <%} else {%>
+                                    No categories found
+                                    <%}%>
                                 </div>
 
                                 <div class="col-sm-6">

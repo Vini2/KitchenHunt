@@ -356,10 +356,10 @@
                                 <label class="control-label col-sm-3" disabled>Ingredient 2:</label>
 
                                 <div class="col-xs-4 col-md-4">
-                                    <input type="text" class="form-control" id="recipe_ing2" name="recipe_ing2" onKeyPress="return numbersonly(this, event)" placeholder="Ingredient Name" value="">
+                                    <input type="text" class="form-control" id="recipe_ing2" name="recipe_ing2" placeholder="Ingredient Name" value="">
                                 </div>
                                 <div class="col-xs-3 col-md-3">
-                                    <input type="text" class="form-control" id="recipe_ing2_qty" name="recipe_ing2_qty" placeholder="Quantity" value="">
+                                    <input type="text" class="form-control" id="recipe_ing2_qty" name="recipe_ing2_qty" onKeyPress="return numbersonly(this, event)" placeholder="Quantity" value="">
 
                                 </div>
                                 <div class="col-xs-2 col-md-2">

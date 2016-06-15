@@ -202,11 +202,15 @@
 
                                 if (lfc.size() != 0) {
                             %>
-                            <ul class="list-group">
-                                <%for (FoodCategory fc : lfc) {%>
-                                <li class="list-group-item"><%=fc.getCategoryName()%></li>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <%for (FoodCategory fc : lfc) {%>
+                                    <tr>
+                                        <td><%=fc.getCategoryName()%></td>
+                                    </tr>
                                     <%}%>
-                            </ul>
+                                </tbody>
+                            </table>
                             <%} else {%>
                             No categories found
                             <%}%>
@@ -218,8 +222,8 @@
                                     <input type="text" name="meal" id="idmeal" class="form-control" placeholder="Enter meal type" required/>
                                 </div>
 
-                                <div class="form-group">
-                                    <button class="btn btn-default btn-block" type="submit">
+                                <div class="form-group" align="right">
+                                    <button class="btn btn-default" type="submit">
                                         <span class="glyphicon glyphicon-plus"></span> Add New Meal Type
                                     </button>
                                 </div>
@@ -239,11 +243,15 @@
 
                                 if (lcs.size() != 0) {
                             %>
-                            <ul class="list-group">
-                                <%for (CuisineCategory cc : lcs) {%>
-                                <li class="list-group-item"><%=cc.getCuisineName()%></li>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <%for (CuisineCategory cc : lcs) {%>
+                                    <tr>
+                                        <td><%=cc.getCuisineName()%></td>
+                                    </tr>
                                     <%}%>
-                            </ul>
+                                </tbody>
+                            </table>
                             <%} else {%>
                             No categories found
                             <%}%>
@@ -255,8 +263,8 @@
                                     <input type="text" name="cuisine" id="idcuisine" class="form-control" placeholder="Enter cuisine style" required/>
                                 </div>
 
-                                <div class="form-group">
-                                    <button class="btn btn-default btn-block" type="submit">
+                                <div class="form-group" align="right">
+                                    <button class="btn btn-default" type="submit">
                                         <span class="glyphicon glyphicon-plus"></span> Add New Cuisine Style
                                     </button>
                                 </div>
@@ -275,11 +283,15 @@
 
                                 if (lhc.size() != 0) {
                             %>
-                            <ul class="list-group">
-                                <%for (HealthCategory hc : lhc) {%>
-                                <li class="list-group-item"><%=hc.getCategoryName()%></li>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <%for (HealthCategory hc : lhc) {%>
+                                    <tr>
+                                        <td><%=hc.getCategoryName()%></td>
+                                    </tr>
                                     <%}%>
-                            </ul>
+                                </tbody>
+                            </table>
                             <%} else {%>
                             No categories found
                             <%}%>
@@ -291,8 +303,8 @@
                                     <input type="text" name="health" id="idhealth" class="form-control" placeholder="Enter health category" required/>
                                 </div>
 
-                                <div class="form-group">
-                                    <button class="btn btn-default btn-block" type="submit">
+                                <div class="form-group" align="right">
+                                    <button class="btn btn-default" type="submit">
                                         <span class="glyphicon glyphicon-plus"></span> Add New Health Category
                                     </button>
                                 </div>

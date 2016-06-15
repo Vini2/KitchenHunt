@@ -15,6 +15,7 @@ import HibFiles.Notification;
 import HibFiles.PoolManager;
 import HibFiles.Recipe;
 import HibFiles.RecipeHasIngredient;
+import HibFiles.Request;
 import HibFiles.Unit;
 import HibFiles.UserLogin;
 import java.io.File;
@@ -248,7 +249,8 @@ public class PostRecipe extends HttpServlet {
                 im.setRecipe(r);
 
                 s.save(im);
-
+                
+                
                 //Save ingredient 1
                 Criteria c1 = s.createCriteria(Ingredient.class);
                 c1.add(Restrictions.eq("name", recipe_ing1));
@@ -260,25 +262,6 @@ public class PostRecipe extends HttpServlet {
                     s.save(i1);
                 }
 
-                Criteria cm1 = s.createCriteria(MyIngredient.class);
-                cm1.add(Restrictions.eq("ingredient", i1));
-                List<MyIngredient> mi1_list = cm1.list();
-
-                for (MyIngredient mi : mi1_list) {
-                    
-                    String logged_in = ul.getUser().getIduser() + "";
-                    String us = mi.getUser().getIduser() + "";
-                    
-                    if (!logged_in.equals(us)) {
-                        Notification n = new Notification();
-                        n.setDate(new Date());
-                        n.setCategory("New Recipe Posted");
-                        n.setStatus("Unread");
-                        n.setUser(mi.getUser());
-                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i1.getName() + " has been posted by " + ul.getUser().getFname());
-                        s.save(n);
-                    }
-                }
 
                 //save ingredient 2
                 Criteria c2 = s.createCriteria(Ingredient.class);
@@ -291,25 +274,7 @@ public class PostRecipe extends HttpServlet {
                     s.save(i2);
                 }
 
-                Criteria cm2 = s.createCriteria(MyIngredient.class);
-                cm2.add(Restrictions.eq("ingredient", i2));
-                List<MyIngredient> mi2_list = cm2.list();
-
-                for (MyIngredient mi : mi2_list) {
-                    String logged_in = ul.getUser().getIduser() + "";
-                    String us = mi.getUser().getIduser() + "";
-                    
-                    if (!logged_in.equals(us)) {
-                        Notification n = new Notification();
-                        n.setDate(new Date());
-                        n.setCategory("New Recipe Posted");
-                        n.setStatus("Unread");
-                        n.setUser(mi.getUser());
-                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i2.getName() + " has been posted by " + ul.getUser().getFname());
-                        s.save(n);
-                    }
-                }
-
+                
                 //save ingredient 3
                 Criteria c3 = s.createCriteria(Ingredient.class);
                 c3.add(Restrictions.eq("name", recipe_ing3));
@@ -321,25 +286,7 @@ public class PostRecipe extends HttpServlet {
                     s.save(i3);
                 }
 
-                Criteria cm3 = s.createCriteria(MyIngredient.class);
-                cm3.add(Restrictions.eq("ingredient", i3));
-                List<MyIngredient> mi3_list = cm3.list();
-
-                for (MyIngredient mi : mi3_list) {
-                    String logged_in = ul.getUser().getIduser() + "";
-                    String us = mi.getUser().getIduser() + "";
-                    
-                    if (!logged_in.equals(us)) {
-                        Notification n = new Notification();
-                        n.setDate(new Date());
-                        n.setCategory("New Recipe Posted");
-                        n.setStatus("Unread");
-                        n.setUser(mi.getUser());
-                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i3.getName() + " has been posted by " + ul.getUser().getFname());
-                        s.save(n);
-                    }
-                }
-
+                
                 //Save ingredient 4
                 Criteria c4 = s.createCriteria(Ingredient.class);
                 c4.add(Restrictions.eq("name", recipe_ing4));
@@ -351,25 +298,7 @@ public class PostRecipe extends HttpServlet {
                     s.save(i4);
                 }
 
-                Criteria cm4 = s.createCriteria(MyIngredient.class);
-                cm4.add(Restrictions.eq("ingredient", i4));
-                List<MyIngredient> mi4_list = cm4.list();
-
-                for (MyIngredient mi : mi4_list) {
-                    String logged_in = ul.getUser().getIduser() + "";
-                    String us = mi.getUser().getIduser() + "";
-                    
-                    if (!logged_in.equals(us)) {
-                        Notification n = new Notification();
-                        n.setDate(new Date());
-                        n.setCategory("New Recipe Posted");
-                        n.setStatus("Unread");
-                        n.setUser(mi.getUser());
-                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i4.getName() + " has been posted by " + ul.getUser().getFname());
-                        s.save(n);
-                    }
-                }
-
+                
                 //Save ingredient 5
                 Criteria c5 = s.createCriteria(Ingredient.class);
                 c5.add(Restrictions.eq("name", recipe_ing5));
@@ -381,24 +310,7 @@ public class PostRecipe extends HttpServlet {
                     s.save(i5);
                 }
 
-                Criteria cm5 = s.createCriteria(MyIngredient.class);
-                cm5.add(Restrictions.eq("ingredient", i5));
-                List<MyIngredient> mi5_list = cm5.list();
-
-                for (MyIngredient mi : mi5_list) {
-                    String logged_in = ul.getUser().getIduser() + "";
-                    String us = mi.getUser().getIduser() + "";
-                    
-                    if (!logged_in.equals(us)) {
-                        Notification n = new Notification();
-                        n.setDate(new Date());
-                        n.setCategory("New Recipe Posted");
-                        n.setStatus("Unread");
-                        n.setUser(mi.getUser());
-                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + i5.getName() + " has been posted by " + ul.getUser().getFname());
-                        s.save(n);
-                    }
-                }
+                
 
                 if (recipe_ing1 != null) {
                     Unit u1 = (Unit) s.load(Unit.class, Integer.parseInt(recipe_ing1_unit));
