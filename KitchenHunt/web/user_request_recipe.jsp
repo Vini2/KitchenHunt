@@ -1,11 +1,12 @@
 <%-- 
-    Document   : user_recipes
-    Created on : Jun 11, 2016, 5:29:40 PM
+    Document   : user_request_recipe
+    Created on : Jun 15, 2016, 3:58:05 PM
     Author     : User
 --%>
 
+<%@page import="HibFiles.MyIngredient"%>
+<%@page import="HibFiles.Ingredient"%>
 <%@page import="HibFiles.Notification"%>
-<%@page import="HibFiles.MyKitchen"%>
 <%@page import="HibFiles.Image"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
@@ -23,7 +24,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <title>Kitchen Hunt - My Recipes</title>
+        <title>Kitchen Hunt - My Ingredients</title>
 
         <%
             response.setHeader("Cache-Control", "no-cache");
@@ -65,7 +66,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header"">
+                <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -88,7 +89,7 @@
                         <%
                             if (request.getSession().getAttribute("user") != null) {
                         %>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=u.getFname()%><span class="caret"></span></a>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%=ul.getUser().getFname()%><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="user_dashboard.jsp">My Kitchen Dashboard</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
@@ -119,19 +120,18 @@
                     <ul class="nav nav-stacked">
                         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><strong>Recipes</strong></a>
                             <ul class="nav nav-stacked collapse in" id="userMenu">
-                                <li class="active"><a href="user_recipes.jsp">My Recipes <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                <li class="active"><a href="user_recipes.jsp">My Recipes</a></li>
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
-                                <li><a href="user_request_recipe.jsp">Request Recipe</a></li>
+                                <li><a href="user_request_recipe.jsp">Request Recipe <span class="glyphicon glyphicon-chevron-right"></span></a></li>
                                 <li><a href="user_ingredients.jsp">My Ingredients</a></li>
                                 <li><a href="user_add_new_category.jsp">Add New Category</a></li>
 
-
                                 <%
 
-                                    Criteria cn = s1.createCriteria(Notification.class);
-                                    cn.add(Restrictions.eq("user", u));
-                                    cn.add(Restrictions.eq("status", "Unread"));
-                                    List<Notification> n_list = cn.list();
+                                    Criteria c = s1.createCriteria(Notification.class);
+                                    c.add(Restrictions.eq("user", u));
+                                    c.add(Restrictions.eq("status", "Unread"));
+                                    List<Notification> n_list = c.list();
 
                                     int len = n_list.size();
                                 %>
@@ -173,122 +173,66 @@
                     %>
                     <div class="alert alert-success fade in">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>Success!</strong> Recipe removed from My Kitchen successfully.
+                        <strong>Success!</strong> Ingredient added successfully.
                     </div>
 
+                    <%} else if (request.getParameter("msg").equals("exists")) {%>
+                    <div class="alert alert-warning fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Duplicate!</strong> Ingredient already exists.
+                    </div>
+
+                    <%  } else if (request.getParameter("msg").equals("notexists")) {%>
+                    <div class="alert alert-danger fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> Ingredient you entered does not exist.
+                    </div>
+                    
                     <%  } else if (request.getParameter("msg").equals("error")) {%>
                     <div class="alert alert-danger fade in">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>Error!</strong> An error occurred while removing the recipe from My Kitchen.
+                        <strong>Error!</strong> An error occurred while adding the ingredient.
                     </div>
                     <%}
-                        }%>
+            }%>
 
 
+                    <div align="center"><h1><small id="">Request for a Recipe</small></h1></div>
+                    <br>
                     <div class="row">
 
-                        <div align="center"><h1><small id="">My Posted Recipes</small></h1></div>
-                        <br>
-
-                        <%
-                            Session s = PoolManager.getSessionFactory().openSession();
-                            Criteria c = s.createCriteria(Recipe.class);
-                            c.add(Restrictions.eq("user", u));
-                            List<Recipe> r_list = c.list();
-
-                            for (Recipe r : r_list) {
-                        %>
-
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-
+                        <div class="col-sm-4">
+                            <ul class="list-group">
                                 <%
-                                    Set image_set = r.getImages();
-                                    Iterator iter = image_set.iterator();
-                                    Image im = (Image) iter.next();
+                                    Criteria c1 = s1.createCriteria(MyIngredient.class);
+                                    c1.add(Restrictions.eq("user", u));
+                                    List<MyIngredient> mi_list = c1.list();
+
+                                    for (MyIngredient mi : mi_list) {
+                                        Ingredient i = mi.getIngredient();
                                 %>
-
-                                <!--Image-->
-                                <%if (im != null) {%>
-                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
-                                <%}%>
-                                <div class="caption">
-
-                                    <!--Recipe name-->
-                                    <h3><%=r.getName()%></h3>
-
-                                    <!--Meal type-->
-                                    <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-
-                                    <!--Cuisine Style-->
-                                    <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
-
-                                    <%
-                                        if (r.getStatus().equals("Published")) {
-                                    %>
-                                    <!--View Recipe button-->
-                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default btn-block" role="button">View Recipe</a> 
-                                        <%} else if (r.getStatus().equals("New")) {%>
-                                    <p><a href="#" class="btn btn-default btn-block" role="button" disabled>To be Moderated</a> 
-                                        <%}%>
-
-                                </div>
-                            </div>
+                                <li class="list-group-item"><%=i.getName()%></li>
+                                    <%}%>
+                            </ul>
                         </div>
 
-                        <%}%>
-                    </div>
-
-                    <div class="row">
-
-                        <hr>
-
-                        <div align="center"><h1><small id="">My Kitchen Saved Recipes</small></h1></div>
-                        <br>
-
-
-                        <%
-                            Criteria c1 = s.createCriteria(MyKitchen.class);
-                            c1.add(Restrictions.eq("user", u));
-                            List<MyKitchen> mk_list = c1.list();
-
-                            for (MyKitchen mk : mk_list) {
-                                Recipe r = mk.getRecipe();
-                        %>
-
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-
-                                <%
-                                    Set image_set = r.getImages();
-                                    Iterator iter = image_set.iterator();
-                                    Image im = (Image) iter.next();
-                                %>
-
-                                <!--Image-->
-                                <%if (im != null) {%>
-                                <img src="<%=im.getPath()%>" alt="<%=r.getName()%>">
-                                <%}%>
-                                <div class="caption">
-
-                                    <!--Recipe name-->
-                                    <h3><%=r.getName()%></h3>
-
-                                    <!--Meal type-->
-                                    <p>Meal Type: <%=r.getFoodCategory().getCategoryName()%></p>
-
-                                    <!--Cuisine Style-->
-                                    <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
-
-                                    <!--View Recipe button-->
-                                    <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default btn-block" role="button">View Recipe</a> 
-                                    <p><a href="RemoveFromMyKitchen?rid=<%=r.getIdrecipe()%>" class="btn btn-danger btn-block" role="button">Remove Recipe</a></p>
+                        <div class="col-sm-8">
+                            <form action="AddMyIngredient" method="POST">
+                                <div class="form-group">
+                                    <input type="text" name="ing" id="iding" class="form-control" placeholder="Enter ingredient"/>
                                 </div>
-                            </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-default btn-block" type="submit">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Ingredient
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
-                        <%}%>
                     </div>
+
+
 
                 </div>
                 <!--/col-span-9-->
@@ -335,5 +279,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/sidebar.js"></script>
 </html>
+
+
 
 

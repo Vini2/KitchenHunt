@@ -118,6 +118,7 @@
                             <ul class="nav nav-stacked collapse in" id="userMenu">
                                 <li><a href="user_recipes.jsp">My Recipes</a></li>
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
+                                <li><a href="user_request_recipe.jsp">Request Recipe</a></li>
                                 <li><a href="user_ingredients.jsp">My Ingredients</a></li>
                                 <li><a href="user_add_new_category.jsp">Add New Category</a></li>
 

@@ -1,5 +1,5 @@
 package HibFiles;
-// Generated Jun 12, 2016 7:31:13 PM by Hibernate Tools 4.3.1
+// Generated Jun 15, 2016 6:41:39 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -25,6 +25,7 @@ public class User  implements java.io.Serializable {
      private Set<Recipe> recipes = new HashSet<Recipe>(0);
      private Set<UserLogin> userLogins = new HashSet<UserLogin>(0);
      private Set<Notification> notifications = new HashSet<Notification>(0);
+     private Set<Request> requests = new HashSet<Request>(0);
      private Set<Rating> ratings = new HashSet<Rating>(0);
 
     public User() {
@@ -34,7 +35,7 @@ public class User  implements java.io.Serializable {
     public User(UserType userType) {
         this.userType = userType;
     }
-    public User(UserType userType, String fname, String lname, String mobile, String address, Date registerDate, Set<MyIngredient> myIngredients, Set<MyKitchen> myKitchens, Set<Comment> comments, Set<Recipe> recipes, Set<UserLogin> userLogins, Set<Notification> notifications, Set<Rating> ratings) {
+    public User(UserType userType, String fname, String lname, String mobile, String address, Date registerDate, Set<MyIngredient> myIngredients, Set<MyKitchen> myKitchens, Set<Comment> comments, Set<Recipe> recipes, Set<UserLogin> userLogins, Set<Notification> notifications, Set<Request> requests, Set<Rating> ratings) {
        this.userType = userType;
        this.fname = fname;
        this.lname = lname;
@@ -47,6 +48,7 @@ public class User  implements java.io.Serializable {
        this.recipes = recipes;
        this.userLogins = userLogins;
        this.notifications = notifications;
+       this.requests = requests;
        this.ratings = ratings;
     }
    
@@ -140,6 +142,13 @@ public class User  implements java.io.Serializable {
     
     public void setNotifications(Set<Notification> notifications) {
         this.notifications = notifications;
+    }
+    public Set<Request> getRequests() {
+        return this.requests;
+    }
+    
+    public void setRequests(Set<Request> requests) {
+        this.requests = requests;
     }
     public Set<Rating> getRatings() {
         return this.ratings;

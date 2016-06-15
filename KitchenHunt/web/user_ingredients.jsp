@@ -122,6 +122,7 @@
                             <ul class="nav nav-stacked collapse in" id="userMenu">
                                 <li class="active"><a href="user_recipes.jsp">My Recipes</a></li>
                                 <li><a href="user_post_new_recipe.jsp">Post New Recipe</a></li>
+                                <li><a href="user_request_recipe.jsp">Request Recipe</a></li>
                                 <li><a href="user_ingredients.jsp">My Ingredients <span class="glyphicon glyphicon-chevron-right"></span></a></li>
                                 <li><a href="user_add_new_category.jsp">Add New Category</a></li>
 
@@ -186,14 +187,14 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Error!</strong> Ingredient you entered does not exist.
                     </div>
-                    
+
                     <%  } else if (request.getParameter("msg").equals("error")) {%>
                     <div class="alert alert-danger fade in">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Error!</strong> An error occurred while adding the ingredient.
                     </div>
                     <%}
-            }%>
+                        }%>
 
 
                     <div align="center"><h1><small id="">My Ingredients</small></h1></div>
@@ -201,18 +202,24 @@
                     <div class="row">
 
                         <div class="col-sm-4">
+                            <%
+                                Criteria c1 = s1.createCriteria(MyIngredient.class);
+                                c1.add(Restrictions.eq("user", u));
+                                List<MyIngredient> mi_list = c1.list();
+
+                                if (mi_list.size() != 0) {
+                            %>
                             <ul class="list-group">
                                 <%
-                                    Criteria c1 = s1.createCriteria(MyIngredient.class);
-                                    c1.add(Restrictions.eq("user", u));
-                                    List<MyIngredient> mi_list = c1.list();
-
                                     for (MyIngredient mi : mi_list) {
                                         Ingredient i = mi.getIngredient();
                                 %>
                                 <li class="list-group-item"><%=i.getName()%></li>
                                     <%}%>
                             </ul>
+                            <%} else {%>
+                            No ingredients added
+                            <%}%>
                         </div>
 
                         <div class="col-sm-8">

@@ -242,14 +242,7 @@ and open the template in the editor.
             <div class="row content">
                 <div class="col-sm-3 sidenav">
 
-                    <!--<div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Kitchen Hunt...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>-->
+                    
 
                     <!--Auto-complete search input-->
 
