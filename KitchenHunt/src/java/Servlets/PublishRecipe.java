@@ -74,18 +74,26 @@ public class PublishRecipe extends HttpServlet {
 
             for (Request request1 : req_list) {
 
-                //Notify requested users
-                Notification not1 = new Notification();
-                not1.setUser(request1.getUser());
-                not1.setCategory("Recipe posted for Request");
-                not1.setDate(new Date());
-                not1.setStatus("Unread");
-                not1.setNotification("A recipe named "+ r.getName() + " has been posted by " + r.getUser().getFname() + " in response to your request.");
-                s.save(not1);
-                
-                request1.setStatus("Responded");
-                s.update(request1);
-                
+                String posted_user1 = r.getUser().getIduser() + "";
+                String us1 = request1.getUser().getIduser() + "";
+
+                System.out.println(posted_user1 + " " + us1);
+
+                if (!posted_user1.equals(us1)) {
+
+                    //Notify requested users
+                    Notification not1 = new Notification();
+                    not1.setUser(request1.getUser());
+                    not1.setCategory("Recipe posted for Request");
+                    not1.setDate(new Date());
+                    not1.setStatus("Unread");
+                    not1.setNotification("A recipe named " + r.getName() + " has been posted by " + r.getUser().getFname() + " in response to your request.");
+                    s.save(not1);
+
+                    request1.setStatus("Responded");
+                    s.update(request1);
+                }
+
             }
 
             Set<RecipeHasIngredient> ing_set = r.getRecipeHasIngredients();

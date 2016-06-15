@@ -5,7 +5,9 @@
  */
 package Servlets;
 
+import HibFiles.FoodCategory;
 import HibFiles.PoolManager;
+import HibFiles.Recipe;
 import HibFiles.User;
 import HibFiles.UserLogin;
 import java.util.Iterator;
@@ -14,6 +16,7 @@ import java.util.Set;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -26,16 +29,20 @@ public class test {
         Session s = PoolManager.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
 
-        Criteria c = s.createCriteria(User.class);
-        List<User> u_list = c.list();
+        Criteria c0 = s.createCriteria(Recipe.class);
+        List<Recipe> recipe_list = c0.list();
 
-        for (User user : u_list) {
+        Criteria cfc = s.createCriteria(FoodCategory.class);
+        List<FoodCategory> fc_list = cfc.list();
 
+        for (FoodCategory fc : fc_list) {
+
+            Criteria cr1 = s.createCriteria(Recipe.class);
+            cr1.add(Restrictions.eq("foodCategory", fc));
+            List<Recipe> cr1_list = cr1.list();
             
-            Set<UserLogin> user_set = user.getUserLogins();
-            Iterator iter = user_set.iterator();
-            UserLogin user_ul = (UserLogin) iter.next();
-            
+            int perc = cr1_list.size()/recipe_list.size()*100;
+
         }
 
     }

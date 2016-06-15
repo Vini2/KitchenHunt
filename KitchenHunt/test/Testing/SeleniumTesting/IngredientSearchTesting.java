@@ -15,7 +15,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  *
  * @author User
  */
-public class GeneralSearchTest {
+
+
+/**
+ *
+ * @author User
+ */
+public class IngredientSearchTesting {
 
     @Test
     public void successfulLSearchTest() throws InterruptedException {
@@ -29,27 +35,21 @@ public class GeneralSearchTest {
         //Click on get started button
         driver.findElement(By.xpath("//*[@id=\"getStarted\"]/button")).click();
         
-        //Enter recipe name
-        driver.findElement(By.xpath("//*[@id=\"tags\"]")).sendKeys("Strawberry Milkshake");
+        //Enter ingredient
+        driver.findElement(By.xpath("//*[@id=\"recipe_inc_ing\"]")).sendKeys("strawberries");
         
         //Click on search button
-        driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/form[1]/div[2]/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"testform\"]/button")).click();
 
         Thread.sleep(2000);
         
-        //Get recipe name
-        String name = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/div/div/h2")).getText();
-
-        System.out.println("recipe name = " + name);
-        
-        //Check
-        Assert.assertTrue(name.equals("Strawberry Milkshake"));
         
     }
 
     public static void main(String[] args) throws InterruptedException {
-        GeneralSearchTest test = new GeneralSearchTest();
+        IngredientSearchTesting test = new IngredientSearchTesting();
         test.successfulLSearchTest();
     }
 
 }
+

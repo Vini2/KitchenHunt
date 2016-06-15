@@ -210,7 +210,13 @@
                         <strong>Duplicate!</strong> Recipe entered already exists.
                     </div>
 
-                    <%  } else if (request.getParameter("msg").equals("error")) {%>
+                    <%  } else if (request.getParameter("msg").equals("numex")) {%>
+                    <div class="alert alert-warning fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Number Format Exception!</strong> Please enter only numbers for quantities.
+                    </div>
+
+                    <%  }else if (request.getParameter("msg").equals("error")) {%>
                     <div class="alert alert-danger fade in">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Error!</strong> An error occurred while posting your recipe.
@@ -365,9 +371,7 @@
                                 <div class="col-xs-2 col-md-2">
                                     <select name="recipe_ing2_unit" id="recipe_ing2_unit" class="form-control" >
                                         <%
-                                            Criteria cu2 = s.createCriteria(Unit.class);
-                                            List<Unit> lu2 = cu2.list();
-                                            for (Unit u : lu2) {
+                                            for (Unit u : lu1) {
                                         %>
                                         <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
                                         <%}%>
@@ -387,9 +391,7 @@
                                 <div class="col-xs-2 col-md-2">
                                     <select name="recipe_ing3_unit" id="recipe_ing3_unit" class="form-control" >
                                         <%
-                                            Criteria cu3 = s.createCriteria(Unit.class);
-                                            List<Unit> lu3 = cu3.list();
-                                            for (Unit u : lu3) {
+                                            for (Unit u : lu1) {
                                         %>
                                         <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
                                         <%}%>
@@ -409,9 +411,7 @@
                                 <div class="col-xs-2 col-md-2">
                                     <select name="recipe_ing4_unit" id="recipe_ing4_unit" class="form-control" >
                                         <%
-                                            Criteria cu4 = s.createCriteria(Unit.class);
-                                            List<Unit> lu4 = cu4.list();
-                                            for (Unit u : lu4) {
+                                            for (Unit u : lu1) {
                                         %>
                                         <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
                                         <%}%>
@@ -431,9 +431,107 @@
                                 <div class="col-xs-2 col-md-2">
                                     <select name="recipe_ing5_unit" id="recipe_ing5_unit" class="form-control" >
                                         <%
-                                            Criteria cu5 = s.createCriteria(Unit.class);
-                                            List<Unit> lu5 = cu5.list();
-                                            for (Unit u : lu5) {
+                                            for (Unit u : lu1) {
+                                        %>
+                                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3" disabled>Ingredient 6:</label>
+
+                                <div class="col-xs-4 col-md-4">
+                                    <input type="text" class="form-control" id="recipe_ing6" name="recipe_ing6" placeholder="Ingredient Name" value="">
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <input type="text" class="form-control" id="recipe_ing6_qty" name="recipe_ing6_qty" onKeyPress="return numbersonly(this, event)" placeholder="Quantity" value="">
+
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <select name="recipe_ing6_unit" id="recipe_ing6_unit" class="form-control" >
+                                        <%
+                                            for (Unit u : lu1) {
+                                        %>
+                                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3" disabled>Ingredient 7:</label>
+
+                                <div class="col-xs-4 col-md-4">
+                                    <input type="text" class="form-control" id="recipe_ing7" name="recipe_ing7" placeholder="Ingredient Name" value="">
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <input type="text" class="form-control" id="recipe_ing7_qty" name="recipe_ing7_qty" onKeyPress="return numbersonly(this, event)" placeholder="Quantity" value="">
+
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <select name="recipe_ing7_unit" id="recipe_ing7_unit" class="form-control" >
+                                        <%
+                                            for (Unit u : lu1) {
+                                        %>
+                                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3" disabled>Ingredient 8:</label>
+
+                                <div class="col-xs-4 col-md-4">
+                                    <input type="text" class="form-control" id="recipe_ing8" name="recipe_ing8" placeholder="Ingredient Name" value="">
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <input type="text" class="form-control" id="recipe_ing8_qty" name="recipe_ing8_qty" onKeyPress="return numbersonly(this, event)" placeholder="Quantity" value="">
+
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <select name="recipe_ing8_unit" id="recipe_ing8_unit" class="form-control" >
+                                        <%
+                                            for (Unit u : lu1) {
+                                        %>
+                                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3" disabled>Ingredient 9:</label>
+
+                                <div class="col-xs-4 col-md-4">
+                                    <input type="text" class="form-control" id="recipe_ing9" name="recipe_ing9" placeholder="Ingredient Name" value="">
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <input type="text" class="form-control" id="recipe_ing9_qty" name="recipe_ing9_qty" onKeyPress="return numbersonly(this, event)" placeholder="Quantity" value="">
+
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <select name="recipe_ing9_unit" id="recipe_ing9_unit" class="form-control" >
+                                        <%
+                                            for (Unit u : lu1) {
+                                        %>
+                                        <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-3" disabled>Ingredient 10:</label>
+
+                                <div class="col-xs-4 col-md-4">
+                                    <input type="text" class="form-control" id="recipe_ing10" name="recipe_ing10" placeholder="Ingredient Name" value="">
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <input type="text" class="form-control" id="recipe_ing10_qty" name="recipe_ing10_qty" onKeyPress="return numbersonly(this, event)" placeholder="Quantity" value="">
+
+                                </div>
+                                <div class="col-xs-2 col-md-2">
+                                    <select name="recipe_ing10_unit" id="recipe_ing10_unit" class="form-control" >
+                                        <%
+                                            for (Unit u : lu1) {
                                         %>
                                         <option value="<%=u.getIdunit()%>"><%=u.getName()%></option>
                                         <%}%>

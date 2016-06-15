@@ -192,9 +192,10 @@
         <!--404 error message-->
         <div class="container" align="center">
             <div class="jumbotron">
-                <h1>Page Not Found!</h1> 
-                <p>Seems like the content you are searching for is not available...</p> <br>
-                <img src="images/404.png" alt="" class="img-responsive" height="100px" width="auto">
+                <h1>Error!</h1> 
+                <p>Seems like an error has occurred.</p> <br>
+                <p>We are very sorry for the inconvenience caused.</p> <br>
+                <img src="images/error.png" alt="" height="200px" width="auto">
             </div>
         </div>
 

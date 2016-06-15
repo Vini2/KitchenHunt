@@ -42,49 +42,31 @@ public class GeneralSearch extends HttpServlet {
 
         try {
 
-            String a = request.getParameter("search");
-            String b = a.trim();
-
             ArrayList recipe_list = new ArrayList();
 
-            if (b.equals("")) {
-                response.sendRedirect("error_page.jsp");
+            String name = request.getParameter("search");
+
+            System.out.println(name);
+
+            Session s = PoolManager.getSessionFactory().openSession();
+            Transaction t = s.beginTransaction();
+
+            Criteria c = s.createCriteria(Recipe.class);
+            c.add(Restrictions.eq("name", name));
+            Recipe r = (Recipe) c.uniqueResult();
+
+            if (r != null) {
+                recipe_list.add(r);
+            }
+
+            request.getSession().removeAttribute("recipeList");
+
+            request.getSession().setAttribute("recipeList", recipe_list);
+
+            if (recipe_list.isEmpty()) {
+                response.sendRedirect("recipe_search.jsp");
             } else {
-
-                try {
-
-                    String name = request.getParameter("search");
-
-                    System.out.println(name);
-
-                    Session s = PoolManager.getSessionFactory().openSession();
-                    Transaction t = s.beginTransaction();
-
-                    Criteria c = s.createCriteria(Recipe.class);
-                    c.add(Restrictions.eq("name", name));
-                    Recipe r = (Recipe) c.uniqueResult();
-
-                    if (r != null) {
-                        recipe_list.add(r);
-                        response.sendRedirect("error_page.jsp");
-
-                    }
-
-                    request.getSession().removeAttribute("recipeList");
-
-                    request.getSession().setAttribute("recipeList", recipe_list);
-
-                    if (recipe_list.size() == 0) {
-                        response.sendRedirect("recipe_search.jsp");
-                    } else {
-                        response.sendRedirect("view_recipe.jsp?rid=" + r.getIdrecipe());
-
-                    }
-
-                } catch (ArrayIndexOutOfBoundsException ae) {
-                    response.sendRedirect("error_page.jsp");
-                }
-
+                response.sendRedirect("view_recipe.jsp?rid=" + r.getIdrecipe());
             }
 
         } catch (Exception e) {
