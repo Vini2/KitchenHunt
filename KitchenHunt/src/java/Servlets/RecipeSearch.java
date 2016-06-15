@@ -16,6 +16,9 @@ import HibFiles.SystemStatus;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
@@ -55,9 +58,9 @@ public class RecipeSearch extends HttpServlet {
             String recipe_mealtype = request.getParameter("recipe_mealtype");
             String recipe_cusine = request.getParameter("recipe_cusine");
             String recipe_healthcat = request.getParameter("recipe_healthcat");
-            String recipe_exclude = request.getParameter("recipe_exclude");
 
-            System.out.println("include " + recipe_inc_ing);
+            request.getSession().removeAttribute("perceList");
+            request.getSession().removeAttribute("recipeList");
 
             //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
@@ -134,7 +137,45 @@ public class RecipeSearch extends HttpServlet {
                 }
             }
 
-            request.getSession().removeAttribute("recipeList");
+            ArrayList perc_list = new ArrayList();
+
+            if (!recipe_inc_ing.equals("") && recipe_ex_ing.equals("")) {
+
+                Criteria c1 = s.createCriteria(Recipe.class);
+                Criteria rhiCrit = c1.createCriteria("recipeHasIngredients");
+                Criteria ingdCrit = rhiCrit.createCriteria("ingredient");
+                ingdCrit.add(Restrictions.eq("name", recipe_inc_ing));
+                List<Recipe> r_list = c1.list();
+
+                for (Recipe recipe : r_list) {
+
+                    double total_weight = 0.0;
+                    double ing_weight = 1.0;
+
+                    Set<RecipeHasIngredient> ingredients = recipe.getRecipeHasIngredients();
+                    for (RecipeHasIngredient ingredient : ingredients) {
+                        total_weight = total_weight + ingredient.getQuantity();
+                        if (ingredient.getIngredient().getName().equals(recipe_inc_ing)) {
+                            ing_weight = ingredient.getQuantity();
+                        }
+                    }
+
+                    Double percentage = ing_weight / total_weight * 100;
+
+                    perc_list.add(percentage.intValue());
+
+                }
+                
+                Comparator comparator = Collections.reverseOrder();
+                Collections.sort(perc_list, comparator);
+                
+
+                perc_list.add(0, recipe_inc_ing);
+                
+
+                request.getSession().setAttribute("perceList", perc_list);
+
+            }
 
             request.getSession().setAttribute("recipeList", recipe_list);
 

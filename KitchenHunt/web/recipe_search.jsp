@@ -366,7 +366,9 @@ and open the template in the editor.
                         <%
                                     
                     } else {
+                        int count = 0;
                         for (Object object : recipeList) {
+                            count++;
                             Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(object.toString()));
                         %>
 
@@ -396,7 +398,17 @@ and open the template in the editor.
 
                                     <!--Cuisine Style-->
                                     <p>Cuisine Style: <%=r.getCuisineCategory().getCuisineName()%></p>
-
+                                    
+                                    <!--Health Category-->
+                                    <p>Health Category: <%=r.getHealthCategory().getCategoryName()%></p>
+                                    
+                                    <%if (request.getSession().getAttribute("perceList") != null) {
+                                        ArrayList perclist = (ArrayList) request.getSession().getAttribute("perceList");
+                                    %>
+                                    <!--Percentage of Ingredient-->
+                                    <p>Percentage of <%=perclist.get(0).toString()%>: <%=perclist.get(count).toString()%>%</p>
+                                    <%}%>
+                                    
                                     <!--View Recipe button-->
                                     <p><a href="view_recipe.jsp?rid=<%=r.getIdrecipe()%>" class="btn btn-default btn-block" role="button">View Recipe</a> 
 

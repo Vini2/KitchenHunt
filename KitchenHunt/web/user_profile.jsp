@@ -142,7 +142,7 @@
 
                             <ul class="nav nav-stacked collapse in" id="menu2">
                                 <li><a href="user_profile.jsp">My Profile <span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                                <li><a href="#">Change Password</a></li>
+                                
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>

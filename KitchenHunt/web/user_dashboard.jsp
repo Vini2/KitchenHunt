@@ -144,7 +144,6 @@
 
                             <ul class="nav nav-stacked collapse" id="menu2">
                                 <li><a href="user_profile.jsp">My Profile</a></li>
-                                <li><a href="#">Change Password</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>
@@ -170,7 +169,7 @@
                             </div>
                             
                             <img src="images/MyKitchen.png" height="150px" width="=auto">
-                            <h2><small>Manage your recipes and save all your information using your My Kitchen.</small></h2>
+                            <h2><small>Manage your recipes and save all your information using your My Kitchen Account.</small></h2>
                             <br>
                             <img src="images/Ingredients.png" height="150px" width="=auto">
                             <h2><small> Add your favourite ingredients to your My Kitchen account. We can notify you when new recipes containing those ingredients are added.</small></h2>

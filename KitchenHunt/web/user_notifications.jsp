@@ -150,7 +150,6 @@
 
                             <ul class="nav nav-stacked collapse" id="menu2">
                                 <li><a href="user_profile.jsp">My Profile</a></li>
-                                <li><a href="#">Change Password</a></li>
                                 <li><a href="SignOut">Sign Out</a></li>
                             </ul>
                         </li>
