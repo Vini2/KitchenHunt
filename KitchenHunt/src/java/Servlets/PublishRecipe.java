@@ -118,7 +118,7 @@ public class PublishRecipe extends HttpServlet {
                         n.setCategory("New Recipe Posted");
                         n.setStatus("Unread");
                         n.setUser(mi.getUser());
-                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + rhi.getRecipe().getName() + " has been posted by " + ul.getUser().getFname());
+                        n.setNotification("A new recipe named " + r.getName() + " containing the ingredient " + mi.getIngredient().getName() + " has been posted by " + ul.getUser().getFname());
                         s.save(n);
                     }
                 }

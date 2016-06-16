@@ -235,7 +235,7 @@
                                             cr1.add(Restrictions.eq("foodCategory", fc));
                                             List<Recipe> cr1_list = cr1.list();
 
-                                            int perc = cr1_list.size() / recipe_list.size() * 100;
+                                            int perc = cr1_list.size() * 100 / recipe_list.size();
 
                                     %>
                                     <small><%=fc.getCategoryName()%></small>
