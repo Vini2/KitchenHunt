@@ -18,17 +18,15 @@ public class ProfileTest {
     @Before
     public void prepare() {
         setTestingEngineKey(TestingEngineRegistry.TESTING_ENGINE_HTMLUNIT);    // use HtmlUnit
-        setBaseUrl("http://localhost:8080/KitchenHunt");
+        setBaseUrl("http://www.kitchenhuntr.com");
     }
     
     @Test
     public void testUpdateProfile() {
 
-        beginAt("profile.jsp"); //Open the browser on http://localhost:8080/KitchenHunt/profile.jsp
+        beginAt("index.jsp"); //Open the browser on http://www.kitchenhuntr.com/index.jsp
         assertTitleEquals("Kitchen Hunt");    // we should be on the Kitchen Hunt
-
-        // fill out the form
-        //assertLinkNotPresent("Logout");		// we should not be logged in
+// fill out the form. we should not be logged in
         assertFormPresent("signup_form");
         assertFormElementPresent("signup_name");
         assertFormElementPresent("signup_email");

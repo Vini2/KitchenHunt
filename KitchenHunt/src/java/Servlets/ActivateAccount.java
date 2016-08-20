@@ -45,11 +45,16 @@ public class ActivateAccount extends HttpServlet {
 
         try {
 
+            //get parameter from request
             String id = request.getParameter("id");
 
+            //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
+
+            //Initiate transaction
             Transaction t = s.beginTransaction();
             
+            //Load user
             User u = (User) s.load(User.class, Integer.parseInt(id));
 
             Set<UserLogin> user_set = u.getUserLogins();
@@ -60,10 +65,13 @@ public class ActivateAccount extends HttpServlet {
             c.add(Restrictions.eq("statusName", "Active"));
             SystemStatus ss = (SystemStatus) c.uniqueResult();
             
+            //Set system status active
             user_ul.setSystemStatus(ss);
 
+            //Update object
             s.update(user_ul);
             
+            //Commit changes
             t.commit();
 
             response.sendRedirect("admin_manage_users.jsp");

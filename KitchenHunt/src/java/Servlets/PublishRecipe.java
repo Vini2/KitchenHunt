@@ -49,9 +49,13 @@ public class PublishRecipe extends HttpServlet {
         try {
             UserLogin ul = (UserLogin) request.getSession().getAttribute("user");
 
+            //Create hibernate session
             Session s = PoolManager.getSessionFactory().openSession();
+            
+            //Initiate transaction
             Transaction t = s.beginTransaction();
 
+            //Get attributes from http request and load recipe
             Recipe r = (Recipe) s.load(Recipe.class, Integer.parseInt(request.getParameter("rid")));
 
             r.setStatus("Published");
@@ -113,6 +117,7 @@ public class PublishRecipe extends HttpServlet {
 
                     if (!posted_user.equals(us)) {
 
+                        //Notify users
                         Notification n = new Notification();
                         n.setDate(new Date());
                         n.setCategory("New Recipe Posted");

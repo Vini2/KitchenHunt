@@ -17,7 +17,7 @@ public class RecipeSearchTest {
     @Before
     public void prepare() {
         setTestingEngineKey(TestingEngineRegistry.TESTING_ENGINE_HTMLUNIT);    // use HtmlUnit
-        setBaseUrl("http://localhost:8080/KitchenHunt");
+        setBaseUrl("http://www.kitchenhuntr.com");
     }
 
     @Test
