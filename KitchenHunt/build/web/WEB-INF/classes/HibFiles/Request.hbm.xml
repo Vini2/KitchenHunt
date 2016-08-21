@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 15, 2016 6:41:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="HibFiles.Request" table="request" catalog="kitchenhunttest8" optimistic-lock="version">
+        <id name="idrequest" type="java.lang.Integer">
+            <column name="idrequest" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="HibFiles.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="recipeName" type="string">
+            <column name="recipe_name" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 15, 2016 6:41:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="HibFiles.Unit" table="unit" catalog="kitchenhunttest8" optimistic-lock="version">
+        <id name="idunit" type="java.lang.Integer">
+            <column name="idunit" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <set name="recipeHasIngredients" table="recipe_has_ingredient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="unit_idunit" not-null="true" />
+            </key>
+            <one-to-many class="HibFiles.RecipeHasIngredient" />
+        </set>
+    </class>
+</hibernate-mapping>
