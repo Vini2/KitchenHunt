@@ -56,3 +56,7 @@ Kitchen Hunt will collaborate with local supermarkets so that the supermarkets c
 
 
 Note: This is a web application which can search recipes online. It is developed for the Software Engineering Project module of Semester 5 of Department of Computer Science and Engineering, University of Moratuwa.
+
+## Reference
+
+Please cite the UoM CSE Symposium 2017 publication available at [http://dl.lib.uom.lk/handle/123/19713](http://dl.lib.uom.lk/handle/123/19713).
